@@ -90,19 +90,93 @@
             </table>
         </div>
 
-        <!-- Social Proof -->
-        <div class="saved-flights">
-            <h3 style="text-align:center; margin-bottom:15px;">🛫 We Saved These Trips</h3>
-            <div class="flight-card">
-                <span>✈️</span> Flight SU292, Moscow → Hanoi – <strong>visa in 58 min</strong>, 3h before boarding
-            </div>
-            <div class="flight-card">
-                <span>✈️</span> Family of 4, Sydney → Ho Chi Minh – <strong>2‑hour service</strong>
-            </div>
-            <div class="flight-card">
-                <span>✈️</span> Toronto → Da Nang – <strong>weekend panic</strong>, visa ready by Monday 9am
-            </div>
-        </div>
+        <!-- Saved Flights: бесконечная анимация -->
+<style>
+    .saved-flights-wrapper {
+        background: #0e1e30;
+        border-radius: 20px;
+        margin: 30px 0;
+        padding: 20px 0;
+        overflow: hidden;
+        height: 280px; /* фиксированная высота для компактности */
+        position: relative;
+        mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+    .saved-flights-title {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #ff6b2b;
+        position: sticky;
+        top: 0;
+        background: #0e1e30;
+        z-index: 2;
+        padding: 10px 0;
+    }
+    .saved-flights-track {
+        animation: scrollFlights 25s linear infinite;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 0 25px;
+    }
+    .saved-flights-track:hover {
+        animation-play-state: paused;
+    }
+    .flight-card {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: #12223b;
+        padding: 12px 20px;
+        border-radius: 14px;
+        border-left: 4px solid #ff6b2b;
+        font-size: 0.95rem;
+        color: #cfddee;
+        flex-shrink: 0;
+    }
+    .flight-icon {
+        font-size: 1.5rem;
+    }
+    @keyframes scrollFlights {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-50%); }
+    }
+</style>
+
+<div class="saved-flights-wrapper">
+    <div class="saved-flights-title">🛫 We Saved These Trips — 1 Hour, 0 Stress</div>
+    <div class="saved-flights-track">
+        <!-- 12 оригинальных карточек + дубликаты для бесконечности -->
+        <div class="flight-card"><span class="flight-icon">✈️</span> Moscow → Hanoi, visa in 58 min, 3h before boarding (Sergei, Apr 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> Sydney → Ho Chi Minh, family of 4, 2‑hour service (Mia, Mar 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> London → Phu Quoc, forgotten visa, 1‑hour save (David, Feb 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> Seoul → Da Nang, urgent overnight case, ready by 8am (Yuna, Apr 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> Toronto → Nha Trang, weekend panic, Monday 9am visa (Raj, Mar 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> Paris → Hanoi, group of 6, all 4‑hours (Claire, Jan 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> New York → Ho Chi Minh, same‑day approval, Sunday evening (Marcus, May 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> Berlin → Cat Ba, 2‑day relaxed, easy breezy (Tom, Mar 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> Melbourne → Danang, typo in passport fix — saved in 2h (Sophie, Feb 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> Amsterdam → Hanoi, last‑minute business trip, 4h visa (Jan, Apr 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> Delhi → Ho Chi Minh, student, 1 day, extremely happy (Priya, Mar 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> Los Angeles → Da Lat, honeymoon saved, 2h (Chloe & Leo, May 2025)</div>
+        <!-- Дубликаты -->
+        <div class="flight-card"><span class="flight-icon">✈️</span> Moscow → Hanoi, visa in 58 min, 3h before boarding (Sergei, Apr 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> Sydney → Ho Chi Minh, family of 4, 2‑hour service (Mia, Mar 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> London → Phu Quoc, forgotten visa, 1‑hour save (David, Feb 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> Seoul → Da Nang, urgent overnight case, ready by 8am (Yuna, Apr 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> Toronto → Nha Trang, weekend panic, Monday 9am visa (Raj, Mar 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> Paris → Hanoi, group of 6, all 4‑hours (Claire, Jan 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> New York → Ho Chi Minh, same‑day approval, Sunday evening (Marcus, May 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> Berlin → Cat Ba, 2‑day relaxed, easy breezy (Tom, Mar 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> Melbourne → Danang, typo in passport fix — saved in 2h (Sophie, Feb 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> Amsterdam → Hanoi, last‑minute business trip, 4h visa (Jan, Apr 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> Delhi → Ho Chi Minh, student, 1 day, extremely happy (Priya, Mar 2025)</div>
+        <div class="flight-card"><span class="flight-icon">✈️</span> Los Angeles → Da Lat, honeymoon saved, 2h (Chloe & Leo, May 2025)</div>
+    </div>
+</div>
 
         <!-- FAQ с типом визы -->
         <h3 style="margin-top:40px;">❓ Quick Answers</h3>
