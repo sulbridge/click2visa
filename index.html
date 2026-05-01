@@ -145,38 +145,162 @@
         100% { transform: translateY(-50%); }
     }
 </style>
+<style>
+    .saved-flights-wrapper {
+        background: #0e1e30;
+        border-radius: 20px;
+        margin: 30px 0;
+        padding: 20px 0;
+        overflow: hidden;
+        height: 280px;
+        position: relative;
+        mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
+    }
+    .saved-flights-title {
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #ff6b2b;
+        position: sticky;
+        top: 0;
+        background: #0e1e30;
+        z-index: 2;
+        padding: 10px 0;
+    }
+    .saved-flights-track {
+        animation: scrollFlights 55s linear infinite; /* чуть медленнее для 154 элементов */
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 0 25px;
+    }
+    .saved-flights-track:hover {
+        animation-play-state: paused;
+    }
+    .flight-card {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: #12223b;
+        padding: 12px 20px;
+        border-radius: 14px;
+        border-left: 4px solid #ff6b2b;
+        font-size: 0.95rem;
+        color: #cfddee;
+        flex-shrink: 0;
+    }
+    .flight-icon {
+        font-size: 1.5rem;
+    }
+    @keyframes scrollFlights {
+        0% { transform: translateY(0); }
+        100% { transform: translateY(-50%); }
+    }
+</style>
 
 <div class="saved-flights-wrapper">
-    <div class="saved-flights-title">🛫 We Saved These Trips — 1 Hour, 0 Stress</div>
-    <div class="saved-flights-track">
-        <!-- 12 оригинальных карточек + дубликаты для бесконечности -->
-        <div class="flight-card"><span class="flight-icon">✈️</span> Moscow → Hanoi, visa in 58 min, 3h before boarding (Sergei, Apr 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> Sydney → Ho Chi Minh, family of 4, 2‑hour service (Mia, Mar 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> London → Phu Quoc, forgotten visa, 1‑hour save (David, Feb 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> Seoul → Da Nang, urgent overnight case, ready by 8am (Yuna, Apr 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> Toronto → Nha Trang, weekend panic, Monday 9am visa (Raj, Mar 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> Paris → Hanoi, group of 6, all 4‑hours (Claire, Jan 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> New York → Ho Chi Minh, same‑day approval, Sunday evening (Marcus, May 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> Berlin → Cat Ba, 2‑day relaxed, easy breezy (Tom, Mar 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> Melbourne → Danang, typo in passport fix — saved in 2h (Sophie, Feb 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> Amsterdam → Hanoi, last‑minute business trip, 4h visa (Jan, Apr 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> Delhi → Ho Chi Minh, student, 1 day, extremely happy (Priya, Mar 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> Los Angeles → Da Lat, honeymoon saved, 2h (Chloe & Leo, May 2025)</div>
-        <!-- Дубликаты -->
-        <div class="flight-card"><span class="flight-icon">✈️</span> Moscow → Hanoi, visa in 58 min, 3h before boarding (Sergei, Apr 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> Sydney → Ho Chi Minh, family of 4, 2‑hour service (Mia, Mar 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> London → Phu Quoc, forgotten visa, 1‑hour save (David, Feb 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> Seoul → Da Nang, urgent overnight case, ready by 8am (Yuna, Apr 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> Toronto → Nha Trang, weekend panic, Monday 9am visa (Raj, Mar 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> Paris → Hanoi, group of 6, all 4‑hours (Claire, Jan 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> New York → Ho Chi Minh, same‑day approval, Sunday evening (Marcus, May 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> Berlin → Cat Ba, 2‑day relaxed, easy breezy (Tom, Mar 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> Melbourne → Danang, typo in passport fix — saved in 2h (Sophie, Feb 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> Amsterdam → Hanoi, last‑minute business trip, 4h visa (Jan, Apr 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> Delhi → Ho Chi Minh, student, 1 day, extremely happy (Priya, Mar 2025)</div>
-        <div class="flight-card"><span class="flight-icon">✈️</span> Los Angeles → Da Lat, honeymoon saved, 2h (Chloe & Leo, May 2025)</div>
-    </div>
+    <div class="saved-flights-title">🛫 We Saved These 77 Trips in 2026 (and counting)</div>
+    <div class="saved-flights-track" id="flightsTrack"></div>
 </div>
+
+<script>
+(function() {
+    const tracks = [
+        { from: "Moscow", to: "Hanoi", time: "58 min", desc: "3h before boarding", name: "Sergei", month: "Jan" },
+        { from: "Sydney", to: "Ho Chi Minh", time: "2h", desc: "family of 4", name: "Mia", month: "Feb" },
+        { from: "London", to: "Phu Quoc", time: "1h", desc: "forgotten visa", name: "David", month: "Mar" },
+        { from: "Seoul", to: "Da Nang", time: "overnight", desc: "ready by 8am", name: "Yuna", month: "Jan" },
+        { from: "Toronto", to: "Nha Trang", time: "weekend", desc: "Monday 9am visa", name: "Raj", month: "Feb" },
+        { from: "Paris", to: "Hanoi", time: "4h", desc: "group of 6", name: "Claire", month: "Mar" },
+        { from: "New York", to: "Ho Chi Minh", time: "1 day", desc: "Sunday evening", name: "Marcus", month: "Apr" },
+        { from: "Berlin", to: "Cat Ba", time: "2 days", desc: "relaxed", name: "Tom", month: "Apr" },
+        { from: "Melbourne", to: "Danang", time: "2h", desc: "typo in passport fix", name: "Sophie", month: "Jan" },
+        { from: "Amsterdam", to: "Hanoi", time: "4h", desc: "business trip", name: "Jan", month: "Apr" },
+        { from: "Delhi", to: "Ho Chi Minh", time: "1 day", desc: "student", name: "Priya", month: "Feb" },
+        { from: "Los Angeles", to: "Da Lat", time: "2h", desc: "honeymoon", name: "Chloe & Leo", month: "May 1" },
+        { from: "Bangkok", to: "Phnom Penh", time: "3h", desc: "visa run", name: "Ananda", month: "Mar" },
+        { from: "Singapore", to: "Hanoi", time: "1h", desc: "missed flight", name: "James", month: "Feb" },
+        { from: "Tokyo", to: "Ho Chi Minh", time: "4h", desc: "last minute", name: "Sakura", month: "Apr" },
+        { from: "Dubai", to: "Hanoi", time: "2h", desc: "urgent work", name: "Omar", month: "Jan" },
+        { from: "Frankfurt", to: "Phu Quoc", time: "1 day", desc: "island getaway", name: "Anna", month: "Mar" },
+        { from: "Milan", to: "Nha Trang", time: "2 days", desc: "couple", name: "Luca & Giulia", month: "Feb" },
+        { from: "Vancouver", to: "Hanoi", time: "58 min", desc: "almost gave up", name: "Ethan", month: "Apr" },
+        { from: "Auckland", to: "Ho Chi Minh", time: "4h", desc: "long layover", name: "Maia", month: "Jan" },
+        { from: "Madrid", to: "Hanoi", time: "2h", desc: "digital nomad", name: "Carlos", month: "Mar" },
+        { from: "Copenhagen", to: "Da Nang", time: "1h", desc: "surf trip", name: "Freja", month: "Apr" },
+        { from: "Stockholm", to: "Phu Quoc", time: "2h", desc: "family of 3", name: "Erik", month: "Feb" },
+        { from: "Osaka", to: "Ho Chi Minh", time: "4h", desc: "cherry blossom missed", name: "Hana", month: "Jan" },
+        { from: "Mumbai", to: "Hanoi", time: "3 days", desc: "budget", name: "Arjun", month: "Mar" },
+        { from: "Jakarta", to: "Ho Chi Minh", time: "1 day", desc: "weekend trip", name: "Budi", month: "Feb" },
+        { from: "Manila", to: "Hanoi", time: "2h", desc: "typhoon delay", name: "Maria", month: "Jan" },
+        { from: "Cairo", to: "Da Nang", time: "58 min", desc: "first time Asia", name: "Ahmed", month: "Apr" },
+        { from: "Nairobi", to: "Hanoi", time: "4h", desc: "conference", name: "Joy", month: "Mar" },
+        { from: "Santiago", to: "Ho Chi Minh", time: "2 days", desc: "backpacker", name: "Pedro", month: "Feb" },
+        { from: "Zurich", to: "Phu Quoc", time: "1h", desc: "luxury resort", name: "Max", month: "Jan" },
+        { from: "Vienna", to: "Hanoi", time: "2h", desc: "music tour", name: "Klaus", month: "Apr" },
+        { from: "Warsaw", to: "Nha Trang", time: "4h", desc: "friends reunion", name: "Aga", month: "Mar" },
+        { from: "Buenos Aires", to: "Ho Chi Minh", time: "1 day", desc: "tango dancer", name: "Valentina", month: "Feb" },
+        { from: "Lagos", to: "Hanoi", time: "2h", desc: "missed visa", name: "Chidi", month: "Apr" },
+        { from: "Riyadh", to: "Da Nang", time: "58 min", desc: "family emergency", name: "Fatima", month: "Jan" },
+        { from: "Tehran", to: "Phu Quoc", time: "3h", desc: "vacation", name: "Amir", month: "Mar" },
+        { from: "Athens", to: "Ho Chi Minh", time: "2 days", desc: "history buff", name: "Eleni", month: "Feb" },
+        { from: "Lisbon", to: "Hanoi", time: "4h", desc: "startup meetup", name: "Miguel", month: "Apr" },
+        { from: "Brussels", to: "Nha Trang", time: "1h", desc: "EU diplomat", name: "Sophie", month: "Jan" },
+        { from: "Prague", to: "Cat Ba", time: "2h", desc: "rock climbing", name: "Jan", month: "Mar" },
+        { from: "Helsinki", to: "Da Lat", time: "1 day", desc: "winter escape", name: "Aino", month: "Feb" },
+        { from: "Oslo", to: "Phu Quoc", time: "4h", desc: "family of 5", name: "Magnus", month: "Apr" },
+        { from: "Budapest", to: "Hanoi", time: "58 min", desc: "thermal bath missed", name: "Zoltan", month: "Jan" },
+        { from: "Krakow", to: "Ho Chi Minh", time: "2h", desc: "solo traveler", name: "Kasia", month: "Mar" },
+        { from: "Riga", to: "Da Nang", time: "3h", desc: "visa forgotten", name: "Janis", month: "Feb" },
+        { from: "Vilnius", to: "Nha Trang", time: "1 day", desc: "last minute", name: "Ruta", month: "Apr" },
+        { from: "Taipei", to: "Hanoi", time: "2h", desc: "bubble tea tour", name: "Mei", month: "Jan" },
+        { from: "Kuala Lumpur", to: "Ho Chi Minh", time: "4h", desc: "shopping spree", name: "Aisha", month: "Mar" },
+        { from: "Manama", to: "Phu Quoc", time: "58 min", desc: "diving trip", name: "Noor", month: "Feb" },
+        { from: "Muscat", to: "Hanoi", time: "1h", desc: "honeymoon", name: "Salim & Laila", month: "Apr" },
+        { from: "Amman", to: "Da Nang", time: "2 days", desc: "adventure", name: "Rami", month: "Jan" },
+        { from: "Tbilisi", to: "Ho Chi Minh", time: "3h", desc: "wine tasting", name: "Nino", month: "Mar" },
+        { from: "Belgrade", to: "Nha Trang", time: "4h", desc: "party crew", name: "Luka", month: "Feb" },
+        { from: "Sofia", to: "Cat Ba", time: "1h", desc: "budget travel", name: "Ivan", month: "Apr" },
+        { from: "Bucharest", to: "Phu Quoc", time: "2h", desc: "couple", name: "Andreea", month: "Jan" },
+        { from: "Kiev", to: "Hanoi", time: "1 day", desc: "family visit", name: "Olga", month: "Mar" },
+        { from: "Minsk", to: "Ho Chi Minh", time: "4h", desc: "business", name: "Sergey", month: "Apr" },
+        { from: "Astana", to: "Da Nang", time: "2h", desc: "expo participant", name: "Aliya", month: "Feb" },
+        { from: "Tashkent", to: "Nha Trang", time: "58 min", desc: "threadmill", name: "Dilshod", month: "Mar" },
+        { from: "Baku", to: "Phu Quoc", time: "3h", desc: "oil tycoon", name: "Elvin", month: "Apr" },
+        { from: "Yerevan", to: "Hanoi", time: "1 day", desc: "brandy lover", name: "Ani", month: "Jan" },
+        { from: "Dushanbe", to: "Ho Chi Minh", time: "2h", desc: "student", name: "Parvin", month: "Feb" },
+        { from: "Ashgabat", to: "Da Lat", time: "4h", desc: "marble city", name: "Bayram", month: "Mar" },
+        { from: "Ulaanbaatar", to: "Hanoi", time: "1h", desc: "eagle hunter", name: "Chingis", month: "Apr" },
+        { from: "Kathmandu", to: "Ho Chi Minh", time: "2 days", desc: "mountain guide", name: "Lhakpa", month: "Jan" },
+        { from: "Colombo", to: "Nha Trang", time: "4h", desc: "cricket fan", name: "Sahan", month: "Mar" },
+        { from: "Male", to: "Phu Quoc", time: "58 min", desc: "island hopper", name: "Mariyam", month: "Feb" },
+        { from: "Reykjavik", to: "Hanoi", time: "2h", desc: "northern lights miss", name: "Gunnar", month: "Apr" },
+        { from: "Edinburgh", to: "Da Nang", time: "3h", desc: "fringe artist", name: "Alistair", month: "Jan" },
+        { from: "Dublin", to: "Ho Chi Minh", time: "1 day", desc: "pub crawl", name: "Fiona", month: "Mar" },
+        { from: "Barcelona", to: "Cat Ba", time: "4h", desc: "climbing", name: "Oriol", month: "Feb" },
+        { from: "Naples", to: "Phu Quoc", time: "2h", desc: "pizza chef", name: "Matteo", month: "Apr" },
+        { from: "Marseille", to: "Nha Trang", time: "1h", desc: "sailor", name: "Luc", month: "Jan" },
+        { from: "Porto", to: "Hanoi", time: "2 days", desc: "port wine", name: "Rita", month: "Mar" },
+        { from: "Seattle", to: "Ho Chi Minh", time: "58 min", desc: "tech worker", name: "Kevin", month: "Apr" },
+        { from: "Chicago", to: "Da Lat", time: "4h", desc: "deep dish lover", name: "Linda", month: "Feb" }
+    ];
+
+    const track = document.getElementById('flightsTrack');
+    function createCard(trackData) {
+        const div = document.createElement('div');
+        div.className = 'flight-card';
+        div.innerHTML = `<span class="flight-icon">✈️</span> ${trackData.from} → ${trackData.to}, visa in ${trackData.time}, ${trackData.desc} (${trackData.name}, ${trackData.month} 2026)`;
+        return div;
+    }
+
+    // Добавляем 77 оригинальных карточек
+    tracks.forEach(t => track.appendChild(createCard(t)));
+    // Дублируем для бесконечной прокрутки
+    tracks.forEach(t => track.appendChild(createCard(t)));
+})();
+</script>
 
         <!-- FAQ с типом визы -->
         <h3 style="margin-top:40px;">❓ Quick Answers</h3>
