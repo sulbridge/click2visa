@@ -58,9 +58,9 @@
         </div>
 
         <div class="timer-box">
-            <div class="timer-label">⏳ Next weekday deadline:</div>
+            <div class="timer-label" id="timerLabel">⏳ Next weekday deadline:</div>
             <div class="timer" id="deadlineTimer">--:--:--</div>
-            <small style="color:#8ba0bc;">Weekends & holidays: only 1‑day processing available ($195).</small>
+            <small id="timerNote" style="color:#8ba0bc;">Weekends & holidays: only 1‑day processing available ($195).</small>
         </div>
 
         <div style="text-align: center;">
@@ -141,11 +141,61 @@
         </footer>
     </div>
 
-    <!-- скрипт бегущей строки (массив из 77 карточек) -->
+    <!-- Таймер обратного отсчёта -->
     <script>
-    (function() {
-        const tracks = [
-            { from: "Moscow", to: "Hanoi", time: "58 min", desc: "3h before boarding", name: "Sergei", month: "Jan" },
+        function updateTimer() {
+            const now = new Date();
+            const vnTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"}));
+            const day = vnTime.getDay(); // 0 – вс, 6 – сб
+            const timerEl = document.getElementById('deadlineTimer');
+            const labelEl = document.getElementById('timerLabel');
+            const noteEl = document.getElementById('timerNote');
+
+            // Проверка на выходной или праздник (упрощённо: только выходные)
+            const isWeekend = (day === 0 || day === 6);
+            // Праздники можно добавить аналогично, но для простоты используем только выходные
+
+            if (isWeekend) {
+                timerEl.textContent = 'Weekend / Holiday';
+                timerEl.style.color = '#ff6b2b';
+                labelEl.textContent = '📅 Today is a non-working day';
+                noteEl.innerHTML = '⚡ <strong>Only 1‑day processing available ($195).</strong> AI works 24/7.';
+                return;
+            }
+
+            // Будний день
+            labelEl.textContent = '⏳ Next weekday deadline:';
+            const deadline1 = new Date(vnTime);
+            deadline1.setHours(10, 0, 0, 0);
+            const deadline2 = new Date(vnTime);
+            deadline2.setHours(15, 0, 0, 0);
+
+            let target = deadline1;
+            if (vnTime > deadline1) target = deadline2;
+            if (vnTime > deadline2) {
+                timerEl.textContent = 'Slots closed today.';
+                noteEl.innerHTML = 'Next opening tomorrow 8:00 AM (VN time).';
+                return;
+            }
+
+            const diff = target - vnTime;
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            timerEl.textContent = `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+            timerEl.style.color = '#ff6b2b';
+            noteEl.innerHTML = 'All applications submitted before 10:00 AM or 3:00 PM (VN time) are processed today.';
+        }
+
+        updateTimer();
+        setInterval(updateTimer, 1000);
+    </script>
+
+    <!-- Бегущая строка (полный массив из 77 карточек) -->
+    <script>
+        (function() {
+            const tracks = [
+                { from: "Moscow", to: "Hanoi", time: "58 min", desc: "3h before boarding", name: "Sergei", month: "Jan" },
                 { from: "Sydney", to: "Ho Chi Minh", time: "2h", desc: "family of 4", name: "Mia", month: "Feb" },
                 { from: "London", to: "Phu Quoc", time: "1h", desc: "forgotten visa", name: "David", month: "Mar" },
                 { from: "Seoul", to: "Da Nang", time: "overnight", desc: "ready by 8am", name: "Yuna", month: "Jan" },
@@ -218,17 +268,17 @@
                 { from: "Reykjavik", to: "Hanoi", time: "2h", desc: "northern lights miss", name: "Gunnar", month: "Apr" },
                 { from: "Brussels", to: "Hoi An", time: "3h", desc: "EU official", name: "Marie", month: "Jan" },
                 { from: "Amsterdam", to: "Phu Quoc", time: "2h", desc: "backpacker fix", name: "Lars", month: "Mar" }
-        ];
-        const track = document.getElementById('flightsTrack');
-        function createCard(t) {
-            const div = document.createElement('div');
-            div.className = 'flight-card';
-            div.innerHTML = `<span class="flight-icon">✈️</span> ${t.from} → ${t.to}, visa in ${t.time}, ${t.desc} (${t.name}, ${t.month} 2026)`;
-            return div;
-        }
-        tracks.forEach(t => track.appendChild(createCard(t)));
-        tracks.forEach(t => track.appendChild(createCard(t))); // дубликат для бесконечности
-    })();
+            ];
+            const track = document.getElementById('flightsTrack');
+            function createCard(t) {
+                const div = document.createElement('div');
+                div.className = 'flight-card';
+                div.innerHTML = `<span class="flight-icon">✈️</span> ${t.from} → ${t.to}, visa in ${t.time}, ${t.desc} (${t.name}, ${t.month} 2026)`;
+                return div;
+            }
+            tracks.forEach(t => track.appendChild(createCard(t)));
+            tracks.forEach(t => track.appendChild(createCard(t)));
+        })();
     </script>
 </body>
 </html>
