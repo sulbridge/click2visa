@@ -3,335 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Click2Visa – Urgent Vietnam e-Visa in 1 Hour</title>
-    <meta name="description" content="Get your Vietnam e-Visa in 1 hour, even on weekends and holidays. 90‑day single entry. Urgent processing from $55. Official partner of JV.">
-    <meta name="keywords" content="Vietnam e-visa, urgent Vietnam visa, 1 hour visa, 90‑day visa, single entry visa, Click2Visa, weekend visa Vietnam, holiday visa Vietnam">
-    <meta property="og:title" content="Click2Visa – Urgent Vietnam e-Visa in 1 Hour">
-    <meta property="og:description" content="Your 90‑day single‑entry Vietnam e‑Visa — even if your flight is tomorrow. 1‑hour processing available, weekends & holidays included.">
-    <meta property="og:url" content="https://click2visa.vn/">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://click2visa.vn/og-image.png">
+    <title>Click2Visa – 24/7 AI Vietnam e-Visa</title>
+    <meta name="description" content="Get your Vietnam e-Visa in 1 hour, even on weekends and holidays. Fully automated AI service. Pay with crypto. 90‑day single entry.">
+    <meta property="og:title" content="Click2Visa – 24/7 AI Vietnam e-Visa">
+    <meta property="og:description" content="AI-powered e-visa processing 24/7. Pay with USDT, get your visa automatically. Weekends & holidays – we're awake.">
+    <meta property="og:url" content="https://click2visa.asia/">
     <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: #0a1628;
-            color: #fff;
-            line-height: 1.5;
-        }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #0a1628; color: #fff; line-height: 1.5; }
         .container { max-width: 700px; margin: 0 auto; padding: 30px 20px; }
         .hero { text-align: center; margin-bottom: 40px; }
-        .logo { font-size: 2.8rem; font-weight: 800; letter-spacing: -1px; color: #fff; }
+        .logo { font-size: 2.8rem; font-weight: 800; color: #fff; }
         .logo span { color: #ff6b2b; }
         .subhead { font-size: 1.2rem; margin-top: 10px; color: #b0c7e0; }
+        .highlight-box { background: #12223b; border-radius: 16px; padding: 20px; margin: 30px 0; text-align: center; }
         .timer-box { background: #12223b; border-radius: 16px; padding: 20px; margin: 30px 0; text-align: center; }
         .timer-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: #8ba0bc; }
         .timer { font-size: 2.5rem; font-weight: bold; color: #ff6b2b; }
-        .big-button {
-            display: inline-block; background: #ff6b2b; color: #fff; font-size: 1.5rem; font-weight: 700;
-            padding: 22px 50px; border-radius: 60px; text-decoration: none; margin: 25px 0;
-            box-shadow: 0 10px 30px rgba(255,107,43,0.4); transition: all 0.2s ease; animation: pulse 2s infinite; cursor: pointer;
-        }
-        .big-button:hover { transform: scale(1.05); box-shadow: 0 15px 40px rgba(255,107,43,0.6); }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(255,107,43,0.6); }
-            70% { box-shadow: 0 0 0 20px rgba(255,107,43,0); }
-            100% { box-shadow: 0 0 0 0 rgba(255,107,43,0); }
-        }
+        .big-button { display: inline-block; background: #ff6b2b; color: #fff; font-size: 1.5rem; font-weight: 700; padding: 22px 50px; border-radius: 60px; text-decoration: none; margin: 25px 0; box-shadow: 0 10px 30px rgba(255,107,43,0.4); animation: pulse 2s infinite; }
+        .big-button:hover { transform: scale(1.05); }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,107,43,0.6); } 70% { box-shadow: 0 0 0 20px rgba(255,107,43,0); } 100% { box-shadow: 0 0 0 0 rgba(255,107,43,0); } }
         .pricing-table { background: #12223b; border-radius: 20px; padding: 25px; margin: 40px 0; }
-        .pricing-table h3 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #ff6b2b;
-            line-height: 1.4;
-        }
         table { width: 100%; border-collapse: collapse; }
         th, td { padding: 12px 8px; border-bottom: 1px solid #1e3350; text-align: left; }
         th { color: #8ba0bc; font-weight: 600; }
+        .weekend-badge { background: #ff6b2b; padding: 3px 10px; border-radius: 20px; font-size: 0.8rem; color: #fff; margin-left: 6px; }
         .urgency-badge { background: #ff6b2b; padding: 3px 10px; border-radius: 20px; font-size: 0.8rem; color: #fff; }
-        .visa-type-badge { background: #2a3a5c; padding: 5px 15px; border-radius: 30px; display: inline-block; font-size: 1.2rem; color: #ffcc80; margin: 10px 0 20px; }
-        .saved-flights { background: #0e1e30; border-radius: 20px; padding: 25px; margin: 30px 0; display: flex; flex-direction: column; gap: 15px; }
-        .flight-card { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #1e3350; padding-bottom: 10px; }
-        .flight-card:last-child { border: none; }
         .faq-item { background: #12223b; border-radius: 12px; margin: 12px 0; padding: 15px; }
-        .faq-question { font-weight: 600; margin-bottom: 5px; }
-        .telegram-float { background: #229ed9; color: white; border-radius: 30px; padding: 12px 25px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; margin-top: 20px; }
+        .faq-question { font-weight: 600; margin-bottom: 5px; color: #ff6b2b; }
+        .telegram-float { background: #229ed9; color: white; border-radius: 30px; padding: 12px 25px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
         footer { text-align: center; margin-top: 50px; color: #5a6f8a; font-size: 0.9rem; }
-        .highlight { background: rgba(255,107,43,0.2); padding: 2px 8px; border-radius: 4px; }
-
-        .holiday-notice {
-            background: #ff6b2b;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            border-radius: 8px;
-            margin: 15px 0;
-            font-weight: bold;
-        }
-        .weekend-badge {
-            background: #ff6b2b;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: #fff;
-            display: inline-block;
-            line-height: 1.4;
-            margin-top: 4px;
-        }
-        .price-increase {
-            color: #ff6b2b;
-            font-weight: bold;
-        }
-        .old-price {
-            text-decoration: line-through;
-            color: #8ba0bc;
-            margin-right: 5px;
-        }
-        .payment-methods {
-            text-align: center;
-            margin: 20px 0 30px;
-            color: #8ba0bc;
-            font-size: 0.9rem;
-        }
-        .payment-methods span {
-            color: #ff6b2b;
-            font-weight: 600;
-        }
-        .saved-flights-wrapper {
-            background: #0e1e30;
-            border-radius: 20px;
-            margin: 30px 0;
-            padding: 20px 0;
-            overflow: hidden;
-            height: 280px;
-            position: relative;
-            mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%);
-        }
-        .saved-flights-title {
-            text-align: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #ff6b2b;
-            position: sticky;
-            top: 0;
-            background: #0e1e30;
-            z-index: 2;
-            padding: 10px 0;
-        }
-        .saved-flights-track {
-            animation: scrollFlights 160s linear infinite;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            padding: 0 25px;
-        }
-        .saved-flights-track:hover {
-            animation-play-state: paused;
-        }
-        .flight-card {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: #12223b;
-            padding: 12px 20px;
-            border-radius: 14px;
-            border-left: 4px solid #ff6b2b;
-            font-size: 0.95rem;
-            color: #cfddee;
-            flex-shrink: 0;
-        }
-        .flight-icon {
-            font-size: 1.5rem;
-        }
-        @keyframes scrollFlights {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-50%); }
-        }
+        .payment-methods { text-align: center; margin: 20px 0; color: #8ba0bc; }
+        /* бегущая строка */
+        .saved-flights-wrapper { background: #0e1e30; border-radius: 20px; margin: 30px 0; padding: 20px 0; overflow: hidden; height: 280px; position: relative; mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%); }
+        .saved-flights-title { text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 15px; color: #ff6b2b; position: sticky; top: 0; background: #0e1e30; z-index: 2; padding: 10px 0; }
+        .saved-flights-track { animation: scrollFlights 160s linear infinite; display: flex; flex-direction: column; gap: 12px; padding: 0 25px; }
+        .saved-flights-track:hover { animation-play-state: paused; }
+        .flight-card { display: flex; align-items: center; gap: 12px; background: #12223b; padding: 12px 20px; border-radius: 14px; border-left: 4px solid #ff6b2b; font-size: 0.95rem; color: #cfddee; flex-shrink: 0; }
+        .flight-icon { font-size: 1.5rem; }
+        @keyframes scrollFlights { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="hero">
             <div class="logo">Click<span>2</span>Visa</div>
-            <p class="subhead">Your 90‑day single‑entry Vietnam e‑Visa — even if your flight is tomorrow</p>
+            <p class="subhead">AI‑Powered Vietnam e‑Visa 24/7 · Pay with Crypto</p>
+        </div>
+
+        <div class="highlight-box">
+            <div style="font-size: 1.2rem;">🤖 <strong>AI Agent works while others sleep</strong></div>
+            <p style="margin-top:10px; color:#b0c7e0;">No waiting for office hours. Instant response, fully automatic – from payment to ready visa.</p>
         </div>
 
         <div class="timer-box">
-            <div class="timer-label" id="timerLabel">⏳ Next application deadline:</div>
+            <div class="timer-label">⏳ Next weekday deadline:</div>
             <div class="timer" id="deadlineTimer">--:--:--</div>
-            <small id="timerNote" style="color:#8ba0bc;">All applications submitted before 10:00 AM or 3:00 PM (VN time) are processed today.</small>
+            <small style="color:#8ba0bc;">Weekends & holidays: only 1‑day processing available ($195).</small>
         </div>
 
         <div style="text-align: center;">
-            <a href="https://t.me/Click2VisaBot" class="big-button">⚡ Get Your 90‑Day e‑Visa Now</a>
-            <p style="margin-top:10px; color:#b0c7e0;">
-                <span class="visa-type-badge">✅ 90‑day single‑entry e‑Visa (official gov. document)</span>
-            </p>
-            <p id="pricingNote" style="color:#8ba0bc;">Starts at $55 · 1‑hour processing available</p>
+            <a href="https://t.me/Click2VisaBot" class="big-button">⚡ Get Your e‑Visa Now</a>
+            <p style="margin-top:10px; color:#b0c7e0;">✅ 90‑day single‑entry e‑Visa</p>
         </div>
 
         <div class="pricing-table">
-            <h3 id="pricingTitle">⚡ Urgent Vietnam e‑Visa — 90 days, single entry</h3>
-            <p id="pricingSubtitle" style="text-align:center; color:#8ba0bc; margin-bottom: 15px;">
-                All prices include government fee. You receive a <span class="highlight">90‑day single‑entry e‑Visa</span>.
-            </p>
+            <h3 style="color:#ff6b2b; text-align:center;">🏷️ Urgent e‑Visa – 90 days, single entry</h3>
+            <p style="text-align:center; color:#8ba0bc;">All prices include government fee.</p>
             <table>
-                <thead>
-                    <tr><th>Processing Speed</th><th>Price (USD)</th><th>Visa Type</th></tr>
-                </thead>
-                <tbody id="pricingBody">
-                </tbody>
+                <tr><th>Processing Speed</th><th>Price (USD)</th><th>Availability</th></tr>
+                <tr><td>1 hour <span class="urgency-badge">HOT</span></td><td><strong>$245</strong></td><td>Weekdays only</td></tr>
+                <tr><td>2 hours</td><td><strong>$205</strong></td><td>Weekdays only</td></tr>
+                <tr><td>4 hours</td><td><strong>$130</strong></td><td>Weekdays only</td></tr>
+                <tr><td>1 day</td><td><strong>$105</strong> <span class="weekend-badge">$195 weekend</span></td><td>All days</td></tr>
+                <tr><td>2 days</td><td><strong>$95</strong></td><td>Weekdays only</td></tr>
+                <tr><td>3 days</td><td><strong>$80</strong></td><td>Weekdays only</td></tr>
+                <tr><td>4–5 days</td><td><strong>$55</strong></td><td>Weekdays only</td></tr>
             </table>
+            <p style="text-align:center; font-size:0.9rem; margin-top:10px;">⚠️ Some nationalities (+$35 difficulty fee): 🇹🇷🇱🇰🇪🇬🇲🇺</p>
             <div class="payment-methods">
-                We accept: 💳 Visa, Mastercard, PayPal, <span>₿ Crypto (BTC, USDT)</span>
+                We accept: <span>₿ Crypto (USDT, BTC via Cryptomus)</span>
             </div>
         </div>
 
+        <!-- 777+ trips saved -->
         <div class="saved-flights-wrapper">
-            <div class="saved-flights-title">🛫 We Saved These Trips in 2026 (and counting)</div>
+            <div class="saved-flights-title">🛫 777+ Trips Saved in 2026</div>
             <div class="saved-flights-track" id="flightsTrack"></div>
         </div>
 
+        <!-- 4 простых шага -->
+        <h3 style="margin-top:40px;">⚡ Your visa in 4 simple steps</h3>
+        <div class="faq-item" style="border-left: 4px solid #ff6b2b;">
+            <strong>1.</strong> Send passport photo<br>
+            <strong>2.</strong> Send your selfie<br>
+            <strong>3.</strong> Pay in crypto (USDT)<br>
+            <strong>4.</strong> Receive PDF in Telegram
+        </div>
+        <p style="text-align:center; color:#8ba0bc; margin-top:15px;">🔒 <strong>All personal data is automatically deleted after successful delivery.</strong></p>
+
         <h3 style="margin-top:40px;">❓ Quick Answers</h3>
         <div class="faq-item">
+            <div class="faq-question">How does the AI work?</div>
+            <p>Our AI agent instantly collects your passport details and processes the order 24/7 without human delay, even on weekends.</p>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Which payment methods do you accept?</div>
+            <p>We accept <strong>crypto payments</strong> (USDT, BTC) via Cryptomus. No cards or bank transfers – fast and anonymous.</p>
+        </div>
+        <div class="faq-item">
             <div class="faq-question">What type of visa will I get?</div>
-            <p>A <strong>90‑day single‑entry e‑Visa</strong>. Perfect for long stays, wintering, or extended vacations. You can check its validity on the official Vietnam Immigration portal.</p>
+            <p>A <strong>90‑day single‑entry e‑Visa</strong>. Perfect for long stays. You can verify it on the official immigration portal.</p>
         </div>
         <div class="faq-item">
-            <div class="faq-question">Is this real? 1‑hour processing?</div>
-            <p>Yes. We work with a licensed partner who has dedicated urgent channels. It's not a magic trick — it's priority processing.</p>
+            <div class="faq-question">What about weekends or holidays?</div>
+            <p>We accept orders <strong>any day</strong>. On weekends/holidays only 1‑day processing ($195) is available, but the AI still works instantly.</p>
         </div>
         <div class="faq-item">
-            <div class="faq-question">What if the visa doesn't arrive on time?</div>
-            <p>Full refund, no questions. But in thousands of cases, this has never been needed.</p>
+            <div class="faq-question">Can all nationalities apply?</div>
+            <p>Most are welcome. For <strong>Turkey, Sri Lanka, Egypt, Mauritius</strong> an extra $35 fee applies. Unfortunately we cannot process citizens from restricted list countries – the AI will inform you immediately.</p>
         </div>
         <div class="faq-item">
-            <div class="faq-question">Do I need to fill government forms?</div>
-            <p>No. Send us your passport photo + entry date. We handle the rest.</p>
+            <div class="faq-question">What about my personal data?</div>
+            <p>Your passport scan and selfie are used only for the visa application. <strong>All data is automatically deleted</strong> once your visa PDF is sent to you. No traces left.</p>
         </div>
 
         <div style="text-align: center; margin-top: 40px;">
             <a href="https://t.me/Click2VisaBot" class="telegram-float" target="_blank">
-                💬 Chat in Telegram – Instant 90‑day visa help
+                💬 Chat with AI in Telegram
             </a>
-            <p style="margin-top:10px; color:#5a6f8a;">Prefer to talk? Our concierge is online now.</p>
         </div>
 
         <footer>
-            © 2026 Click2Visa.vn – Official partner of JV.<br>
-            We make 90‑day visas, not excuses.
+            © 2026 Click2Visa.asia – Official partner of Johnny Visa.<br>
+            We never sleep, so your visa is always one click away.
         </footer>
     </div>
 
+    <!-- скрипт бегущей строки (массив из 77 карточек) -->
     <script>
-        const vietnamHolidays2026 = [
-            '2026-01-01',
-            '2026-02-14', '2026-02-15', '2026-02-16', '2026-02-17', '2026-02-18', '2026-02-19', '2026-02-20', '2026-02-21', '2026-02-22',
-            '2026-04-25', '2026-04-26', '2026-04-27',
-            '2026-04-30', '2026-05-01', '2026-05-02', '2026-05-03',
-            '2026-08-29', '2026-08-30', '2026-08-31', '2026-09-01', '2026-09-02',
-            '2026-11-24'
-        ];
-
-        function isWeekendOrHoliday(date) {
-            const dayOfWeek = date.getDay();
-            const dateString = date.toISOString().split('T')[0];
-            if (dayOfWeek === 0 || dayOfWeek === 6) return true;
-            if (vietnamHolidays2026.includes(dateString)) return true;
-            return false;
-        }
-
-        function updateUI() {
-            const now = new Date();
-            const vnTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"}));
-            const isHoliday = isWeekendOrHoliday(vnTime);
-
-            const timerElement = document.getElementById('deadlineTimer');
-            const timerLabel = document.getElementById('timerLabel');
-            const timerNote = document.getElementById('timerNote');
-
-            if (isHoliday) {
-                timerElement.textContent = 'Weekend / Holiday';
-                timerElement.style.color = '#ff6b2b';
-                timerLabel.textContent = '📅 Today is a non-working day in Vietnam';
-                timerNote.innerHTML = '⚡ <strong>Urgent processing available at special weekend rates.</strong> Contact us for immediate assistance.';
-            } else {
-                timerElement.style.color = '#ff6b2b';
-                timerLabel.textContent = '⏳ Next application deadline:';
-                const deadline1 = new Date(vnTime);
-                deadline1.setHours(10, 0, 0, 0);
-                const deadline2 = new Date(vnTime);
-                deadline2.setHours(15, 0, 0, 0);
-                let target = deadline1;
-                if (vnTime > deadline1) target = deadline2;
-                if (vnTime > deadline2) {
-                    timerElement.textContent = 'Today’s slots closed. Next opening 8:00 AM tomorrow.';
-                } else {
-                    const diff = target - vnTime;
-                    const hours = Math.floor(diff / (1000 * 60 * 60));
-                    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-                    timerElement.textContent = `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
-                }
-                timerNote.textContent = 'All applications submitted before 10:00 AM or 3:00 PM (VN time) are processed today.';
-            }
-
-            const pricingBody = document.getElementById('pricingBody');
-            const pricingTitle = document.getElementById('pricingTitle');
-            const pricingNote = document.getElementById('pricingNote');
-
-            const basePrices = [
-                { speed: "1 hour", price: 245, hot: true },
-                { speed: "2 hours", price: 205 },
-                { speed: "4 hours", price: 130 },
-                { speed: "1 day", price: 105 },
-                { speed: "2 days", price: 95 },
-                { speed: "3 days", price: 80 },
-                { speed: "4–5 days", price: 55 }
-            ];
-
-            let html = '';
-            const surcharge = isHoliday ? 0.3 : 0;
-
-            basePrices.forEach(item => {
-                const finalPrice = Math.round(item.price * (1 + surcharge));
-                const hotBadge = item.hot ? ' <span class="urgency-badge">HOT</span>' : '';
-
-                let priceDisplay;
-                if (isHoliday) {
-                    priceDisplay = `<div><span class="old-price">$${item.price}</span> <span class="price-increase">$${finalPrice}</span></div><span class="weekend-badge">Weekend/Holiday</span>`;
-                } else {
-                    priceDisplay = `<strong>$${finalPrice}</strong>`;
-                }
-
-                html += `<tr>
-                    <td>${item.speed}${hotBadge}</td>
-                    <td>${priceDisplay}</td>
-                    <td>90‑day single entry</td>
-                </tr>`;
-            });
-
-            pricingBody.innerHTML = html;
-
-            if (isHoliday) {
-                pricingTitle.innerHTML = '⚡ Urgent Vietnam e‑Visa<br>90 days, single entry <span class="weekend-badge">Weekend/Holiday Rates</span>';
-                pricingNote.innerHTML = `⚠️ <span class="price-increase">${Math.round(surcharge*100)}% surcharge applied for weekend/holiday processing.</span> Guaranteed delivery.`;
-            } else {
-                pricingTitle.innerHTML = '⚡ Urgent Vietnam e‑Visa — 90 days, single entry';
-                pricingNote.innerHTML = 'Starts at $55 · 1‑hour processing available';
-            }
-        }
-
-        updateUI();
-        setInterval(updateUI, 60000);
-
-        (function() {
-            const tracks = [
-                { from: "Moscow", to: "Hanoi", time: "58 min", desc: "3h before boarding", name: "Sergei", month: "Jan" },
+    (function() {
+        const tracks = [
+            { from: "Moscow", to: "Hanoi", time: "58 min", desc: "3h before boarding", name: "Sergei", month: "Jan" },
                 { from: "Sydney", to: "Ho Chi Minh", time: "2h", desc: "family of 4", name: "Mia", month: "Feb" },
                 { from: "London", to: "Phu Quoc", time: "1h", desc: "forgotten visa", name: "David", month: "Mar" },
                 { from: "Seoul", to: "Da Nang", time: "overnight", desc: "ready by 8am", name: "Yuna", month: "Jan" },
@@ -404,19 +218,17 @@
                 { from: "Reykjavik", to: "Hanoi", time: "2h", desc: "northern lights miss", name: "Gunnar", month: "Apr" },
                 { from: "Brussels", to: "Hoi An", time: "3h", desc: "EU official", name: "Marie", month: "Jan" },
                 { from: "Amsterdam", to: "Phu Quoc", time: "2h", desc: "backpacker fix", name: "Lars", month: "Mar" }
-            ];
-
-            const track = document.getElementById('flightsTrack');
-            function createCard(trackData) {
-                const div = document.createElement('div');
-                div.className = 'flight-card';
-                div.innerHTML = `<span class="flight-icon">✈️</span> ${trackData.from} → ${trackData.to}, visa in ${trackData.time}, ${trackData.desc} (${trackData.name}, ${trackData.month} 2026)`;
-                return div;
-            }
-
-            tracks.forEach(t => track.appendChild(createCard(t)));
-            tracks.forEach(t => track.appendChild(createCard(t)));
-        })();
+        ];
+        const track = document.getElementById('flightsTrack');
+        function createCard(t) {
+            const div = document.createElement('div');
+            div.className = 'flight-card';
+            div.innerHTML = `<span class="flight-icon">✈️</span> ${t.from} → ${t.to}, visa in ${t.time}, ${t.desc} (${t.name}, ${t.month} 2026)`;
+            return div;
+        }
+        tracks.forEach(t => track.appendChild(createCard(t)));
+        tracks.forEach(t => track.appendChild(createCard(t))); // дубликат для бесконечности
+    })();
     </script>
 </body>
 </html>
