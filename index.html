@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,6 +52,7 @@
         .support-link { display: inline-flex; align-items: center; gap: 10px; background: #12223b; color: #fff; padding: 14px 28px; border-radius: 30px; text-decoration: none; font-size: 1.1rem; font-weight: 600; border: 1px solid #1e3350; transition: all 0.3s ease; }
         .support-link:hover { background: #1a2e4a; border-color: #ff6b2b; transform: translateY(-2px); }
         .support-icon { font-size: 1.5rem; }
+        .faqTitle { margin-top: 2rem; }
     </style>
 </head>
 <body>
@@ -157,7 +158,6 @@
             support_note: "If the AI couldn't help, our human team is here for you.",
             chat_text: "Chat with AI in Telegram",
             footer: "© 2026 Click2Visa.asia – your reliable partner.<br>We never sleep, so your visa is always one click away.",
-            // Table rows data
             speeds: ["1 hour", "2 hours", "4 hours", "1 day", "2 days", "3 days", "4–5 days (Standard)"],
             avail: ["Weekdays only", "Weekdays only", "Weekdays only", "All days", "Weekdays only", "Weekdays only", "Weekdays only"],
             weekend_label: "weekend"
@@ -330,11 +330,27 @@
     let timerInterval = null;
     let dateTimeInterval = null;
 
+    function setHtmlLang(lang) {
+        const htmlTag = document.documentElement;
+        if (lang === 'en') htmlTag.lang = 'en';
+        else if (lang === 'ru') htmlTag.lang = 'ru';
+        else if (lang === 'zh') htmlTag.lang = 'zh';
+        else if (lang === 'pt') htmlTag.lang = 'pt';
+        else if (lang === 'hi') htmlTag.lang = 'hi';
+        else htmlTag.lang = 'en';
+    }
+
     function localizeDateTime(lang) {
         const now = new Date();
         const vnTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"}));
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-        let formatted = vnTime.toLocaleString(lang === 'zh' ? 'zh-CN' : (lang === 'pt' ? 'pt-BR' : (lang === 'hi' ? 'hi-IN' : (lang === 'ru' ? 'ru-RU' : 'en-US'))), options);
+        let locale = 'en-US';
+        if (lang === 'ru') locale = 'ru-RU';
+        else if (lang === 'zh') locale = 'zh-CN';
+        else if (lang === 'pt') locale = 'pt-BR';
+        else if (lang === 'hi') locale = 'hi-IN';
+        else locale = 'en-US';
+        let formatted = vnTime.toLocaleString(locale, options);
         if (lang === 'zh') formatted = formatted.replace('上午', '早上').replace('下午', '下午');
         return `🇻🇳 ${formatted}`;
     }
@@ -368,6 +384,7 @@
     function renderPage(lang) {
         const t = translations[lang];
         if (!t) return;
+        setHtmlLang(lang);
         document.getElementById('subhead').textContent = t.subhead;
         document.getElementById('aiTitle').innerHTML = t.ai_title;
         document.getElementById('aiDesc').textContent = t.ai_desc;
@@ -399,7 +416,6 @@
         const footerSwitch = document.getElementById('langSwitchFooter');
         footerSwitch.innerHTML = `
             <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
-            <button class="lang-btn" data-lang="ru">🇷🇺 RU</button>
             <button class="lang-btn" data-lang="zh">🇨🇳 中文</button>
             <button class="lang-btn" data-lang="pt">🇧🇷 PT</button>
             <button class="lang-btn" data-lang="hi">🇮🇳 हिंदी</button>
@@ -498,18 +514,79 @@
     dateTimeInterval = setInterval(updateDateTime, 1000);
 
     const flights = [
-        { from: "Moscow", to: "Hanoi", time: "58 min", desc: "3h before boarding", name: "Sergei", month: "Jan" },
-        { from: "Sydney", to: "Ho Chi Minh", time: "2h", desc: "family of 4", name: "Mia", month: "Feb" },
-        { from: "London", to: "Phu Quoc", time: "1h", desc: "forgotten visa", name: "David", month: "Mar" },
-        { from: "Seoul", to: "Da Nang", time: "overnight", desc: "ready by 8am", name: "Yuna", month: "Jan" },
-        { from: "Toronto", to: "Nha Trang", time: "weekend", desc: "Monday 9am visa", name: "Raj", month: "Feb" },
-        { from: "Paris", to: "Hanoi", time: "4h", desc: "group of 6", name: "Claire", month: "Mar" },
-        { from: "New York", to: "Ho Chi Minh", time: "1 day", desc: "Sunday evening", name: "Marcus", month: "Apr" },
-        { from: "Berlin", to: "Cat Ba", time: "2 days", desc: "relaxed", name: "Tom", month: "Apr" },
-        { from: "Melbourne", to: "Danang", time: "2h", desc: "typo in passport fix", name: "Sophie", month: "Jan" },
-        { from: "Amsterdam", to: "Hanoi", time: "4h", desc: "business trip", name: "Jan", month: "Apr" },
-        { from: "Delhi", to: "Ho Chi Minh", time: "1 day", desc: "student", name: "Priya", month: "Feb" },
-        { from: "Los Angeles", to: "Da Lat", time: "2h", desc: "honeymoon", name: "Chloe & Leo", month: "May 1" }
+         { from: "Moscow", to: "Hanoi", time: "58 min", desc: "3h before boarding", name: "Sergei", month: "Jan" },
+                { from: "Sydney", to: "Ho Chi Minh", time: "2h", desc: "family of 4", name: "Mia", month: "Feb" },
+                { from: "London", to: "Phu Quoc", time: "1h", desc: "forgotten visa", name: "David", month: "Mar" },
+                { from: "Seoul", to: "Da Nang", time: "overnight", desc: "ready by 8am", name: "Yuna", month: "Jan" },
+                { from: "Toronto", to: "Nha Trang", time: "weekend", desc: "Monday 9am visa", name: "Raj", month: "Feb" },
+                { from: "Paris", to: "Hanoi", time: "4h", desc: "group of 6", name: "Claire", month: "Mar" },
+                { from: "New York", to: "Ho Chi Minh", time: "1 day", desc: "Sunday evening", name: "Marcus", month: "Apr" },
+                { from: "Berlin", to: "Cat Ba", time: "2 days", desc: "relaxed", name: "Tom", month: "Apr" },
+                { from: "Melbourne", to: "Danang", time: "2h", desc: "typo in passport fix", name: "Sophie", month: "Jan" },
+                { from: "Amsterdam", to: "Hanoi", time: "4h", desc: "business trip", name: "Jan", month: "Apr" },
+                { from: "Delhi", to: "Ho Chi Minh", time: "1 day", desc: "student", name: "Priya", month: "Feb" },
+                { from: "Los Angeles", to: "Da Lat", time: "2h", desc: "honeymoon", name: "Chloe & Leo", month: "May 1" },
+                { from: "Moscow", to: "Nha Trang", time: "3h", desc: "rescheduled flight", name: "Ivan", month: "Mar" },
+                { from: "Tokyo", to: "Hanoi", time: "58 min", desc: "salaryman panic", name: "Tanaka", month: "Mar" },
+                { from: "Osaka", to: "Ho Chi Minh", time: "2h", desc: "food tour", name: "Yuki", month: "Jan" },
+                { from: "Seoul", to: "Phu Quoc", time: "1h", desc: "K-pop producer", name: "Park", month: "Feb" },
+                { from: "Busan", to: "Nha Trang", time: "4h", desc: "film location", name: "Kim", month: "Apr" },
+                { from: "Beijing", to: "Da Nang", time: "2h", desc: "Lunar New Year", name: "Wang", month: "Mar" },
+                { from: "Shanghai", to: "Ho Chi Minh", time: "1 day", desc: "trade delegation", name: "Chen", month: "Feb" },
+                { from: "Guangzhou", to: "Hoi An", time: "3h", desc: "textile buyer", name: "Li", month: "Jan" },
+                { from: "Shenzhen", to: "Phu Quoc", time: "58 min", desc: "tech expo", name: "Zhang", month: "Apr" },
+                { from: "Taipei", to: "Hanoi", time: "4h", desc: "bubble tea miss", name: "Mei", month: "Mar" },
+                { from: "Hong Kong", to: "Cat Ba", time: "1h", desc: "banking tycoon", name: "William", month: "Feb" },
+                { from: "Singapore", to: "Da Lat", time: "2h", desc: "layover save", name: "Raj", month: "Jan" },
+                { from: "Kuala Lumpur", to: "Nha Trang", time: "3h", desc: "twin towers miss", name: "Ahmad", month: "Apr" },
+                { from: "Bangkok", to: "Ho Chi Minh", time: "58 min", desc: "visa run fix", name: "Somchai", month: "Mar" },
+                { from: "Chiang Mai", to: "Phu Quoc", time: "1 day", desc: "digital nomad hub", name: "Emma", month: "Feb" },
+                { from: "Jakarta", to: "Hanoi", time: "4h", desc: "ASEAN summit", name: "Budi", month: "Jan" },
+                { from: "Bali", to: "Da Nang", time: "2h", desc: "surf trip save", name: "Ketut", month: "Apr" },
+                { from: "Manila", to: "Ho Chi Minh", time: "1h", desc: "typhoon escape", name: "Maria", month: "Mar" },
+                { from: "New Delhi", to: "Phu Quoc", time: "58 min", desc: "yoga retreat", name: "Priya", month: "Feb" },
+                { from: "Mumbai", to: "Hoi An", time: "2 days", desc: "Bollywood location", name: "Amitabh", month: "Jan" },
+                { from: "Chennai", to: "Nha Trang", time: "3h", desc: "IT conference", name: "Lakshmi", month: "Apr" },
+                { from: "Dubai", to: "Hanoi", time: "2h", desc: "urgent work", name: "Omar", month: "Jan" },
+                { from: "Riyadh", to: "Da Nang", time: "58 min", desc: "family emergency", name: "Fatima", month: "Jan" },
+                { from: "Tehran", to: "Phu Quoc", time: "3h", desc: "vacation", name: "Amir", month: "Mar" },
+                { from: "Athens", to: "Ho Chi Minh", time: "2 days", desc: "history buff", name: "Eleni", month: "Feb" },
+                { from: "Istanbul", to: "Cat Ba", time: "1h", desc: "missed connection", name: "Emre", month: "Mar" },
+                { from: "Cairo", to: "Hanoi", time: "4h", desc: "first time Asia", name: "Ahmed", month: "Apr" },
+                { from: "Nairobi", to: "Ho Chi Minh", time: "1 day", desc: "safari bonus", name: "Joy", month: "Mar" },
+                { from: "Lagos", to: "Nha Trang", time: "2h", desc: "missed visa", name: "Chidi", month: "Apr" },
+                { from: "Cape Town", to: "Phu Quoc", time: "58 min", desc: "last minute trip", name: "Thabo", month: "Jan" },
+                { from: "Buenos Aires", to: "Hanoi", time: "3h", desc: "tango dancer", name: "Valentina", month: "Feb" },
+                { from: "Santiago", to: "Ho Chi Minh", time: "2 days", desc: "backpacker", name: "Pedro", month: "Feb" },
+                { from: "Rio de Janeiro", to: "Da Nang", time: "4h", desc: "carnival miss", name: "Lucas", month: "Mar" },
+                { from: "Mexico City", to: "Phu Quoc", time: "1h", desc: "business class save", name: "Alejandro", month: "Apr" },
+                { from: "Lima", to: "Hoi An", time: "2h", desc: "foodie tour", name: "Carmen", month: "Jan" },
+                { from: "Bogota", to: "Nha Trang", time: "58 min", desc: "emergency visa", name: "Carlos", month: "Mar" },
+                { from: "Madrid", to: "Hanoi", time: "2h", desc: "digital nomad", name: "Carlos", month: "Mar" },
+                { from: "Barcelona", to: "Ho Chi Minh", time: "1h", desc: "football fan", name: "Xavi", month: "Feb" },
+                { from: "Lisbon", to: "Da Lat", time: "4h", desc: "digital nomad", name: "Sofia", month: "Jan" },
+                { from: "Paris", to: "Phu Quoc", time: "58 min", desc: "missed flight", name: "Amélie", month: "Mar" },
+                { from: "Lyon", to: "Nha Trang", time: "2h", desc: "gastronomic tour", name: "Pierre", month: "Feb" },
+                { from: "Marseille", to: "Hanoi", time: "1 day", desc: "island resort", name: "Camille", month: "Jan" },
+                { from: "Frankfurt", to: "Phu Quoc", time: "1 day", desc: "island getaway", name: "Anna", month: "Mar" },
+                { from: "Munich", to: "Cat Ba", time: "2h", desc: "Oktoberfest miss", name: "Hans", month: "Jan" },
+                { from: "Zurich", to: "Nha Trang", time: "58 min", desc: "banking emergency", name: "Lukas", month: "Apr" },
+                { from: "Vienna", to: "Hoi An", time: "4h", desc: "opera tour", name: "Franz", month: "Feb" },
+                { from: "Prague", to: "Ho Chi Minh", time: "2h", desc: "cultural tour", name: "Jan", month: "Apr" },
+                { from: "Warsaw", to: "Da Nang", time: "3h", desc: "friends reunion", name: "Aga", month: "Mar" },
+                { from: "Budapest", to: "Phu Quoc", time: "58 min", desc: "thermal bath missed", name: "Zoltan", month: "Jan" },
+                { from: "Bucharest", to: "Hanoi", time: "2h", desc: "couple", name: "Andreea", month: "Jan" },
+                { from: "Sofia", to: "Nha Trang", time: "1h", desc: "budget travel", name: "Ivan", month: "Apr" },
+                { from: "Belgrade", to: "Ho Chi Minh", time: "4h", desc: "party crew", name: "Luka", month: "Feb" },
+                { from: "Zagreb", to: "Da Lat", time: "1 day", desc: "coastal escape", name: "Mia", month: "Mar" },
+                { from: "Athens", to: "Phu Quoc", time: "2h", desc: "island hopping", name: "Nikos", month: "Apr" },
+                { from: "Helsinki", to: "Hanoi", time: "3h", desc: "winter escape", name: "Aino", month: "Feb" },
+                { from: "Stockholm", to: "Cat Ba", time: "1 day", desc: "winter blues", name: "Erik", month: "Apr" },
+                { from: "Oslo", to: "Nha Trang", time: "58 min", desc: "northern lights miss", name: "Ingrid", month: "Mar" },
+                { from: "Copenhagen", to: "Da Lat", time: "2h", desc: "hygge escape", name: "Mikkel", month: "Feb" },
+                { from: "Reykjavik", to: "Hanoi", time: "2h", desc: "northern lights miss", name: "Gunnar", month: "Apr" },
+                { from: "Brussels", to: "Hoi An", time: "3h", desc: "EU official", name: "Marie", month: "Jan" },
+                { from: "Amsterdam", to: "Phu Quoc", time: "2h", desc: "backpacker fix", name: "Lars", month: "Mar" }
     ];
     const trackDiv = document.getElementById('flightsTrack');
     function createCard(t) {
