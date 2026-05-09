@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Click2Visa – 24/7 AI Vietnam e-Visa</title>
-    <meta name="description" content="Get your Vietnam e-Visa in 1 hour, even on weekends and holidays. Fully automated AI service. Pay with crypto. 90‑day single entry.">
-    <meta property="og:title" content="Click2Visa – 24/7 AI Vietnam e-Visa">
-    <meta property="og:description" content="AI-powered e-visa processing 24/7. Pay with USDT, get your visa automatically. Weekends & holidays – we're awake.">
+    <title>Click2Visa – AI Vietnam e-Visa 24/7</title>
+    <meta name="description" content="Get your Vietnam e-Visa in 1 hour, even on weekends. Fully automated AI service. Pay with card or crypto. 90‑day single entry.">
+    <meta property="og:title" content="Click2Visa – AI Vietnam e-Visa 24/7">
+    <meta property="og:description" content="AI‑powered e‑visa processing 24/7. Pay with Stripe (cards) or USDT. Weekends & holidays – we’re awake.">
     <meta property="og:url" content="https://click2visa.asia/">
     <link rel="icon" type="image/png" href="/favicon.png">
     <style>
@@ -17,6 +17,9 @@
         .logo { font-size: 2.8rem; font-weight: 800; color: #fff; }
         .logo span { color: #ff6b2b; }
         .subhead { font-size: 1.2rem; margin-top: 10px; color: #b0c7e0; }
+        .lang-switch { text-align: right; margin-bottom: 20px; display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 6px; }
+        .lang-btn { background: #12223b; border: 1px solid #1e3350; padding: 6px 14px; border-radius: 30px; color: #fff; cursor: pointer; font-weight: 600; transition: 0.2s; }
+        .lang-btn.active { background: #ff6b2b; border-color: #ff6b2b; }
         .highlight-box { background: #12223b; border-radius: 16px; padding: 20px; margin: 30px 0; text-align: center; }
         .timer-box { background: #12223b; border-radius: 16px; padding: 20px; margin: 30px 0; text-align: center; }
         .timer-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: #8ba0bc; }
@@ -24,11 +27,11 @@
         .big-button { display: inline-block; background: #ff6b2b; color: #fff; font-size: 1.5rem; font-weight: 700; padding: 22px 50px; border-radius: 60px; text-decoration: none; margin: 25px 0; box-shadow: 0 10px 30px rgba(255,107,43,0.4); animation: pulse 2s infinite; }
         .big-button:hover { transform: scale(1.05); }
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,107,43,0.6); } 70% { box-shadow: 0 0 0 20px rgba(255,107,43,0); } 100% { box-shadow: 0 0 0 0 rgba(255,107,43,0); } }
-        .pricing-table { background: #12223b; border-radius: 20px; padding: 25px; margin: 40px 0; }
+        .pricing-table { background: #12223b; border-radius: 20px; padding: 25px; margin: 40px 0; overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; }
         th, td { padding: 12px 8px; border-bottom: 1px solid #1e3350; text-align: left; }
         th { color: #8ba0bc; font-weight: 600; }
-        .weekend-badge { background: #ff6b2b; padding: 3px 10px; border-radius: 20px; font-size: 0.8rem; color: #fff; margin-left: 6px; }
+        .weekend-badge { background: #ff6b2b; padding: 3px 10px; border-radius: 20px; font-size: 0.8rem; color: #fff; white-space: nowrap; }
         .urgency-badge { background: #ff6b2b; padding: 3px 10px; border-radius: 20px; font-size: 0.8rem; color: #fff; }
         .faq-item { background: #12223b; border-radius: 12px; margin: 12px 0; padding: 15px; }
         .faq-question { font-weight: 600; margin-bottom: 5px; color: #ff6b2b; }
@@ -42,293 +45,416 @@
         .flight-card { display: flex; align-items: center; gap: 12px; background: #12223b; padding: 12px 20px; border-radius: 14px; border-left: 4px solid #ff6b2b; font-size: 0.95rem; color: #cfddee; flex-shrink: 0; }
         .flight-icon { font-size: 1.5rem; }
         @keyframes scrollFlights { 0% { transform: translateY(0); } 100% { transform: translateY(-50%); } }
+        .support-section { margin: 40px 0; text-align: center; }
+        .support-title { font-size: 1.5rem; font-weight: 700; color: #ff6b2b; margin-bottom: 20px; }
+        .support-links { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .support-link { display: inline-flex; align-items: center; gap: 10px; background: #12223b; color: #fff; padding: 14px 28px; border-radius: 30px; text-decoration: none; font-size: 1.1rem; font-weight: 600; border: 1px solid #1e3350; transition: all 0.3s ease; }
+        .support-link:hover { background: #1a2e4a; border-color: #ff6b2b; transform: translateY(-2px); }
+        .support-icon { font-size: 1.5rem; }
+        .i18n-content { display: none; }
+        .i18n-content.active { display: block; }
     </style>
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="shortcut icon" href="/favicon.png">
 </head>
 <body>
-    <div class="container">
-        <div class="hero">
-            <div class="logo">Click<span>2</span>Visa</div>
-            <p class="subhead">AI‑Powered Vietnam e‑Visa 24/7 · Pay with Crypto</p>
-        </div>
-
-        <div class="highlight-box">
-            <div style="font-size: 1.2rem;">🤖 <strong>AI Agent works while others sleep</strong></div>
-            <p style="margin-top:10px; color:#b0c7e0;">No waiting for office hours. Instant response, fully automatic – from payment to ready visa.</p>
-        </div>
-
-        <div class="timer-box">
-            <div class="timer-label" id="timerLabel">⏳ Next weekday deadline:</div>
-            <div class="timer" id="deadlineTimer">--:--:--</div>
-            <small id="timerNote" style="color:#8ba0bc;">Weekends & holidays: only 1‑day processing available ($195).</small>
-        </div>
-
-        <div style="text-align: center;">
-            <a href="https://t.me/Click2VisaBot" class="big-button">⚡ Get Your e‑Visa Now</a>
-            <p style="margin-top:10px; color:#b0c7e0;">✅ 90‑day single‑entry e‑Visa</p>
-        </div>
-
-        <div class="pricing-table">
-            <h3 style="color:#ff6b2b; text-align:center;">🏷️ Urgent e‑Visa – 90 days, single entry</h3>
-            <p style="text-align:center; color:#8ba0bc;">All prices include government fee.</p>
-            <table>
-                <tr><th>Processing Speed</th><th>Price (USD)</th><th>Availability</th></tr>
-                <tr><td>1 hour <span class="urgency-badge">HOT</span></td><td><strong>$245</strong></td><td>Weekdays only</td></tr>
-                <tr><td>2 hours</td><td><strong>$205</strong></td><td>Weekdays only</td></tr>
-                <tr><td>4 hours</td><td><strong>$130</strong></td><td>Weekdays only</td></tr>
-                <tr><td>1 day</td><td><strong>$105</strong> <span class="weekend-badge">$195 weekend</span></td><td>All days</td></tr>
-                <tr><td>2 days</td><td><strong>$95</strong></td><td>Weekdays only</td></tr>
-                <tr><td>3 days</td><td><strong>$80</strong></td><td>Weekdays only</td></tr>
-                <tr><td>4–5 days</td><td><strong>$55</strong></td><td>Weekdays only</td></tr>
-            </table>
-            <p style="text-align:center; font-size:0.9rem; margin-top:10px;">⚠️ Some nationalities (+$35 difficulty fee): 🇹🇷🇱🇰🇪🇬🇲🇺</p>
-            <div class="payment-methods">
-                We accept: <span>₿ Crypto (USDT, BTC via Cryptomus)</span>
-            </div>
-        </div>
-
-        <div class="saved-flights-wrapper">
-            <div class="saved-flights-title">🛫 777+ Trips Saved in 2026</div>
-            <div class="saved-flights-track" id="flightsTrack"></div>
-        </div>
-
-        <h3 style="margin-top:40px;">⚡ Your visa in 4 simple steps</h3>
-        <div class="faq-item" style="border-left: 4px solid #ff6b2b;">
-            <strong>1.</strong> Send passport photo<br>
-            <strong>2.</strong> Send your selfie<br>
-            <strong>3.</strong> Pay in crypto (USDT)<br>
-            <strong>4.</strong> Receive PDF in Telegram
-        </div>
-        <p style="text-align:center; color:#8ba0bc; margin-top:15px;">🔒 <strong>All personal data is automatically deleted after successful delivery.</strong></p>
-
-        <h3 style="margin-top:40px;">❓ Quick Answers</h3>
-        <div class="faq-item">
-            <div class="faq-question">How does the AI work?</div>
-            <p>Our AI agent instantly collects your passport details and processes the order 24/7 without human delay, even on weekends.</p>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">Which payment methods do you accept?</div>
-            <p>We accept <strong>crypto payments</strong> (USDT, BTC) via Cryptomus. No cards or bank transfers – fast and anonymous.</p>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">What type of visa will I get?</div>
-            <p>A <strong>90‑day single‑entry e‑Visa</strong>. Perfect for long stays. You can verify it on the official immigration portal.</p>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">What about weekends or holidays?</div>
-            <p>We accept orders <strong>any day</strong>. On weekends/holidays only 1‑day processing ($195) is available, but the AI still works instantly.</p>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">Can all nationalities apply?</div>
-            <p>Most are welcome. For <strong>Turkey, Sri Lanka, Egypt, Mauritius</strong> an extra $35 fee applies. Unfortunately we cannot process citizens from restricted list countries – the AI will inform you immediately.</p>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">What about my personal data?</div>
-            <p>Your passport scan and selfie are used only for the visa application. <strong>All data is automatically deleted</strong> once your visa PDF is sent to you. No traces left.</p>
-        </div>
-
-        <div style="text-align: center; margin-top: 40px;">
-            <a href="https://t.me/Click2VisaBot" class="telegram-float" target="_blank">
-                💬 Chat with AI in Telegram
-            </a>
-        </div>
-    
-        <footer>
-            <!-- Support Contacts -->
-<style>
-    .support-section {
-        margin: 40px 0;
-        text-align: center;
-    }
-    .support-title {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #ff6b2b;
-        margin-bottom: 20px;
-    }
-    .support-links {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        flex-wrap: wrap;
-    }
-    .support-link {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        background: #12223b;
-        color: #fff;
-        padding: 14px 28px;
-        border-radius: 30px;
-        text-decoration: none;
-        font-size: 1.1rem;
-        font-weight: 600;
-        border: 1px solid #1e3350;
-        transition: all 0.3s ease;
-    }
-    .support-link:hover {
-        background: #1a2e4a;
-        border-color: #ff6b2b;
-        transform: translateY(-2px);
-    }
-    .support-icon {
-        font-size: 1.5rem;
-    }
-</style>
-
-<div class="support-section">
-    <h3 class="support-title">📞 Support</h3>
-    <div class="support-links">
-        <a href="https://t.me/Click2VisaBotSupport" target="_blank" class="support-link">
-            <span class="support-icon">💬</span> Telegram
-        </a>
-        <a href="https://wa.me/message/J3C3DVQKSHOVD1" target="_blank" class="support-link">
-            <span class="support-icon">📱</span> WhatsApp
-        </a>
+<div class="container">
+    <div class="lang-switch">
+        <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+        <button class="lang-btn" data-lang="ru">🇷🇺 RU</button>
+        <button class="lang-btn" data-lang="zh">🇨🇳 中文</button>
+        <button class="lang-btn" data-lang="pt">🇧🇷 PT</button>
+        <button class="lang-btn" data-lang="hi">🇮🇳 हिंदी</button>
     </div>
-    <p style="margin-top: 15px; color: #8ba0bc; font-size: 0.9rem;">
-        If the AI couldn't help, our human team is here for you.
-    </p>
+
+    <!-- Динамический контент будет вставлен через JS, чтобы не дублировать HTML -->
+    <div id="mainContent"></div>
 </div>
-            © 2026 Click2Visa.asia – your reliable partner.<br>
-            We never sleep, so your visa is always one click away.
-        </footer>
-    </div>
 
-    <script>
-        function updateTimer() {
-            const now = new Date();
-            const vnTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"}));
-            const day = vnTime.getDay();
-            const timerEl = document.getElementById('deadlineTimer');
-            const labelEl = document.getElementById('timerLabel');
-            const noteEl = document.getElementById('timerNote');
-
-            const isWeekend = (day === 0 || day === 6);
-
-            if (isWeekend) {
-                timerEl.textContent = 'Weekend / Holiday';
-                timerEl.style.color = '#ff6b2b';
-                labelEl.textContent = '📅 Today is a non-working day';
-                noteEl.innerHTML = '⚡ <strong>Only 1‑day processing available ($195).</strong> AI works 24/7.';
-                return;
-            }
-
-            labelEl.textContent = '⏳ Next weekday deadline:';
-            const deadline1 = new Date(vnTime);
-            deadline1.setHours(10, 0, 0, 0);
-            const deadline2 = new Date(vnTime);
-            deadline2.setHours(15, 0, 0, 0);
-
-            let target = deadline1;
-            if (vnTime > deadline1) target = deadline2;
-            if (vnTime > deadline2) {
-                timerEl.textContent = 'Slots closed today.';
-                noteEl.innerHTML = 'Next opening tomorrow 8:00 AM (VN time).';
-                return;
-            }
-
-            const diff = target - vnTime;
-            const hours = Math.floor(diff / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            timerEl.textContent = `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
-            timerEl.style.color = '#ff6b2b';
-            noteEl.innerHTML = 'All applications submitted before 10:00 AM or 3:00 PM (VN time) are processed today.';
+<script>
+    // ======================= БАЗА ПЕРЕВОДОВ =======================
+    const translations = {
+        en: {
+            subhead: "AI‑Powered Vietnam e‑Visa 24/7 · Card & Crypto",
+            ai_title: "🤖 AI Agent works while others sleep",
+            ai_desc: "No waiting for office hours. Instant response, fully automatic – from payment to ready visa.",
+            timer_label: "⏳ Next weekday deadline:",
+            cta_button: "⚡ Get Your e‑Visa Now",
+            visa_note: "✅ 90‑day single‑entry e‑Visa",
+            table_title: "🏷️ Urgent e‑Visa – 90 days, single entry",
+            gov_fee_note: "All prices include government fee.",
+            speed_th: "Processing Speed",
+            price_th: "Price (USD)",
+            avail_th: "Availability",
+            extra_fee_note: "⚠️ Some nationalities (+$35 difficulty fee): 🇹🇷🇱🇰🇪🇬🇲🇺",
+            payment_note: "We accept: 💳 Credit cards (Visa/Mastercard/Apple Pay) via Stripe · ₿ Crypto (USDT) also available",
+            saved_title: "🛫 777+ Trips Saved in 2026",
+            steps_title: "⚡ Your visa in 4 simple steps",
+            step1: "1. Send passport photo",
+            step2: "2. Send your selfie",
+            step3: "3. Pay with card or USDT",
+            step4: "4. Receive PDF in Telegram",
+            privacy: "🔒 All personal data is automatically deleted after successful delivery.",
+            faq_title: "❓ Quick Answers",
+            faq: [
+                { q: "How does the AI work?", a: "Our AI agent instantly collects your data and processes the order 24/7 without human delay, even on weekends." },
+                { q: "Which payment methods do you accept?", a: "We accept credit cards (Visa, Mastercard, Apple Pay) via Stripe and also crypto (USDT, BTC). Choose what suits you best." },
+                { q: "What type of visa will I get?", a: "A <strong>90‑day single‑entry e‑Visa</strong>, verifiable on the official immigration portal." },
+                { q: "What about weekends or holidays?", a: "We accept orders any day. On weekends/holidays only <strong>1‑day processing ($225)</strong> is available, but the AI works instantly." },
+                { q: "Can all nationalities apply?", a: "Most are welcome. For <strong>Turkey, Sri Lanka, Egypt, Mauritius</strong> an extra $35 fee applies. Restricted countries are blocked automatically – the AI will inform you." },
+                { q: "What about my personal data?", a: "Your passport scan and selfie are used only for the visa application. <strong>All data is automatically deleted</strong> once your visa PDF is sent. No traces left." }
+            ],
+            support_title: "📞 Support",
+            support_note: "If the AI couldn't help, our human team is here for you.",
+            chat_text: "Chat with AI in Telegram",
+            footer: "© 2026 Click2Visa.asia – your reliable partner.<br>We never sleep, so your visa is always one click away."
+        },
+        ru: {
+            subhead: "ИИ‑виза во Вьетнам 24/7 · Карты и криптовалюта",
+            ai_title: "🤖 AI‑агент работает, пока другие спят",
+            ai_desc: "Никакого ожидания рабочих часов. Мгновенный ответ, полностью автоматически – от оплаты до готовой визы.",
+            timer_label: "⏳ Дедлайн в будний день:",
+            cta_button: "⚡ Получить визу сейчас",
+            visa_note: "✅ 90‑дневная однократная электронная виза",
+            table_title: "🏷️ Срочная виза – 90 дней, однократно",
+            gov_fee_note: "Все цены включают госпошлину.",
+            speed_th: "Скорость",
+            price_th: "Цена (USD)",
+            avail_th: "Доступность",
+            extra_fee_note: "⚠️ Для некоторых граждан (+$35 доп. сбор): 🇹🇷🇱🇰🇪🇬🇲🇺",
+            payment_note: "Принимаем: 💳 Банковские карты (Visa/Mastercard/Apple Pay) через Stripe · ₿ Криптовалюта (USDT)",
+            saved_title: "🛫 777+ поездок спасено в 2026",
+            steps_title: "⚡ Ваша виза за 4 простых шага",
+            step1: "1. Отправьте фото паспорта",
+            step2: "2. Отправьте селфи",
+            step3: "3. Оплатите картой или USDT",
+            step4: "4. Получите PDF в Telegram",
+            privacy: "🔒 Все личные данные автоматически удаляются после успешной выдачи визы.",
+            faq_title: "❓ Быстрые ответы",
+            faq: [
+                { q: "Как работает ИИ?", a: "Наш AI-агент мгновенно собирает данные и обрабатывает заказ 24/7 без человеческих задержек, даже по выходным." },
+                { q: "Какие способы оплаты вы принимаете?", a: "Мы принимаем банковские карты (Visa, Mastercard, Apple Pay) через Stripe, а также криптовалюту (USDT, BTC). Выбирайте удобный способ." },
+                { q: "Какую визу я получу?", a: "<strong>90‑дневную однократную электронную визу</strong>, проверяемую на официальном портале иммиграции." },
+                { q: "А выходные и праздники?", a: "Мы принимаем заказы в любой день. В выходные/праздники доступна только <strong>однодневная обработка ($225)</strong>, однако ИИ работает мгновенно." },
+                { q: "Могут ли граждане всех стран подать заявку?", a: "Большинство стран приветствуются. Для <strong>Турции, Шри-Ланки, Египта, Маврикия</strong> дополнительный сбор $35. Ограниченные страны отклоняются автоматически – AI сообщит." },
+                { q: "Что с моими личными данными?", a: "Сканы паспорта и селфи используются только для оформления визы. <strong>Все данные автоматически удаляются</strong> после отправки PDF-визы. Никаких следов." }
+            ],
+            support_title: "📞 Поддержка",
+            support_note: "Если ИИ не смог помочь, наша команда всегда с вами.",
+            chat_text: "Чат с ИИ в Telegram",
+            footer: "© 2026 Click2Visa.asia – ваш надёжный партнёр.<br>Мы никогда не спим, поэтому ваша виза всегда в одном клике."
+        },
+        zh: {
+            subhead: "人工智能越南电子签证 24/7 · 支持银行卡和加密货币",
+            ai_title: "🤖 人工智能代理全天候工作",
+            ai_desc: "无需等待工作时间。即时响应，全自动 – 从付款到签证完成。",
+            timer_label: "⏳ 下一个工作日截止时间：",
+            cta_button: "⚡ 立即申请电子签证",
+            visa_note: "✅ 90天单次入境电子签证",
+            table_title: "🏷️ 加急电子签证 – 90天单次入境",
+            gov_fee_note: "所有价格已包含政府费用。",
+            speed_th: "处理速度",
+            price_th: "价格 (美元)",
+            avail_th: "可用时间",
+            extra_fee_note: "⚠️ 部分国家需额外支付$35：🇹🇷🇱🇰🇪🇬🇲🇺",
+            payment_note: "我们接受：💳 银行卡 (Visa/Mastercard/Apple Pay) 通过 Stripe · ₿ 加密货币 (USDT)",
+            saved_title: "🛫 2026年已协助777+次旅行",
+            steps_title: "⚡ 4步轻松获取电子签证",
+            step1: "1. 发送护照照片",
+            step2: "2. 发送自拍照",
+            step3: "3. 使用银行卡或USDT付款",
+            step4: "4. 在Telegram收到PDF签证",
+            privacy: "🔒 所有个人数据将在签证交付后自动删除。",
+            faq_title: "❓ 常见问题",
+            faq: [
+                { q: "AI的工作原理是什么？", a: "我们的AI助手全天候即时处理订单，周末无休。" },
+                { q: "支持哪些支付方式？", a: "我们接受银行卡 (Visa/Mastercard/Apple Pay) 通过 Stripe，以及加密货币 (USDT/BTC)。" },
+                { q: "我会获得哪种签证？", a: "<strong>90天单次入境电子签证</strong>，可在官方移民局网站验证。" },
+                { q: "周末或节假日怎么办？", a: "我们全年无休。周末/节假日仅提供 <strong>1天加急服务（$225）</strong>，但AI处理仍是即时的。" },
+                { q: "所有国籍都可以申请吗？", a: "大部分国家均欢迎。土耳其、斯里兰卡、埃及、毛里求斯需额外支付$35费用。受限国家会被自动拒绝 – AI会告知。" },
+                { q: "我的个人数据安全吗？", a: "您的护照照片和自拍照仅用于签证申请。一旦发送签证PDF，<strong>所有数据将自动删除</strong>，不留痕迹。" }
+            ],
+            support_title: "📞 支持团队",
+            support_note: "如果AI无法解决，我们的真人团队随时为您服务。",
+            chat_text: "在Telegram与AI对话",
+            footer: "© 2026 Click2Visa.asia – 您的可靠伙伴。<br>我们从不休息，您的签证一键可得。"
+        },
+        pt: {
+            subhead: "Visto eletrônico para Vietnã com IA 24/7 · Cartão e Cripto",
+            ai_title: "🤖 Agente de IA trabalha enquanto outros dormem",
+            ai_desc: "Sem esperar por horário comercial. Resposta instantânea, totalmente automático – do pagamento ao visto pronto.",
+            timer_label: "⏳ Prazo do próximo dia útil:",
+            cta_button: "⚡ Obtenha seu e-Visa agora",
+            visa_note: "✅ Visto eletrônico de 90 dias, entrada única",
+            table_title: "🏷️ Visto urgente – 90 dias, entrada única",
+            gov_fee_note: "Todos os preços incluem a taxa governamental.",
+            speed_th: "Velocidade",
+            price_th: "Preço (USD)",
+            avail_th: "Disponibilidade",
+            extra_fee_note: "⚠️ Algumas nacionalidades (+$35 taxa adicional): 🇹🇷🇱🇰🇪🇬🇲🇺",
+            payment_note: "Aceitamos: 💳 Cartões de crédito (Visa/Mastercard/Apple Pay) via Stripe · ₿ Cripto (USDT) também disponível",
+            saved_title: "🛫 777+ Viagens salvas em 2026",
+            steps_title: "⚡ Seu visto em 4 passos simples",
+            step1: "1. Envie foto do passaporte",
+            step2: "2. Envie sua selfie",
+            step3: "3. Pague com cartão ou USDT",
+            step4: "4. Receba o PDF no Telegram",
+            privacy: "🔒 Todos os dados pessoais são automaticamente excluídos após a entrega do visto.",
+            faq_title: "❓ Respostas rápidas",
+            faq: [
+                { q: "Como funciona a IA?", a: "Nosso agente de IA coleta instantaneamente seus dados e processa o pedido 24/7, mesmo nos fins de semana." },
+                { q: "Quais métodos de pagamento vocês aceitam?", a: "Aceitamos cartões de crédito (Visa, Mastercard, Apple Pay) via Stripe e também criptomoedas (USDT, BTC). Escolha o que for melhor para você." },
+                { q: "Que tipo de visto vou receber?", a: "<strong>Visto eletrônico de 90 dias, entrada única</strong>, verificável no portal oficial de imigração." },
+                { q: "E finais de semana ou feriados?", a: "Aceitamos pedidos qualquer dia. Nos fins de semana/feriados apenas <strong>processamento de 1 dia ($225)</strong> está disponível, mas a IA funciona instantaneamente." },
+                { q: "Todas as nacionalidades podem solicitar?", a: "A maioria é bem-vinda. Para <strong>Turquia, Sri Lanka, Egito, Maurício</strong> há uma taxa extra de $35. Países restritos são bloqueados automaticamente – a IA informará." },
+                { q: "E os meus dados pessoais?", a: "A foto do passaporte e a selfie são usadas apenas para o pedido de visto. <strong>Todos os dados são automaticamente excluídos</strong> após o envio do PDF do visto. Sem vestígios." }
+            ],
+            support_title: "📞 Suporte",
+            support_note: "Se a IA não pôde ajudar, nossa equipe humana está aqui para você.",
+            chat_text: "Converse com a IA no Telegram",
+            footer: "© 2026 Click2Visa.asia – seu parceiro confiável.<br>Nunca dormimos, então seu visto está sempre a um clique de distância."
+        },
+        hi: {
+            subhead: "AI-संचालित वियतनाम ई-वीज़ा 24/7 · कार्ड और क्रिप्टो",
+            ai_title: "🤖 AI एजेंट दूसरों के सोते समय काम करता है",
+            ai_desc: "कार्यालय समय की प्रतीक्षा नहीं। तुरंत जवाब, पूरी तरह से स्वचालित – भुगतान से तैयार वीजा तक।",
+            timer_label: "⏳ अगले कार्यदिवस की समय सीमा:",
+            cta_button: "⚡ अभी ई-वीज़ा प्राप्त करें",
+            visa_note: "✅ 90-दिवसीय एकल-प्रवेश ई-वीज़ा",
+            table_title: "🏷️ तत्काल ई-वीज़ा – 90 दिन, एकल प्रवेश",
+            gov_fee_note: "सभी मूल्यों में सरकारी शुल्क शामिल है।",
+            speed_th: "प्रसंस्करण गति",
+            price_th: "मूल्य (USD)",
+            avail_th: "उपलब्धता",
+            extra_fee_note: "⚠️ कुछ राष्ट्रीयताओं के लिए (+$35 अतिरिक्त शुल्क): 🇹🇷🇱🇰🇪🇬🇲🇺",
+            payment_note: "हम स्वीकार करते हैं: 💳 क्रेडिट कार्ड (Visa/Mastercard/Apple Pay) Stripe के माध्यम से · ₿ क्रिप्टो (USDT) भी उपलब्ध",
+            saved_title: "🛫 2026 में 777+ यात्राएँ बचाई गईं",
+            steps_title: "⚡ 4 सरल चरणों में आपका वीज़ा",
+            step1: "1. पासपोर्ट फोटो भेजें",
+            step2: "2. अपनी सेल्फी भेजें",
+            step3: "3. कार्ड या USDT से भुगतान करें",
+            step4: "4. Telegram में PDF प्राप्त करें",
+            privacy: "🔒 सभी व्यक्तिगत डेटा सफल डिलीवरी के बाद स्वचालित रूप से हटा दिया जाता है।",
+            faq_title: "❓ त्वरित उत्तर",
+            faq: [
+                { q: "AI कैसे काम करता है?", a: "हमारा AI एजेंट तुरंत आपका डेटा एकत्र करता है और सप्ताहांत पर भी मानवीय देरी के बिना 24/7 ऑर्डर संसाधित करता है।" },
+                { q: "आप कौन से भुगतान विधि स्वीकार करते हैं?", a: "हम Stripe के माध्यम से क्रेडिट कार्ड (Visa, Mastercard, Apple Pay) और क्रिप्टो (USDT, BTC) स्वीकार करते हैं। जो आपको सूट करे चुनें।" },
+                { q: "मुझे किस प्रकार का वीज़ा मिलेगा?", a: "एक <strong>90-दिवसीय एकल-प्रवेश ई-वीज़ा</strong>, आधिकारिक आप्रवासन पोर्टल पर सत्यापन योग्य।" },
+                { q: "सप्ताहांत या छुट्टियों के बारे में क्या?", a: "हम किसी भी दिन ऑर्डर स्वीकार करते हैं। सप्ताहांत/छुट्टियों पर केवल <strong>1-दिवसीय प्रसंस्करण ($225)</strong> उपलब्ध है, लेकिन AI तुरंत काम करता है।" },
+                { q: "क्या सभी राष्ट्रीयताएँ आवेदन कर सकती हैं?", a: "अधिकांश का स्वागत है। <strong>तुर्की, श्रीलंका, मिस्र, मॉरीशस</strong> के लिए अतिरिक्त $35 शुल्क लागू होता है। प्रतिबंधित देश स्वचालित रूप से अवरुद्ध हो जाते हैं – AI आपको सूचित करेगा।" },
+                { q: "मेरे व्यक्तिगत डेटा के बारे में क्या?", a: "आपका पासपोर्ट स्कैन और सेल्फी केवल वीज़ा आवेदन के लिए उपयोग किया जाता है। एक बार आपका वीज़ा PDF भेजने के बाद <strong>सभी डेटा स्वचालित रूप से हटा दिया जाता है</strong>। कोई निशान नहीं बचता।" }
+            ],
+            support_title: "📞 सहायता",
+            support_note: "यदि AI मदद नहीं कर सका, तो हमारी मानव टीम आपके लिए यहाँ है।",
+            chat_text: "Telegram में AI से बात करें",
+            footer: "© 2026 Click2Visa.asia – आपका भरोसेमंद भागीदार।<br>हम कभी नहीं सोते, इसलिए आपका वीज़ा हमेशा एक क्लिक दूर है।"
         }
+    };
 
-        updateTimer();
-        setInterval(updateTimer, 1000);
-    </script>
+    // Общие цены (одинаковы для всех языков)
+    const priceRows = [
+        { speed: "1 hour", price: 259, badge: "HOT", avail: "Weekdays only" },
+        { speed: "2 hours", price: 219, avail: "Weekdays only" },
+        { speed: "4 hours", price: 139, avail: "Weekdays only" },
+        { speed: "1 day", price: 115, weekendPrice: 225, avail: "All days" },
+        { speed: "2 days", price: 99, avail: "Weekdays only" },
+        { speed: "3 days", price: 85, avail: "Weekdays only" },
+        { speed: "4–5 days (Standard)", price: 59, avail: "Weekdays only" }
+    ];
 
-    <script>
-        (function() {
-            const tracks = [
-                { from: "Moscow", to: "Hanoi", time: "58 min", desc: "3h before boarding", name: "Sergei", month: "Jan" },
-                { from: "Sydney", to: "Ho Chi Minh", time: "2h", desc: "family of 4", name: "Mia", month: "Feb" },
-                { from: "London", to: "Phu Quoc", time: "1h", desc: "forgotten visa", name: "David", month: "Mar" },
-                { from: "Seoul", to: "Da Nang", time: "overnight", desc: "ready by 8am", name: "Yuna", month: "Jan" },
-                { from: "Toronto", to: "Nha Trang", time: "weekend", desc: "Monday 9am visa", name: "Raj", month: "Feb" },
-                { from: "Paris", to: "Hanoi", time: "4h", desc: "group of 6", name: "Claire", month: "Mar" },
-                { from: "New York", to: "Ho Chi Minh", time: "1 day", desc: "Sunday evening", name: "Marcus", month: "Apr" },
-                { from: "Berlin", to: "Cat Ba", time: "2 days", desc: "relaxed", name: "Tom", month: "Apr" },
-                { from: "Melbourne", to: "Danang", time: "2h", desc: "typo in passport fix", name: "Sophie", month: "Jan" },
-                { from: "Amsterdam", to: "Hanoi", time: "4h", desc: "business trip", name: "Jan", month: "Apr" },
-                { from: "Delhi", to: "Ho Chi Minh", time: "1 day", desc: "student", name: "Priya", month: "Feb" },
-                { from: "Los Angeles", to: "Da Lat", time: "2h", desc: "honeymoon", name: "Chloe & Leo", month: "May 1" },
-                { from: "Moscow", to: "Nha Trang", time: "3h", desc: "rescheduled flight", name: "Ivan", month: "Mar" },
-                { from: "Tokyo", to: "Hanoi", time: "58 min", desc: "salaryman panic", name: "Tanaka", month: "Mar" },
-                { from: "Osaka", to: "Ho Chi Minh", time: "2h", desc: "food tour", name: "Yuki", month: "Jan" },
-                { from: "Seoul", to: "Phu Quoc", time: "1h", desc: "K-pop producer", name: "Park", month: "Feb" },
-                { from: "Busan", to: "Nha Trang", time: "4h", desc: "film location", name: "Kim", month: "Apr" },
-                { from: "Beijing", to: "Da Nang", time: "2h", desc: "Lunar New Year", name: "Wang", month: "Mar" },
-                { from: "Shanghai", to: "Ho Chi Minh", time: "1 day", desc: "trade delegation", name: "Chen", month: "Feb" },
-                { from: "Guangzhou", to: "Hoi An", time: "3h", desc: "textile buyer", name: "Li", month: "Jan" },
-                { from: "Shenzhen", to: "Phu Quoc", time: "58 min", desc: "tech expo", name: "Zhang", month: "Apr" },
-                { from: "Taipei", to: "Hanoi", time: "4h", desc: "bubble tea miss", name: "Mei", month: "Mar" },
-                { from: "Hong Kong", to: "Cat Ba", time: "1h", desc: "banking tycoon", name: "William", month: "Feb" },
-                { from: "Singapore", to: "Da Lat", time: "2h", desc: "layover save", name: "Raj", month: "Jan" },
-                { from: "Kuala Lumpur", to: "Nha Trang", time: "3h", desc: "twin towers miss", name: "Ahmad", month: "Apr" },
-                { from: "Bangkok", to: "Ho Chi Minh", time: "58 min", desc: "visa run fix", name: "Somchai", month: "Mar" },
-                { from: "Chiang Mai", to: "Phu Quoc", time: "1 day", desc: "digital nomad hub", name: "Emma", month: "Feb" },
-                { from: "Jakarta", to: "Hanoi", time: "4h", desc: "ASEAN summit", name: "Budi", month: "Jan" },
-                { from: "Bali", to: "Da Nang", time: "2h", desc: "surf trip save", name: "Ketut", month: "Apr" },
-                { from: "Manila", to: "Ho Chi Minh", time: "1h", desc: "typhoon escape", name: "Maria", month: "Mar" },
-                { from: "New Delhi", to: "Phu Quoc", time: "58 min", desc: "yoga retreat", name: "Priya", month: "Feb" },
-                { from: "Mumbai", to: "Hoi An", time: "2 days", desc: "Bollywood location", name: "Amitabh", month: "Jan" },
-                { from: "Chennai", to: "Nha Trang", time: "3h", desc: "IT conference", name: "Lakshmi", month: "Apr" },
-                { from: "Dubai", to: "Hanoi", time: "2h", desc: "urgent work", name: "Omar", month: "Jan" },
-                { from: "Riyadh", to: "Da Nang", time: "58 min", desc: "family emergency", name: "Fatima", month: "Jan" },
-                { from: "Tehran", to: "Phu Quoc", time: "3h", desc: "vacation", name: "Amir", month: "Mar" },
-                { from: "Athens", to: "Ho Chi Minh", time: "2 days", desc: "history buff", name: "Eleni", month: "Feb" },
-                { from: "Istanbul", to: "Cat Ba", time: "1h", desc: "missed connection", name: "Emre", month: "Mar" },
-                { from: "Cairo", to: "Hanoi", time: "4h", desc: "first time Asia", name: "Ahmed", month: "Apr" },
-                { from: "Nairobi", to: "Ho Chi Minh", time: "1 day", desc: "safari bonus", name: "Joy", month: "Mar" },
-                { from: "Lagos", to: "Nha Trang", time: "2h", desc: "missed visa", name: "Chidi", month: "Apr" },
-                { from: "Cape Town", to: "Phu Quoc", time: "58 min", desc: "last minute trip", name: "Thabo", month: "Jan" },
-                { from: "Buenos Aires", to: "Hanoi", time: "3h", desc: "tango dancer", name: "Valentina", month: "Feb" },
-                { from: "Santiago", to: "Ho Chi Minh", time: "2 days", desc: "backpacker", name: "Pedro", month: "Feb" },
-                { from: "Rio de Janeiro", to: "Da Nang", time: "4h", desc: "carnival miss", name: "Lucas", month: "Mar" },
-                { from: "Mexico City", to: "Phu Quoc", time: "1h", desc: "business class save", name: "Alejandro", month: "Apr" },
-                { from: "Lima", to: "Hoi An", time: "2h", desc: "foodie tour", name: "Carmen", month: "Jan" },
-                { from: "Bogota", to: "Nha Trang", time: "58 min", desc: "emergency visa", name: "Carlos", month: "Mar" },
-                { from: "Madrid", to: "Hanoi", time: "2h", desc: "digital nomad", name: "Carlos", month: "Mar" },
-                { from: "Barcelona", to: "Ho Chi Minh", time: "1h", desc: "football fan", name: "Xavi", month: "Feb" },
-                { from: "Lisbon", to: "Da Lat", time: "4h", desc: "digital nomad", name: "Sofia", month: "Jan" },
-                { from: "Paris", to: "Phu Quoc", time: "58 min", desc: "missed flight", name: "Amélie", month: "Mar" },
-                { from: "Lyon", to: "Nha Trang", time: "2h", desc: "gastronomic tour", name: "Pierre", month: "Feb" },
-                { from: "Marseille", to: "Hanoi", time: "1 day", desc: "island resort", name: "Camille", month: "Jan" },
-                { from: "Frankfurt", to: "Phu Quoc", time: "1 day", desc: "island getaway", name: "Anna", month: "Mar" },
-                { from: "Munich", to: "Cat Ba", time: "2h", desc: "Oktoberfest miss", name: "Hans", month: "Jan" },
-                { from: "Zurich", to: "Nha Trang", time: "58 min", desc: "banking emergency", name: "Lukas", month: "Apr" },
-                { from: "Vienna", to: "Hoi An", time: "4h", desc: "opera tour", name: "Franz", month: "Feb" },
-                { from: "Prague", to: "Ho Chi Minh", time: "2h", desc: "cultural tour", name: "Jan", month: "Apr" },
-                { from: "Warsaw", to: "Da Nang", time: "3h", desc: "friends reunion", name: "Aga", month: "Mar" },
-                { from: "Budapest", to: "Phu Quoc", time: "58 min", desc: "thermal bath missed", name: "Zoltan", month: "Jan" },
-                { from: "Bucharest", to: "Hanoi", time: "2h", desc: "couple", name: "Andreea", month: "Jan" },
-                { from: "Sofia", to: "Nha Trang", time: "1h", desc: "budget travel", name: "Ivan", month: "Apr" },
-                { from: "Belgrade", to: "Ho Chi Minh", time: "4h", desc: "party crew", name: "Luka", month: "Feb" },
-                { from: "Zagreb", to: "Da Lat", time: "1 day", desc: "coastal escape", name: "Mia", month: "Mar" },
-                { from: "Athens", to: "Phu Quoc", time: "2h", desc: "island hopping", name: "Nikos", month: "Apr" },
-                { from: "Helsinki", to: "Hanoi", time: "3h", desc: "winter escape", name: "Aino", month: "Feb" },
-                { from: "Stockholm", to: "Cat Ba", time: "1 day", desc: "winter blues", name: "Erik", month: "Apr" },
-                { from: "Oslo", to: "Nha Trang", time: "58 min", desc: "northern lights miss", name: "Ingrid", month: "Mar" },
-                { from: "Copenhagen", to: "Da Lat", time: "2h", desc: "hygge escape", name: "Mikkel", month: "Feb" },
-                { from: "Reykjavik", to: "Hanoi", time: "2h", desc: "northern lights miss", name: "Gunnar", month: "Apr" },
-                { from: "Brussels", to: "Hoi An", time: "3h", desc: "EU official", name: "Marie", month: "Jan" },
-                { from: "Amsterdam", to: "Phu Quoc", time: "2h", desc: "backpacker fix", name: "Lars", month: "Mar" }
-            ];
-            const track = document.getElementById('flightsTrack');
-            function createCard(t) {
-                const div = document.createElement('div');
-                div.className = 'flight-card';
-                div.innerHTML = `<span class="flight-icon">✈️</span> ${t.from} → ${t.to}, visa in ${t.time}, ${t.desc} (${t.name}, ${t.month} 2026)`;
-                return div;
+    // ======================= ГЕНЕРАЦИЯ HTML НА ОСНОВЕ ЯЗЫКА =======================
+    function renderPage(lang) {
+        const t = translations[lang];
+        if (!t) return renderPage('en');
+        let html = `
+            <div class="hero">
+                <div class="logo">Click<span>2</span>Visa</div>
+                <div class="subhead">${t.subhead}</div>
+            </div>
+            <div class="highlight-box">
+                <div><strong>${t.ai_title}</strong></div>
+                <p style="margin-top:10px; color:#b0c7e0;">${t.ai_desc}</p>
+            </div>
+            <div class="timer-box">
+                <div class="timer-label">${t.timer_label}</div>
+                <div class="timer" id="deadlineTimer">--:--:--</div>
+                <small id="timerNote" style="color:#8ba0bc;"></small>
+            </div>
+            <div style="text-align: center;">
+                <a href="https://t.me/Click2VisaBot" class="big-button">${t.cta_button}</a>
+                <p style="margin-top:10px; color:#b0c7e0;">${t.visa_note}</p>
+            </div>
+            <div class="pricing-table">
+                <h3 style="color:#ff6b2b; text-align:center;">${t.table_title}</h3>
+                <p style="text-align:center; color:#8ba0bc;">${t.gov_fee_note}</p>
+                <table>
+                    <thead><tr><th>${t.speed_th}</th><th>${t.price_th}</th><th>${t.avail_th}</th></tr></thead>
+                    <tbody>
+        `;
+        for (const row of priceRows) {
+            let priceDisplay = `<strong>$${row.price}</strong>`;
+            if (row.weekendPrice) {
+                priceDisplay += ` <span class="weekend-badge">$${row.weekendPrice} weekend</span>`;
             }
-            tracks.forEach(t => track.appendChild(createCard(t)));
-            tracks.forEach(t => track.appendChild(createCard(t)));
-        })();
-    </script>
+            let speedDisplay = row.speed;
+            if (row.badge) speedDisplay += ` <span class="urgency-badge">${row.badge}</span>`;
+            html += `<tr><td>${speedDisplay}</td><td>${priceDisplay}</td><td>${row.avail}</td></tr>`;
+        }
+        html += `
+                    </tbody>
+                </table>
+                <p style="text-align:center; font-size:0.9rem; margin-top:10px;">${t.extra_fee_note}</p>
+                <div class="payment-methods">${t.payment_note}</div>
+            </div>
+            <div class="saved-flights-wrapper">
+                <div class="saved-flights-title">${t.saved_title}</div>
+                <div class="saved-flights-track" id="flightsTrack"></div>
+            </div>
+            <h3>${t.steps_title}</h3>
+            <div class="faq-item" style="border-left: 4px solid #ff6b2b;">
+                ${t.step1}<br>${t.step2}<br>${t.step3}<br>${t.step4}
+            </div>
+            <p style="text-align:center; color:#8ba0bc; margin-top:15px;">${t.privacy}</p>
+            <h3>${t.faq_title}</h3>
+        `;
+        for (let i = 0; i < t.faq.length; i++) {
+            html += `
+                <div class="faq-item">
+                    <div class="faq-question">${t.faq[i].q}</div>
+                    <p>${t.faq[i].a}</p>
+                </div>
+            `;
+        }
+        html += `
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://t.me/Click2VisaBot" class="telegram-float" target="_blank">💬 ${t.chat_text}</a>
+            </div>
+            <div class="support-section">
+                <h3 class="support-title">${t.support_title}</h3>
+                <div class="support-links">
+                    <a href="https://t.me/Click2VisaBotSupport" target="_blank" class="support-link"><span class="support-icon">💬</span> Telegram</a>
+                    <a href="https://wa.me/message/J3C3DVQKSHOVD1" target="_blank" class="support-link"><span class="support-icon">📱</span> WhatsApp</a>
+                </div>
+                <p style="margin-top: 15px; color: #8ba0bc; font-size: 0.9rem;">${t.support_note}</p>
+            </div>
+            <footer>${t.footer}</footer>
+        `;
+        document.getElementById('mainContent').innerHTML = html;
+        // после вставки запускаем анимацию и таймер
+        initFlightsTrack();
+        updateTimer(lang);
+        setInterval(() => updateTimer(lang), 1000);
+        // подсветка активной кнопки
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+        });
+    }
+
+    function initFlightsTrack() {
+        const tracks = [
+            { from: "Moscow", to: "Hanoi", time: "58 min", desc: "3h before boarding", name: "Sergei", month: "Jan" },
+            { from: "Sydney", to: "Ho Chi Minh", time: "2h", desc: "family of 4", name: "Mia", month: "Feb" },
+            { from: "London", to: "Phu Quoc", time: "1h", desc: "forgotten visa", name: "David", month: "Mar" },
+            { from: "Seoul", to: "Da Nang", time: "overnight", desc: "ready by 8am", name: "Yuna", month: "Jan" },
+            { from: "Toronto", to: "Nha Trang", time: "weekend", desc: "Monday 9am visa", name: "Raj", month: "Feb" },
+            { from: "Paris", to: "Hanoi", time: "4h", desc: "group of 6", name: "Claire", month: "Mar" },
+            { from: "New York", to: "Ho Chi Minh", time: "1 day", desc: "Sunday evening", name: "Marcus", month: "Apr" },
+            { from: "Berlin", to: "Cat Ba", time: "2 days", desc: "relaxed", name: "Tom", month: "Apr" },
+            { from: "Melbourne", to: "Danang", time: "2h", desc: "typo in passport fix", name: "Sophie", month: "Jan" },
+            { from: "Amsterdam", to: "Hanoi", time: "4h", desc: "business trip", name: "Jan", month: "Apr" },
+            { from: "Delhi", to: "Ho Chi Minh", time: "1 day", desc: "student", name: "Priya", month: "Feb" },
+            { from: "Los Angeles", to: "Da Lat", time: "2h", desc: "honeymoon", name: "Chloe & Leo", month: "May 1" }
+        ];
+        const trackDiv = document.getElementById('flightsTrack');
+        if (!trackDiv) return;
+        trackDiv.innerHTML = '';
+        function createCard(t) {
+            const div = document.createElement('div');
+            div.className = 'flight-card';
+            div.innerHTML = `<span class="flight-icon">✈️</span> ${t.from} → ${t.to}, visa in ${t.time}, ${t.desc} (${t.name}, ${t.month} 2026)`;
+            return div;
+        }
+        tracks.forEach(t => trackDiv.appendChild(createCard(t)));
+        tracks.forEach(t => trackDiv.appendChild(createCard(t)));
+    }
+
+    function updateTimer(lang) {
+        const now = new Date();
+        const vnTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"}));
+        const day = vnTime.getDay();
+        const timerEl = document.getElementById('deadlineTimer');
+        const noteEl = document.getElementById('timerNote');
+        if (!timerEl) return;
+        const isWeekend = (day === 0 || day === 6);
+        if (isWeekend) {
+            timerEl.textContent = 'Weekend / Holiday';
+            timerEl.style.color = '#ff6b2b';
+            let msg = '';
+            if (lang === 'ru') msg = '⚡ <strong>Только 1‑дневная обработка ($225).</strong> ИИ работает 24/7.';
+            else if (lang === 'zh') msg = '⚡ <strong>仅提供1天加急服务（$225）。</strong> AI全天候工作。';
+            else if (lang === 'pt') msg = '⚡ <strong>Apenas processamento de 1 dia ($225).</strong> IA funciona 24/7.';
+            else if (lang === 'hi') msg = '⚡ <strong>केवल 1-दिवसीय प्रसंस्करण ($225)।</strong> AI 24/7 काम करता है।';
+            else msg = '⚡ <strong>Only 1‑day processing ($225).</strong> AI works 24/7.';
+            noteEl.innerHTML = msg;
+            return;
+        }
+        const deadline1 = new Date(vnTime);
+        deadline1.setHours(10, 0, 0, 0);
+        const deadline2 = new Date(vnTime);
+        deadline2.setHours(15, 0, 0, 0);
+        let target = deadline1;
+        if (vnTime > deadline1) target = deadline2;
+        if (vnTime > deadline2) {
+            timerEl.textContent = 'Slots closed today.';
+            let msg = '';
+            if (lang === 'ru') msg = 'Следующий слот завтра с 8:00 (время Вьетнама).';
+            else if (lang === 'zh') msg = '下一个时段为明天上午8:00（越南时间）。';
+            else if (lang === 'pt') msg = 'Próximo horário amanhã às 8:00 (horário do Vietnã).';
+            else if (lang === 'hi') msg = 'अगला स्लॉट कल सुबह 8:00 बजे (वियतनाम समय)।';
+            else msg = 'Next opening tomorrow 8:00 AM (VN time).';
+            noteEl.innerHTML = msg;
+            return;
+        }
+        const diff = target - vnTime;
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        timerEl.textContent = `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+        timerEl.style.color = '#ff6b2b';
+        let msg = '';
+        if (lang === 'ru') msg = 'Заявки, поданные до 10:00 или 15:00 (время Вьетнама), обрабатываются сегодня.';
+        else if (lang === 'zh') msg = '在越南时间10:00或15:00前提交的申请将在当天处理。';
+        else if (lang === 'pt') msg = 'Pedidos enviados antes das 10:00 ou 15:00 (horário do Vietnã) são processados hoje.';
+        else if (lang === 'hi') msg = 'आज सुबह 10:00 बजे या दोपहर 3:00 बजे (वियतनाम समय) से पहले जमा किए गए आवेदन आज ही संसाधित किए जाएंगे।';
+        else msg = 'All applications submitted before 10:00 AM or 3:00 PM (VN time) are processed today.';
+        noteEl.innerHTML = msg;
+    }
+
+    function detectLanguage() {
+        const saved = localStorage.getItem('click2visa_lang');
+        if (saved && translations[saved]) return saved;
+        const browserLang = navigator.language || navigator.userLanguage;
+        const langCode = browserLang.split('-')[0].toLowerCase();
+        if (langCode === 'ru') return 'ru';
+        if (langCode === 'zh') return 'zh';
+        if (langCode === 'pt') return 'pt';
+        if (langCode === 'hi') return 'hi';
+        return 'en';
+    }
+
+    let currentLang = detectLanguage();
+    renderPage(currentLang);
+    localStorage.setItem('click2visa_lang', currentLang);
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.getAttribute('data-lang');
+            if (translations[lang]) {
+                currentLang = lang;
+                renderPage(currentLang);
+                localStorage.setItem('click2visa_lang', currentLang);
+            }
+        });
+    });
+</script>
 </body>
 </html>
