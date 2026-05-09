@@ -17,9 +17,7 @@
         .logo { font-size: 2.8rem; font-weight: 800; color: #fff; }
         .logo span { color: #ff6b2b; }
         .subhead { font-size: 1.2rem; margin-top: 10px; color: #b0c7e0; }
-        .lang-switch { text-align: right; margin-bottom: 20px; display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 6px; }
-        .lang-btn { background: #12223b; border: 1px solid #1e3350; padding: 6px 14px; border-radius: 30px; color: #fff; cursor: pointer; font-weight: 600; transition: 0.2s; }
-        .lang-btn.active { background: #ff6b2b; border-color: #ff6b2b; }
+        .datetime-bar { text-align: right; margin-bottom: 20px; font-size: 0.85rem; color: #8ba0bc; font-family: monospace; }
         .highlight-box { background: #12223b; border-radius: 16px; padding: 20px; margin: 30px 0; text-align: center; }
         .timer-box { background: #12223b; border-radius: 16px; padding: 20px; margin: 30px 0; text-align: center; }
         .timer-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: #8ba0bc; }
@@ -36,7 +34,10 @@
         .faq-item { background: #12223b; border-radius: 12px; margin: 12px 0; padding: 15px; }
         .faq-question { font-weight: 600; margin-bottom: 5px; color: #ff6b2b; }
         .telegram-float { background: #229ed9; color: white; border-radius: 30px; padding: 12px 25px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
-        footer { text-align: center; margin-top: 50px; color: #5a6f8a; font-size: 0.9rem; }
+        footer { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #1e3350; color: #5a6f8a; font-size: 0.9rem; }
+        .lang-switch-footer { display: flex; justify-content: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+        .lang-btn { background: #12223b; border: 1px solid #1e3350; padding: 6px 14px; border-radius: 30px; color: #fff; cursor: pointer; font-weight: 600; transition: 0.2s; }
+        .lang-btn.active { background: #ff6b2b; border-color: #ff6b2b; }
         .payment-methods { text-align: center; margin: 20px 0; color: #8ba0bc; }
         .saved-flights-wrapper { background: #0e1e30; border-radius: 20px; margin: 30px 0; padding: 20px 0; overflow: hidden; height: 280px; position: relative; mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%); }
         .saved-flights-title { text-align: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 15px; color: #ff6b2b; position: sticky; top: 0; background: #0e1e30; z-index: 2; padding: 10px 0; }
@@ -51,26 +52,76 @@
         .support-link { display: inline-flex; align-items: center; gap: 10px; background: #12223b; color: #fff; padding: 14px 28px; border-radius: 30px; text-decoration: none; font-size: 1.1rem; font-weight: 600; border: 1px solid #1e3350; transition: all 0.3s ease; }
         .support-link:hover { background: #1a2e4a; border-color: #ff6b2b; transform: translateY(-2px); }
         .support-icon { font-size: 1.5rem; }
-        .i18n-content { display: none; }
-        .i18n-content.active { display: block; }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="lang-switch">
-        <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
-        <button class="lang-btn" data-lang="ru">🇷🇺 RU</button>
-        <button class="lang-btn" data-lang="zh">🇨🇳 中文</button>
-        <button class="lang-btn" data-lang="pt">🇧🇷 PT</button>
-        <button class="lang-btn" data-lang="hi">🇮🇳 हिंदी</button>
+    <div class="datetime-bar" id="datetimeBar">--:--:--</div>
+
+    <div class="hero">
+        <div class="logo">Click<span>2</span>Visa</div>
+        <div class="subhead" id="subhead"></div>
     </div>
 
-    <!-- Динамический контент будет вставлен через JS, чтобы не дублировать HTML -->
-    <div id="mainContent"></div>
+    <div class="highlight-box">
+        <div><strong id="aiTitle"></strong></div>
+        <p style="margin-top:10px; color:#b0c7e0;" id="aiDesc"></p>
+    </div>
+
+    <div class="timer-box">
+        <div class="timer-label" id="timerLabel"></div>
+        <div class="timer" id="deadlineTimer">--:--:--</div>
+        <small id="timerNote" style="color:#8ba0bc;"></small>
+    </div>
+
+    <div style="text-align: center;">
+        <a href="https://t.me/Click2VisaBot" class="big-button" id="ctaButton">⚡ Get Your e‑Visa Now</a>
+        <p style="margin-top:10px; color:#b0c7e0;" id="visaNote"></p>
+    </div>
+
+    <div class="pricing-table">
+        <h3 style="color:#ff6b2b; text-align:center;" id="tableTitle"></h3>
+        <p style="text-align:center; color:#8ba0bc;" id="govFeeNote"></p>
+        <table id="priceTable">
+            <thead id="tableHeader"></thead>
+            <tbody id="tableBody"></tbody>
+        </table>
+        <p style="text-align:center; font-size:0.9rem; margin-top:10px;" id="extraFeeNote"></p>
+        <div class="payment-methods" id="paymentNote"></div>
+    </div>
+
+    <div class="saved-flights-wrapper">
+        <div class="saved-flights-title" id="savedTitle"></div>
+        <div class="saved-flights-track" id="flightsTrack"></div>
+    </div>
+
+    <h3 id="stepsTitle"></h3>
+    <div class="faq-item" style="border-left: 4px solid #ff6b2b;" id="stepsList"></div>
+    <p style="text-align:center; color:#8ba0bc; margin-top:15px;" id="privacyText"></p>
+
+    <h3 id="faqTitle"></h3>
+    <div id="faqContainer"></div>
+
+    <div style="text-align: center; margin-top: 40px;">
+        <a href="https://t.me/Click2VisaBot" class="telegram-float" target="_blank" id="chatLink">💬 Chat with AI in Telegram</a>
+    </div>
+
+    <div class="support-section">
+        <h3 class="support-title" id="supportTitle"></h3>
+        <div class="support-links">
+            <a href="https://t.me/Click2VisaBotSupport" target="_blank" class="support-link"><span class="support-icon">💬</span> Telegram</a>
+            <a href="https://wa.me/message/J3C3DVQKSHOVD1" target="_blank" class="support-link"><span class="support-icon">📱</span> WhatsApp</a>
+        </div>
+        <p style="margin-top: 15px; color: #8ba0bc; font-size: 0.9rem;" id="supportNote"></p>
+    </div>
+
+    <footer>
+        <div class="lang-switch-footer" id="langSwitchFooter"></div>
+        <div id="footerText"></div>
+    </footer>
 </div>
 
 <script>
-    // ======================= БАЗА ПЕРЕВОДОВ =======================
     const translations = {
         en: {
             subhead: "AI‑Powered Vietnam e‑Visa 24/7 · Card & Crypto",
@@ -105,7 +156,11 @@
             support_title: "📞 Support",
             support_note: "If the AI couldn't help, our human team is here for you.",
             chat_text: "Chat with AI in Telegram",
-            footer: "© 2026 Click2Visa.asia – your reliable partner.<br>We never sleep, so your visa is always one click away."
+            footer: "© 2026 Click2Visa.asia – your reliable partner.<br>We never sleep, so your visa is always one click away.",
+            // Table rows data
+            speeds: ["1 hour", "2 hours", "4 hours", "1 day", "2 days", "3 days", "4–5 days (Standard)"],
+            avail: ["Weekdays only", "Weekdays only", "Weekdays only", "All days", "Weekdays only", "Weekdays only", "Weekdays only"],
+            weekend_label: "weekend"
         },
         ru: {
             subhead: "ИИ‑виза во Вьетнам 24/7 · Карты и криптовалюта",
@@ -140,7 +195,10 @@
             support_title: "📞 Поддержка",
             support_note: "Если ИИ не смог помочь, наша команда всегда с вами.",
             chat_text: "Чат с ИИ в Telegram",
-            footer: "© 2026 Click2Visa.asia – ваш надёжный партнёр.<br>Мы никогда не спим, поэтому ваша виза всегда в одном клике."
+            footer: "© 2026 Click2Visa.asia – ваш надёжный партнёр.<br>Мы никогда не спим, поэтому ваша виза всегда в одном клике.",
+            speeds: ["1 час", "2 часа", "4 часа", "1 день", "2 дня", "3 дня", "4–5 дней (стандарт)"],
+            avail: ["Только будни", "Только будни", "Только будни", "Все дни", "Только будни", "Только будни", "Только будни"],
+            weekend_label: "выходные"
         },
         zh: {
             subhead: "人工智能越南电子签证 24/7 · 支持银行卡和加密货币",
@@ -175,7 +233,10 @@
             support_title: "📞 支持团队",
             support_note: "如果AI无法解决，我们的真人团队随时为您服务。",
             chat_text: "在Telegram与AI对话",
-            footer: "© 2026 Click2Visa.asia – 您的可靠伙伴。<br>我们从不休息，您的签证一键可得。"
+            footer: "© 2026 Click2Visa.asia – 您的可靠伙伴。<br>我们从不休息，您的签证一键可得。",
+            speeds: ["1小时", "2小时", "4小时", "1天", "2天", "3天", "4–5天（标准）"],
+            avail: ["仅工作日", "仅工作日", "仅工作日", "所有日期", "仅工作日", "仅工作日", "仅工作日"],
+            weekend_label: "周末"
         },
         pt: {
             subhead: "Visto eletrônico para Vietnã com IA 24/7 · Cartão e Cripto",
@@ -210,7 +271,10 @@
             support_title: "📞 Suporte",
             support_note: "Se a IA não pôde ajudar, nossa equipe humana está aqui para você.",
             chat_text: "Converse com a IA no Telegram",
-            footer: "© 2026 Click2Visa.asia – seu parceiro confiável.<br>Nunca dormimos, então seu visto está sempre a um clique de distância."
+            footer: "© 2026 Click2Visa.asia – seu parceiro confiável.<br>Nunca dormimos, então seu visto está sempre a um clique de distância.",
+            speeds: ["1 hora", "2 horas", "4 horas", "1 dia", "2 dias", "3 dias", "4–5 dias (Padrão)"],
+            avail: ["Só dias úteis", "Só dias úteis", "Só dias úteis", "Todos os dias", "Só dias úteis", "Só dias úteis", "Só dias úteis"],
+            weekend_label: "fim de semana"
         },
         hi: {
             subhead: "AI-संचालित वियतनाम ई-वीज़ा 24/7 · कार्ड और क्रिप्टो",
@@ -245,154 +309,138 @@
             support_title: "📞 सहायता",
             support_note: "यदि AI मदद नहीं कर सका, तो हमारी मानव टीम आपके लिए यहाँ है।",
             chat_text: "Telegram में AI से बात करें",
-            footer: "© 2026 Click2Visa.asia – आपका भरोसेमंद भागीदार।<br>हम कभी नहीं सोते, इसलिए आपका वीज़ा हमेशा एक क्लिक दूर है।"
+            footer: "© 2026 Click2Visa.asia – आपका भरोसेमंद भागीदार।<br>हम कभी नहीं सोते, इसलिए आपका वीज़ा हमेशा एक क्लिक दूर है।",
+            speeds: ["1 घंटा", "2 घंटे", "4 घंटे", "1 दिन", "2 दिन", "3 दिन", "4–5 दिन (मानक)"],
+            avail: ["केवल कार्यदिवस", "केवल कार्यदिवस", "केवल कार्यदिवस", "सभी दिन", "केवल कार्यदिवस", "केवल कार्यदिवस", "केवल कार्यदिवस"],
+            weekend_label: "सप्ताहांत"
         }
     };
 
-    // Общие цены (одинаковы для всех языков)
     const priceRows = [
-        { speed: "1 hour", price: 259, badge: "HOT", avail: "Weekdays only" },
-        { speed: "2 hours", price: 219, avail: "Weekdays only" },
-        { speed: "4 hours", price: 139, avail: "Weekdays only" },
-        { speed: "1 day", price: 115, weekendPrice: 225, avail: "All days" },
-        { speed: "2 days", price: 99, avail: "Weekdays only" },
-        { speed: "3 days", price: 85, avail: "Weekdays only" },
-        { speed: "4–5 days (Standard)", price: 59, avail: "Weekdays only" }
+        { price: 259, badge: "HOT", weekendPrice: null },
+        { price: 219, badge: null, weekendPrice: null },
+        { price: 139, badge: null, weekendPrice: null },
+        { price: 115, badge: null, weekendPrice: 225 },
+        { price: 99, badge: null, weekendPrice: null },
+        { price: 85, badge: null, weekendPrice: null },
+        { price: 59, badge: null, weekendPrice: null }
     ];
 
-    // ======================= ГЕНЕРАЦИЯ HTML НА ОСНОВЕ ЯЗЫКА =======================
+    let currentLang = 'en';
+    let timerInterval = null;
+    let dateTimeInterval = null;
+
+    function localizeDateTime(lang) {
+        const now = new Date();
+        const vnTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"}));
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+        let formatted = vnTime.toLocaleString(lang === 'zh' ? 'zh-CN' : (lang === 'pt' ? 'pt-BR' : (lang === 'hi' ? 'hi-IN' : (lang === 'ru' ? 'ru-RU' : 'en-US'))), options);
+        if (lang === 'zh') formatted = formatted.replace('上午', '早上').replace('下午', '下午');
+        return `🇻🇳 ${formatted}`;
+    }
+
+    function updateDateTime() {
+        const bar = document.getElementById('datetimeBar');
+        if (bar) bar.textContent = localizeDateTime(currentLang);
+    }
+
+    function buildTable(lang) {
+        const t = translations[lang];
+        const thead = document.getElementById('tableHeader');
+        const tbody = document.getElementById('tableBody');
+        thead.innerHTML = `<tr><th>${t.speed_th}</th><th>${t.price_th}</th><th>${t.avail_th}</th></tr>`;
+        tbody.innerHTML = '';
+        for (let i = 0; i < priceRows.length; i++) {
+            const row = priceRows[i];
+            let priceHtml = `<strong>$${row.price}</strong>`;
+            if (row.weekendPrice) {
+                priceHtml += ` <span class="weekend-badge">$${row.weekendPrice} ${t.weekend_label}</span>`;
+            }
+            let speedHtml = t.speeds[i];
+            if (row.badge) speedHtml += ` <span class="urgency-badge">${row.badge}</span>`;
+            const availHtml = t.avail[i];
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${speedHtml}</td><td>${priceHtml}</td><td>${availHtml}</td>`;
+            tbody.appendChild(tr);
+        }
+    }
+
     function renderPage(lang) {
         const t = translations[lang];
-        if (!t) return renderPage('en');
-        let html = `
-            <div class="hero">
-                <div class="logo">Click<span>2</span>Visa</div>
-                <div class="subhead">${t.subhead}</div>
-            </div>
-            <div class="highlight-box">
-                <div><strong>${t.ai_title}</strong></div>
-                <p style="margin-top:10px; color:#b0c7e0;">${t.ai_desc}</p>
-            </div>
-            <div class="timer-box">
-                <div class="timer-label">${t.timer_label}</div>
-                <div class="timer" id="deadlineTimer">--:--:--</div>
-                <small id="timerNote" style="color:#8ba0bc;"></small>
-            </div>
-            <div style="text-align: center;">
-                <a href="https://t.me/Click2VisaBot" class="big-button">${t.cta_button}</a>
-                <p style="margin-top:10px; color:#b0c7e0;">${t.visa_note}</p>
-            </div>
-            <div class="pricing-table">
-                <h3 style="color:#ff6b2b; text-align:center;">${t.table_title}</h3>
-                <p style="text-align:center; color:#8ba0bc;">${t.gov_fee_note}</p>
-                <table>
-                    <thead><tr><th>${t.speed_th}</th><th>${t.price_th}</th><th>${t.avail_th}</th></tr></thead>
-                    <tbody>
-        `;
-        for (const row of priceRows) {
-            let priceDisplay = `<strong>$${row.price}</strong>`;
-            if (row.weekendPrice) {
-                priceDisplay += ` <span class="weekend-badge">$${row.weekendPrice} weekend</span>`;
-            }
-            let speedDisplay = row.speed;
-            if (row.badge) speedDisplay += ` <span class="urgency-badge">${row.badge}</span>`;
-            html += `<tr><td>${speedDisplay}</td><td>${priceDisplay}</td><td>${row.avail}</td></tr>`;
-        }
-        html += `
-                    </tbody>
-                </table>
-                <p style="text-align:center; font-size:0.9rem; margin-top:10px;">${t.extra_fee_note}</p>
-                <div class="payment-methods">${t.payment_note}</div>
-            </div>
-            <div class="saved-flights-wrapper">
-                <div class="saved-flights-title">${t.saved_title}</div>
-                <div class="saved-flights-track" id="flightsTrack"></div>
-            </div>
-            <h3>${t.steps_title}</h3>
-            <div class="faq-item" style="border-left: 4px solid #ff6b2b;">
-                ${t.step1}<br>${t.step2}<br>${t.step3}<br>${t.step4}
-            </div>
-            <p style="text-align:center; color:#8ba0bc; margin-top:15px;">${t.privacy}</p>
-            <h3>${t.faq_title}</h3>
-        `;
-        for (let i = 0; i < t.faq.length; i++) {
-            html += `
-                <div class="faq-item">
-                    <div class="faq-question">${t.faq[i].q}</div>
-                    <p>${t.faq[i].a}</p>
-                </div>
-            `;
-        }
-        html += `
-            <div style="text-align: center; margin-top: 40px;">
-                <a href="https://t.me/Click2VisaBot" class="telegram-float" target="_blank">💬 ${t.chat_text}</a>
-            </div>
-            <div class="support-section">
-                <h3 class="support-title">${t.support_title}</h3>
-                <div class="support-links">
-                    <a href="https://t.me/Click2VisaBotSupport" target="_blank" class="support-link"><span class="support-icon">💬</span> Telegram</a>
-                    <a href="https://wa.me/message/J3C3DVQKSHOVD1" target="_blank" class="support-link"><span class="support-icon">📱</span> WhatsApp</a>
-                </div>
-                <p style="margin-top: 15px; color: #8ba0bc; font-size: 0.9rem;">${t.support_note}</p>
-            </div>
-            <footer>${t.footer}</footer>
-        `;
-        document.getElementById('mainContent').innerHTML = html;
-        // после вставки запускаем анимацию и таймер
-        initFlightsTrack();
-        updateTimer(lang);
-        setInterval(() => updateTimer(lang), 1000);
-        // подсветка активной кнопки
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
-        });
-    }
-
-    function initFlightsTrack() {
-        const tracks = [
-            { from: "Moscow", to: "Hanoi", time: "58 min", desc: "3h before boarding", name: "Sergei", month: "Jan" },
-            { from: "Sydney", to: "Ho Chi Minh", time: "2h", desc: "family of 4", name: "Mia", month: "Feb" },
-            { from: "London", to: "Phu Quoc", time: "1h", desc: "forgotten visa", name: "David", month: "Mar" },
-            { from: "Seoul", to: "Da Nang", time: "overnight", desc: "ready by 8am", name: "Yuna", month: "Jan" },
-            { from: "Toronto", to: "Nha Trang", time: "weekend", desc: "Monday 9am visa", name: "Raj", month: "Feb" },
-            { from: "Paris", to: "Hanoi", time: "4h", desc: "group of 6", name: "Claire", month: "Mar" },
-            { from: "New York", to: "Ho Chi Minh", time: "1 day", desc: "Sunday evening", name: "Marcus", month: "Apr" },
-            { from: "Berlin", to: "Cat Ba", time: "2 days", desc: "relaxed", name: "Tom", month: "Apr" },
-            { from: "Melbourne", to: "Danang", time: "2h", desc: "typo in passport fix", name: "Sophie", month: "Jan" },
-            { from: "Amsterdam", to: "Hanoi", time: "4h", desc: "business trip", name: "Jan", month: "Apr" },
-            { from: "Delhi", to: "Ho Chi Minh", time: "1 day", desc: "student", name: "Priya", month: "Feb" },
-            { from: "Los Angeles", to: "Da Lat", time: "2h", desc: "honeymoon", name: "Chloe & Leo", month: "May 1" }
-        ];
-        const trackDiv = document.getElementById('flightsTrack');
-        if (!trackDiv) return;
-        trackDiv.innerHTML = '';
-        function createCard(t) {
+        if (!t) return;
+        document.getElementById('subhead').textContent = t.subhead;
+        document.getElementById('aiTitle').innerHTML = t.ai_title;
+        document.getElementById('aiDesc').textContent = t.ai_desc;
+        document.getElementById('timerLabel').textContent = t.timer_label;
+        document.getElementById('ctaButton').textContent = t.cta_button;
+        document.getElementById('visaNote').textContent = t.visa_note;
+        document.getElementById('tableTitle').textContent = t.table_title;
+        document.getElementById('govFeeNote').textContent = t.gov_fee_note;
+        document.getElementById('extraFeeNote').textContent = t.extra_fee_note;
+        document.getElementById('paymentNote').textContent = t.payment_note;
+        document.getElementById('savedTitle').textContent = t.saved_title;
+        document.getElementById('stepsTitle').textContent = t.steps_title;
+        document.getElementById('stepsList').innerHTML = `${t.step1}<br>${t.step2}<br>${t.step3}<br>${t.step4}`;
+        document.getElementById('privacyText').innerHTML = t.privacy;
+        document.getElementById('faqTitle').textContent = t.faq_title;
+        const faqContainer = document.getElementById('faqContainer');
+        faqContainer.innerHTML = '';
+        for (const item of t.faq) {
             const div = document.createElement('div');
-            div.className = 'flight-card';
-            div.innerHTML = `<span class="flight-icon">✈️</span> ${t.from} → ${t.to}, visa in ${t.time}, ${t.desc} (${t.name}, ${t.month} 2026)`;
-            return div;
+            div.className = 'faq-item';
+            div.innerHTML = `<div class="faq-question">${item.q}</div><p>${item.a}</p>`;
+            faqContainer.appendChild(div);
         }
-        tracks.forEach(t => trackDiv.appendChild(createCard(t)));
-        tracks.forEach(t => trackDiv.appendChild(createCard(t)));
+        document.getElementById('supportTitle').textContent = t.support_title;
+        document.getElementById('supportNote').textContent = t.support_note;
+        document.getElementById('chatLink').innerHTML = `💬 ${t.chat_text}`;
+        document.getElementById('footerText').innerHTML = t.footer;
+        buildTable(lang);
+        const footerSwitch = document.getElementById('langSwitchFooter');
+        footerSwitch.innerHTML = `
+            <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+            <button class="lang-btn" data-lang="ru">🇷🇺 RU</button>
+            <button class="lang-btn" data-lang="zh">🇨🇳 中文</button>
+            <button class="lang-btn" data-lang="pt">🇧🇷 PT</button>
+            <button class="lang-btn" data-lang="hi">🇮🇳 हिंदी</button>
+        `;
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+            btn.addEventListener('click', () => {
+                const newLang = btn.getAttribute('data-lang');
+                if (translations[newLang]) {
+                    currentLang = newLang;
+                    localStorage.setItem('click2visa_lang', currentLang);
+                    renderPage(currentLang);
+                    if (timerInterval) clearInterval(timerInterval);
+                    if (dateTimeInterval) clearInterval(dateTimeInterval);
+                    updateTimer();
+                    updateDateTime();
+                    timerInterval = setInterval(updateTimer, 1000);
+                    dateTimeInterval = setInterval(updateDateTime, 1000);
+                }
+            });
+        });
+        updateTimer();
     }
 
-    function updateTimer(lang) {
+    function updateTimer() {
         const now = new Date();
         const vnTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"}));
         const day = vnTime.getDay();
         const timerEl = document.getElementById('deadlineTimer');
         const noteEl = document.getElementById('timerNote');
         if (!timerEl) return;
+        const t = translations[currentLang];
         const isWeekend = (day === 0 || day === 6);
         if (isWeekend) {
-            timerEl.textContent = 'Weekend / Holiday';
+            timerEl.textContent = t.weekend_label === 'weekend' ? 'Weekend / Holiday' : (t.weekend_label === 'выходные' ? 'Выходные / Праздник' : (t.weekend_label === '周末' ? '周末 / 节假日' : (t.weekend_label === 'fim de semana' ? 'Fim de semana / Feriado' : 'सप्ताहांत / अवकाश')));
             timerEl.style.color = '#ff6b2b';
             let msg = '';
-            if (lang === 'ru') msg = '⚡ <strong>Только 1‑дневная обработка ($225).</strong> ИИ работает 24/7.';
-            else if (lang === 'zh') msg = '⚡ <strong>仅提供1天加急服务（$225）。</strong> AI全天候工作。';
-            else if (lang === 'pt') msg = '⚡ <strong>Apenas processamento de 1 dia ($225).</strong> IA funciona 24/7.';
-            else if (lang === 'hi') msg = '⚡ <strong>केवल 1-दिवसीय प्रसंस्करण ($225)।</strong> AI 24/7 काम करता है।';
+            if (currentLang === 'ru') msg = '⚡ <strong>Только 1‑дневная обработка ($225).</strong> ИИ работает 24/7.';
+            else if (currentLang === 'zh') msg = '⚡ <strong>仅提供1天加急服务（$225）。</strong> AI全天候工作。';
+            else if (currentLang === 'pt') msg = '⚡ <strong>Apenas processamento de 1 dia ($225).</strong> IA funciona 24/7.';
+            else if (currentLang === 'hi') msg = '⚡ <strong>केवल 1-दिवसीय प्रसंस्करण ($225)।</strong> AI 24/7 काम करता है।';
             else msg = '⚡ <strong>Only 1‑day processing ($225).</strong> AI works 24/7.';
             noteEl.innerHTML = msg;
             return;
@@ -406,10 +454,10 @@
         if (vnTime > deadline2) {
             timerEl.textContent = 'Slots closed today.';
             let msg = '';
-            if (lang === 'ru') msg = 'Следующий слот завтра с 8:00 (время Вьетнама).';
-            else if (lang === 'zh') msg = '下一个时段为明天上午8:00（越南时间）。';
-            else if (lang === 'pt') msg = 'Próximo horário amanhã às 8:00 (horário do Vietnã).';
-            else if (lang === 'hi') msg = 'अगला स्लॉट कल सुबह 8:00 बजे (वियतनाम समय)।';
+            if (currentLang === 'ru') msg = 'Следующий слот завтра с 8:00 (время Вьетнама).';
+            else if (currentLang === 'zh') msg = '下一个时段为明天上午8:00（越南时间）。';
+            else if (currentLang === 'pt') msg = 'Próximo horário amanhã às 8:00 (horário do Vietnã).';
+            else if (currentLang === 'hi') msg = 'अगला स्लॉट कल सुबह 8:00 बजे (वियतनाम समय)।';
             else msg = 'Next opening tomorrow 8:00 AM (VN time).';
             noteEl.innerHTML = msg;
             return;
@@ -421,10 +469,10 @@
         timerEl.textContent = `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
         timerEl.style.color = '#ff6b2b';
         let msg = '';
-        if (lang === 'ru') msg = 'Заявки, поданные до 10:00 или 15:00 (время Вьетнама), обрабатываются сегодня.';
-        else if (lang === 'zh') msg = '在越南时间10:00或15:00前提交的申请将在当天处理。';
-        else if (lang === 'pt') msg = 'Pedidos enviados antes das 10:00 ou 15:00 (horário do Vietnã) são processados hoje.';
-        else if (lang === 'hi') msg = 'आज सुबह 10:00 बजे या दोपहर 3:00 बजे (वियतनाम समय) से पहले जमा किए गए आवेदन आज ही संसाधित किए जाएंगे।';
+        if (currentLang === 'ru') msg = 'Заявки, поданные до 10:00 или 15:00 (время Вьетнама), обрабатываются сегодня.';
+        else if (currentLang === 'zh') msg = '在越南时间10:00或15:00前提交的申请将在当天处理。';
+        else if (currentLang === 'pt') msg = 'Pedidos enviados antes das 10:00 ou 15:00 (horário do Vietnã) são processados hoje.';
+        else if (currentLang === 'hi') msg = 'आज सुबह 10:00 बजे या दोपहर 3:00 बजे (वियतनाम समय) से पहले जमा किए गए आवेदन आज ही संसाधित किए जाएंगे।';
         else msg = 'All applications submitted before 10:00 AM or 3:00 PM (VN time) are processed today.';
         noteEl.innerHTML = msg;
     }
@@ -441,20 +489,37 @@
         return 'en';
     }
 
-    let currentLang = detectLanguage();
+    currentLang = detectLanguage();
     renderPage(currentLang);
-    localStorage.setItem('click2visa_lang', currentLang);
+    updateDateTime();
+    if (timerInterval) clearInterval(timerInterval);
+    if (dateTimeInterval) clearInterval(dateTimeInterval);
+    timerInterval = setInterval(updateTimer, 1000);
+    dateTimeInterval = setInterval(updateDateTime, 1000);
 
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const lang = btn.getAttribute('data-lang');
-            if (translations[lang]) {
-                currentLang = lang;
-                renderPage(currentLang);
-                localStorage.setItem('click2visa_lang', currentLang);
-            }
-        });
-    });
+    const flights = [
+        { from: "Moscow", to: "Hanoi", time: "58 min", desc: "3h before boarding", name: "Sergei", month: "Jan" },
+        { from: "Sydney", to: "Ho Chi Minh", time: "2h", desc: "family of 4", name: "Mia", month: "Feb" },
+        { from: "London", to: "Phu Quoc", time: "1h", desc: "forgotten visa", name: "David", month: "Mar" },
+        { from: "Seoul", to: "Da Nang", time: "overnight", desc: "ready by 8am", name: "Yuna", month: "Jan" },
+        { from: "Toronto", to: "Nha Trang", time: "weekend", desc: "Monday 9am visa", name: "Raj", month: "Feb" },
+        { from: "Paris", to: "Hanoi", time: "4h", desc: "group of 6", name: "Claire", month: "Mar" },
+        { from: "New York", to: "Ho Chi Minh", time: "1 day", desc: "Sunday evening", name: "Marcus", month: "Apr" },
+        { from: "Berlin", to: "Cat Ba", time: "2 days", desc: "relaxed", name: "Tom", month: "Apr" },
+        { from: "Melbourne", to: "Danang", time: "2h", desc: "typo in passport fix", name: "Sophie", month: "Jan" },
+        { from: "Amsterdam", to: "Hanoi", time: "4h", desc: "business trip", name: "Jan", month: "Apr" },
+        { from: "Delhi", to: "Ho Chi Minh", time: "1 day", desc: "student", name: "Priya", month: "Feb" },
+        { from: "Los Angeles", to: "Da Lat", time: "2h", desc: "honeymoon", name: "Chloe & Leo", month: "May 1" }
+    ];
+    const trackDiv = document.getElementById('flightsTrack');
+    function createCard(t) {
+        const div = document.createElement('div');
+        div.className = 'flight-card';
+        div.innerHTML = `<span class="flight-icon">✈️</span> ${t.from} → ${t.to}, visa in ${t.time}, ${t.desc} (${t.name}, ${t.month} 2026)`;
+        return div;
+    }
+    flights.forEach(t => trackDiv.appendChild(createCard(t)));
+    flights.forEach(t => trackDiv.appendChild(createCard(t)));
 </script>
 </body>
 </html>
