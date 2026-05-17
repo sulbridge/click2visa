@@ -35,6 +35,9 @@
         .faq-question { font-weight: 600; margin-bottom: 5px; color: #ff6b2b; }
         .telegram-float { background: #229ed9; color: white; border-radius: 30px; padding: 12px 25px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
         footer { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #1e3350; color: #5a6f8a; font-size: 0.9rem; }
+        .footer-disclaimer { font-size: 0.8rem; color: #6a7f9a; max-width: 600px; margin: 15px auto 0; line-height: 1.4; }
+        .footer-disclaimer a { color: #ff8c5a; text-decoration: none; }
+        .footer-disclaimer a:hover { text-decoration: underline; }
         .lang-switch-footer { display: flex; justify-content: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
         .lang-btn { background: #12223b; border: 1px solid #1e3350; padding: 6px 14px; border-radius: 30px; color: #fff; cursor: pointer; font-weight: 600; transition: 0.2s; }
         .lang-btn.active { background: #ff6b2b; border-color: #ff6b2b; }
@@ -121,6 +124,7 @@
     <footer>
         <div class="lang-switch-footer" id="langSwitchFooter"></div>
         <div id="footerText"></div>
+        <div class="footer-disclaimer" id="disclaimerText"></div>
     </footer>
 </div>
 
@@ -162,6 +166,7 @@
             support_note: "If the AI couldn't help, our human team is here for you.",
             chat_text: "Chat with AI in Telegram",
             footer: "© 2026 Click2Visa.asia – your reliable partner.<br>We never sleep, so your visa is always one click away.",
+            disclaimer: "Click2Visa.asia is not affiliated with the Vietnamese Government or the Immigration Department. Our service fee covers application assistance, document review, and expedited processing. The government e‑Visa fee is already included in our prices. You can also apply directly via the <a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>official Vietnam Immigration portal</a>.",
             speeds: ["30‑60 min", "2 hours", "4 hours", "1 day", "2 days", "3 days", "4–5 days (Standard)"],
             avail: ["Weekdays only", "Weekdays only", "Weekdays only", "All days", "Weekdays only", "Weekdays only", "Weekdays only"],
             weekend_label: "weekend"
@@ -202,6 +207,7 @@
             support_note: "Если ИИ не смог помочь, наша команда всегда с вами.",
             chat_text: "Чат с ИИ в Telegram",
             footer: "© 2026 Click2Visa.asia – ваш надёжный партнёр.<br>Мы никогда не спим, поэтому ваша виза всегда в одном клике.",
+            disclaimer: "Click2Visa.asia не связан с правительством Вьетнама или иммиграционным департаментом. Наш сервисный сбор покрывает помощь в подаче, проверку документов и ускоренную обработку. Государственный сбор за визу уже включён в наши цены. Вы также можете подать заявление напрямую через <a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>официальный портал иммиграции Вьетнама</a>.",
             speeds: ["30‑60 мин", "2 часа", "4 часа", "1 день", "2 дня", "3 дня", "4–5 дней (стандарт)"],
             avail: ["Только будни", "Только будни", "Только будни", "Все дни", "Только будни", "Только будни", "Только будни"],
             weekend_label: "выходные"
@@ -242,6 +248,7 @@
             support_note: "如果AI无法解决，我们的真人团队随时为您服务。",
             chat_text: "在Telegram与AI对话",
             footer: "© 2026 Click2Visa.asia – 您的可靠伙伴。<br>我们从不休息，您的签证一键可得。",
+            disclaimer: "Click2Visa.asia 与越南政府或移民局无关。我们的服务费包括申请协助、文件审核和加急处理。政府电子签证费用已包含在我们的价格中。您也可以通过<a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>越南移民局官方网站</a>直接申请。",
             speeds: ["30‑60分钟", "2小时", "4小时", "1天", "2天", "3天", "4–5天（标准）"],
             avail: ["仅工作日", "仅工作日", "仅工作日", "所有日期", "仅工作日", "仅工作日", "仅工作日"],
             weekend_label: "周末"
@@ -282,6 +289,7 @@
             support_note: "Se a IA não pôde ajudar, nossa equipe humana está aqui para você.",
             chat_text: "Converse com a IA no Telegram",
             footer: "© 2026 Click2Visa.asia – seu parceiro confiável.<br>Nunca dormimos, então seu visto está sempre a um clique de distância.",
+            disclaimer: "Click2Visa.asia não é afiliado ao governo vietnamita ou ao departamento de imigração. Nossa taxa de serviço cobre assistência na solicitação, verificação de documentos e processamento expresso. A taxa governamental do e-Visa já está incluída nos nossos preços. Você também pode solicitar diretamente através do <a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>portal oficial de imigração do Vietnã</a>.",
             speeds: ["30‑60 min", "2 horas", "4 horas", "1 dia", "2 dias", "3 dias", "4–5 dias (Padrão)"],
             avail: ["Só dias úteis", "Só dias úteis", "Só dias úteis", "Todos os dias", "Só dias úteis", "Só dias úteis", "Só dias úteis"],
             weekend_label: "fim de semana"
@@ -322,13 +330,13 @@
             support_note: "यदि AI मदद नहीं कर सका, तो हमारी मानव टीम आपके लिए यहाँ है।",
             chat_text: "Telegram में AI से बात करें",
             footer: "© 2026 Click2Visa.asia – आपका भरोसेमंद भागीदार।<br>हम कभी नहीं सोते, इसलिए आपका वीज़ा हमेशा एक क्लिक दूर है।",
+            disclaimer: "Click2Visa.asia का वियतनाम सरकार या आव्रजन विभाग से कोई संबद्धता नहीं है। हमारी सेवा शुल्क आवेदन सहायता, दस्तावेज़ समीक्षा और त्वरित प्रसंस्करण को कवर करती है। सरकारी ई-वीज़ा शुल्क पहले से ही हमारी कीमतों में शामिल है। आप सीधे <a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>आधिकारिक वियतनाम आव्रजन पोर्टल</a> के माध्यम से भी आवेदन कर सकते हैं।",
             speeds: ["30‑60 मिनट", "2 घंटे", "4 घंटे", "1 दिन", "2 दिन", "3 दिन", "4–5 दिन (मानक)"],
             avail: ["केवल कार्यदिवस", "केवल कार्यदिवस", "केवल कार्यदिवस", "सभी दिन", "केवल कार्यदिवस", "केवल कार्यदिवस", "केवल कार्यदिवस"],
             weekend_label: "सप्ताहांत"
         }
     };
 
-    // NEW PRICES: 30-60min = 199, 2h = 165, 4h = 139, 1d = 99 (weekend 249), 2d = 89, 3d = 75, 4-5d = 59
     const priceRows = [
         { price: 199, badge: "HOT", weekendPrice: null },
         { price: 165, badge: null, weekendPrice: null },
@@ -426,6 +434,7 @@
         document.getElementById('supportNote').textContent = t.support_note;
         document.getElementById('chatLink').innerHTML = `💬 ${t.chat_text}`;
         document.getElementById('footerText').innerHTML = t.footer;
+        document.getElementById('disclaimerText').innerHTML = t.disclaimer;
         buildTable(lang);
         const footerSwitch = document.getElementById('langSwitchFooter');
         footerSwitch.innerHTML = `
