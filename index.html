@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Click2Visa – AI Travel Document Assistance 24/7</title>
-    <meta name="description" content="Get help with your Vietnam entry requirements in 30 minutes, even on weekends. Fully automated AI service. Pay with card or crypto. 90‑day single entry support.">
-    <meta property="og:title" content="Click2Visa – AI Travel Document Assistance 24/7">
-    <meta property="og:description" content="AI‑powered application guidance 24/7. Pay with Stripe (cards) or USDT. Weekends & holidays – we’re awake.">
+    <title>Click2Visa – Urgent Vietnam e‑Visa Concierge • 24/7 • USDT only</title>
+    <meta name="description" content="AI‑powered Vietnam e‑Visa concierge bot. Get your 90‑day single entry visa as fast as 30 minutes. Pay only with USDT. 24/7 automated service.">
+    <meta property="og:title" content="Click2Visa – Urgent Vietnam e‑Visa Concierge 24/7">
+    <meta property="og:description" content="Instant Vietnam e‑Visa via AI bot. Express processing from 30 minutes. USDT only. No cards, no hidden fees.">
     <meta property="og:url" content="https://click2visa.asia/">
+    <link rel="canonical" href="https://click2visa.asia/">
     <link rel="icon" type="image/png" href="/favicon.png">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -19,9 +20,8 @@
         .subhead { font-size: 1.2rem; margin-top: 10px; color: #b0c7e0; }
         .datetime-bar { text-align: center; margin-bottom: 20px; font-size: 0.85rem; color: #8ba0bc; font-family: monospace; }
         .highlight-box { background: #12223b; border-radius: 16px; padding: 20px; margin: 30px 0; text-align: center; }
-        .timer-box { background: #12223b; border-radius: 16px; padding: 20px; margin: 30px 0; text-align: center; }
-        .timer-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; color: #8ba0bc; }
-        .timer { font-size: 2.5rem; font-weight: bold; color: #ff6b2b; }
+        .info-box { background: #12223b; border-radius: 16px; padding: 20px; margin: 30px 0; text-align: center; border-left: 4px solid #ff6b2b; }
+        .info-box h3 { color: #ff6b2b; margin-bottom: 10px; }
         .big-button { display: inline-block; background: #ff6b2b; color: #fff; font-size: 1.5rem; font-weight: 700; padding: 22px 50px; border-radius: 60px; text-decoration: none; margin: 25px 0; box-shadow: 0 10px 30px rgba(255,107,43,0.4); animation: pulse 2s infinite; }
         .big-button:hover { transform: scale(1.05); }
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,107,43,0.6); } 70% { box-shadow: 0 0 0 20px rgba(255,107,43,0); } 100% { box-shadow: 0 0 0 0 rgba(255,107,43,0); } }
@@ -37,7 +37,6 @@
         footer { text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #1e3350; color: #5a6f8a; font-size: 0.9rem; }
         .footer-disclaimer { font-size: 0.8rem; color: #6a7f9a; max-width: 600px; margin: 15px auto 0; line-height: 1.4; }
         .footer-disclaimer a { color: #ff8c5a; text-decoration: none; }
-        .footer-disclaimer a:hover { text-decoration: underline; }
         .lang-switch-footer { display: flex; justify-content: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
         .lang-btn { background: #12223b; border: 1px solid #1e3350; padding: 6px 14px; border-radius: 30px; color: #fff; cursor: pointer; font-weight: 600; transition: 0.2s; }
         .lang-btn.active { background: #ff6b2b; border-color: #ff6b2b; }
@@ -74,10 +73,10 @@
         <p style="margin-top:10px; color:#b0c7e0;" id="aiDesc"></p>
     </div>
 
-    <div class="timer-box">
-        <div class="timer-label" id="timerLabel"></div>
-        <div class="timer" id="deadlineTimer">--:--:--</div>
-        <small id="timerNote" style="color:#8ba0bc;"></small>
+    <!-- Честный блок 24/7 с пояснением про рабочие часы -->
+    <div class="info-box">
+        <h3 id="alwaysOpenTitle">🕒 24/7 Application Acceptance</h3>
+        <p id="alwaysOpenText">We accept applications 24 hours a day, 7 days a week. Express visas (30-60min, 2h, 4h) are processed during business hours (Mon-Fri, specific windows). Multi‑day visas are queued and processed on the next business day. Weekend/holiday tariff is available for urgent weekend processing.</p>
     </div>
 
     <div style="text-align: center;">
@@ -91,7 +90,7 @@
         <table id="priceTable">
             <thead id="tableHeader"></thead>
             <tbody id="tableBody"></tbody>
-        </table>
+        <table>
         <p style="text-align:center; font-size:0.9rem; margin-top:10px;" id="extraFeeNote"></p>
         <div class="payment-methods" id="paymentNote"></div>
     </div>
@@ -131,67 +130,70 @@
 <script>
     const translations = {
         en: {
-            subhead: "AI‑Powered Entry Assistance 24/7 · Card & Crypto",
-            ai_title: "🤖 AI Agent works while others sleep",
-            ai_desc: "No waiting for office hours. Instant response, fully automatic – from payment to ready document.",
-            timer_label: "⏳ Next weekday deadline:",
+            subhead: "Urgent Vietnam e‑Visa Concierge Bot • 24/7 • USDT only",
+            ai_title: "🤖 AI Concierge works while others sleep",
+            ai_desc: "Fully automated bot. Send passport & selfie, pay with USDT – get your e‑Visa in as fast as 30 minutes.",
+            always_open_title: "🕒 24/7 Application Acceptance",
+            always_open_text: "We accept applications 24 hours a day, 7 days a week. Express visas (30-60min, 2h, 4h) are processed during business hours (Mon-Fri, specific windows). Multi‑day visas are queued and processed on the next business day. Weekend/holiday tariff is available for urgent weekend processing.",
             cta_button: "⚡ Get Your e‑Visa Now",
-            visa_note: "✅ 90‑day single‑entry support",
-            table_title: "🏷️ Urgent Travel Document Assistance – 90 days, single entry",
-            gov_fee_note: "All prices include our service fee (no hidden costs).",
+            visa_note: "✅ 90‑day single‑entry e‑Visa",
+            table_title: "🏷️ Urgent e‑Visa – 90 days, single entry",
+            gov_fee_note: "All prices include government fee.",
             speed_th: "Processing Speed",
             price_th: "Price (USD)",
             avail_th: "Availability",
             extra_fee_note: "⚠️ Difficulty nationalities (+$35): 🇹🇷🇱🇰🇪🇬🇲🇺 must arrive by flight only.",
-            payment_note: "We accept: 💳 Credit cards (Visa/Mastercard/Apple Pay) via Stripe · ₿ Crypto (USDT) also available",
+            payment_note: "We accept: ₿ USDT (TRC-20) only. No cards, no Stripe. Crypto payments only.",
             saved_title: "🛫 777+ Trips Saved in 2026",
-            steps_title: "⚡ Your assistance in 4 simple steps",
+            steps_title: "⚡ Your visa in 4 simple steps",
             step1: "1. Send passport photo",
             step2: "2. Send your selfie",
-            step3: "3. Pay with card or USDT",
+            step3: "3. Pay with USDT",
             step4: "4. Receive PDF in Telegram",
             privacy: "🔒 All personal data is automatically deleted after successful delivery.",
             faq_title: "❓ Quick Answers",
             faq: [
-                { q: "Can I get a visa at the Vietnam airport?", a: "No. Vietnam does NOT issue visas at the airport without prior approval. You must have a pre‑approved e‑Visa before your airline will allow you to board. We provide that approval letter in as fast as 30 minutes." },
+                { q: "Can I get a visa at the Vietnam airport?", a: "No. Vietnam does NOT issue visas at the airport without prior approval. You must have a pre-approved e‑Visa before your airline will allow you to board. We provide that approval letter in as fast as 30 minutes." },
                 { q: "I'm stuck at check‑in. Can you help now?", a: "Yes! This is exactly what we specialize in. Apply now and we can have your e‑Visa ready in as fast as 30 minutes. Contact us via chat or WhatsApp for immediate assistance." },
                 { q: "How long is the e‑Visa valid?", a: "The Vietnam e‑Visa is valid for 30–90 days with single or multiple entry options. Our service provides a 90‑day single‑entry e‑Visa." },
                 { q: "What documents do I need?", a: "You only need: (1) A passport valid for at least 6 months, (2) A passport‑style photo, (3) Your flight details. We'll guide you through the simple process." },
                 { q: "What if my visa is rejected?", a: "We offer a money‑back guarantee if your visa is rejected due to our error. We have a high approval rate and will work with you to maximize your chances of success." },
-                { q: "Do I need to pay again at the Vietnam airport?", a: "No hidden fees. Our price is all‑inclusive for our service. Once you have your approval, simply show it at immigration – no extra payments required." },
-                { q: "How does the AI work?", a: "Our AI agent instantly collects your data and processes the order 24/7 without human delay, even on weekends." },
-                { q: "Which payment methods do you accept?", a: "We accept credit cards (Visa, Mastercard, Apple Pay) via Stripe and also crypto (USDT, BTC). Choose what suits you best." }
+                { q: "Do I need to pay again at the Vietnam airport?", a: "No. Our price is all‑inclusive. Once you have your e‑Visa, simply show it at immigration – no extra payments." },
+                { q: "How does the AI work?", a: "Our AI bot instantly collects your data and processes the order 24/7 without human delay, even on weekends." },
+                { q: "Which payment methods do you accept?", a: "We accept only USDT (TRC-20). No credit cards, no Stripe. Simple and private." }
             ],
             support_title: "📞 Support",
-            support_note: "If the AI couldn't help, our human team is here for you.",
+            support_note: "If the bot couldn't help, our human team is here for you.",
             chat_text: "Chat with AI in Telegram",
-            footer: "© 2026 Click2Visa.asia – your reliable partner.<br>We never sleep, so your travel documents are always one click away.",
-            disclaimer: "Click2Visa.asia is not affiliated with the Vietnamese Government or the Immigration Department. Our service fee covers application assistance, document review, and expedited processing. Any government fees are paid by the customer separately when applicable. You can also apply directly via the <a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>official Vietnam Immigration portal</a>.",
+            footer: "© 2026 Click2Visa.asia – your reliable partner.<br>We never sleep, so your visa is always one click away.",
+            disclaimer: "Click2Visa.asia is not affiliated with the Vietnamese Government or the Immigration Department. Our service fee covers application assistance, document review, and expedited processing. The government e‑Visa fee is already included in our prices. You can also apply directly via the <a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>official Vietnam Immigration portal</a>.",
             speeds: ["30‑60 min", "2 hours", "4 hours", "1 day", "2 days", "3 days", "4–5 days (Standard)"],
-            avail: ["Weekdays only", "Weekdays only", "Weekdays only", "All days", "Weekdays only", "Weekdays only", "Weekdays only"],
+            // Express tariffs (first 3) – weekdays only; multi-day (next 4) – 24/7; weekend tariff is separate (row 3 in priceRows, but we handle weekend via badge)
+            avail: ["Business hours", "Business hours", "Business hours", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "weekend"
         },
         ru: {
-            subhead: "ИИ‑помощь при въезде 24/7 · Карты и криптовалюта",
-            ai_title: "🤖 AI‑агент работает, пока другие спят",
-            ai_desc: "Никакого ожидания рабочих часов. Мгновенный ответ, полностью автоматически – от оплаты до готового документа.",
-            timer_label: "⏳ Дедлайн в будний день:",
+            subhead: "Срочная виза во Вьетнам • Консьерж‑бот 24/7 • только USDT",
+            ai_title: "🤖 AI‑консьерж работает, пока другие спят",
+            ai_desc: "Полностью автоматический бот. Отправьте фото паспорта и селфи, оплатите USDT – получите электронную визу от 30 минут.",
+            always_open_title: "🕒 Приём заявок 24/7",
+            always_open_text: "Принимаем заявки круглосуточно. Экспресс-визы (30-60 мин, 2 ч, 4 ч) обрабатываются в рабочие часы (пн-пт, определённые окна). Многодневные визы ставятся в очередь и обрабатываются в следующий рабочий день. Тариф «Выходные/праздники» доступен для срочного оформления в выходные.",
             cta_button: "⚡ Получить визу сейчас",
-            visa_note: "✅ 90‑дневная однократная поддержка",
-            table_title: "🏷️ Срочная помощь с документами – 90 дней, однократно",
-            gov_fee_note: "Все цены включают наш сервисный сбор (без скрытых комиссий).",
+            visa_note: "✅ 90‑дневная однократная электронная виза",
+            table_title: "🏷️ Срочная виза – 90 дней, однократно",
+            gov_fee_note: "Все цены включают госпошлину.",
             speed_th: "Скорость",
             price_th: "Цена (USD)",
             avail_th: "Доступность",
             extra_fee_note: "⚠️ Сложные национальности (+$35): 🇹🇷🇱🇰🇪🇬🇲🇺 должны прибывать только авиарейсом.",
-            payment_note: "Принимаем: 💳 Банковские карты (Visa/Mastercard/Apple Pay) через Stripe · ₿ Криптовалюта (USDT)",
+            payment_note: "Принимаем: ₿ USDT (TRC-20) только. Никаких карт, никакого Stripe. Только криптовалюта.",
             saved_title: "🛫 777+ поездок спасено в 2026",
-            steps_title: "⚡ Ваша помощь за 4 простых шага",
+            steps_title: "⚡ Ваша виза за 4 простых шага",
             step1: "1. Отправьте фото паспорта",
             step2: "2. Отправьте селфи",
-            step3: "3. Оплатите картой или USDT",
+            step3: "3. Оплатите USDT",
             step4: "4. Получите PDF в Telegram",
-            privacy: "🔒 Все личные данные автоматически удаляются после успешной выдачи документа.",
+            privacy: "🔒 Все личные данные автоматически удаляются после успешной выдачи визы.",
             faq_title: "❓ Быстрые ответы",
             faq: [
                 { q: "Можно ли получить визу в аэропорту Вьетнама?", a: "Нет. Вьетнам НЕ выдаёт визы в аэропорту без предварительного одобрения. У вас должно быть предварительно одобренное электронное виза, иначе авиакомпания не посадит вас на рейс. Мы предоставляем такое одобрение за 30 минут." },
@@ -199,40 +201,41 @@
                 { q: "Как долго действует электронная виза?", a: "Электронная виза во Вьетнам действительна от 30 до 90 дней, однократная или многократная. Наша услуга предоставляет 90‑дневную однократную визу." },
                 { q: "Какие документы нужны?", a: "Вам нужно: (1) Загранпаспорт сроком не менее 6 месяцев, (2) Фотография на паспорт, (3) Данные перелёта. Мы проведём вас через простой процесс." },
                 { q: "Что, если визу отклонят?", a: "Мы предлагаем гарантию возврата денег, если виза отклонена по нашей ошибке. У нас высокий процент одобрения, и мы сделаем всё возможное для успеха." },
-                { q: "Нужно ли платить ещё раз в аэропорту Вьетнама?", a: "Никаких скрытых сборов. Наша цена включает наш сервисный сбор. После получения одобрения просто покажите его на иммиграции – без доплат." },
-                { q: "Как работает ИИ?", a: "Наш AI-агент мгновенно собирает данные и обрабатывает заказ 24/7 без задержек, даже по выходным." },
-                { q: "Какие способы оплаты вы принимаете?", a: "Мы принимаем банковские карты (Visa, Mastercard, Apple Pay) через Stripe, а также криптовалюту (USDT, BTC). Выбирайте удобный способ." }
+                { q: "Нужно ли платить ещё раз в аэропорту Вьетнама?", a: "Нет. Наша цена окончательная. Просто покажите электронную визу на иммиграции – никаких доплат." },
+                { q: "Как работает ИИ?", a: "Наш AI-бот мгновенно собирает данные и обрабатывает заказ 24/7 без задержек, даже по выходным." },
+                { q: "Какие способы оплаты вы принимаете?", a: "Мы принимаем только USDT (TRC-20). Никаких кредитных карт, никакого Stripe. Просто и конфиденциально." }
             ],
             support_title: "📞 Поддержка",
-            support_note: "Если ИИ не смог помочь, наша команда всегда с вами.",
+            support_note: "Если бот не смог помочь, наша команда всегда с вами.",
             chat_text: "Чат с ИИ в Telegram",
-            footer: "© 2026 Click2Visa.asia – ваш надёжный партнёр.<br>Мы никогда не спим, поэтому ваши документы всегда в одном клике.",
-            disclaimer: "Click2Visa.asia не связан с правительством Вьетнама или иммиграционным департаментом. Наш сервисный сбор покрывает помощь в подаче, проверку документов и ускоренную обработку. Любые государственные сборы оплачиваются клиентом отдельно, если применимо. Вы также можете подать заявление напрямую через <a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>официальный портал иммиграции Вьетнама</a>.",
+            footer: "© 2026 Click2Visa.asia – ваш надёжный партнёр.<br>Мы никогда не спим, поэтому ваша виза всегда в одном клике.",
+            disclaimer: "Click2Visa.asia не связан с правительством Вьетнама или иммиграционным департаментом. Наш сервисный сбор покрывает помощь в подаче, проверку документов и ускоренную обработку. Государственный сбор за визу уже включён в наши цены. Вы также можете подать заявление напрямую через <a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>официальный портал иммиграции Вьетнама</a>.",
             speeds: ["30‑60 мин", "2 часа", "4 часа", "1 день", "2 дня", "3 дня", "4–5 дней (стандарт)"],
-            avail: ["Только будни", "Только будни", "Только будни", "Все дни", "Только будни", "Только будни", "Только будни"],
+            avail: ["Рабочие часы", "Рабочие часы", "Рабочие часы", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "выходные"
         },
         zh: {
-            subhead: "人工智能入境协助 24/7 · 支持银行卡和加密货币",
-            ai_title: "🤖 人工智能代理全天候工作",
-            ai_desc: "无需等待工作时间。即时响应，全自动 – 从付款到文件完成。",
-            timer_label: "⏳ 下一个工作日截止时间：",
-            cta_button: "⚡ 立即获取支持",
-            visa_note: "✅ 90天单次入境支持",
-            table_title: "🏷️ 加急旅行文件协助 – 90天单次入境",
-            gov_fee_note: "所有价格包含我们的服务费（无隐藏费用）。",
+            subhead: "紧急越南电子签证 • 礼宾机器人 24/7 • 仅USDT",
+            ai_title: "🤖 AI机器人全天候工作",
+            ai_desc: "全自动机器人。发送护照照片和自拍，用USDT支付 – 最快30分钟获得电子签证。",
+            always_open_title: "🕒 全天候接受申请",
+            always_open_text: "我们24/7接受申请。加急签证（30-60分钟，2小时，4小时）在工作时间处理（周一至周五，特定时间段）。多天签证排队并在下一个工作日处理。周末/节假日服务可用于紧急周末处理。",
+            cta_button: "⚡ 立即获取电子签证",
+            visa_note: "✅ 90天单次入境电子签证",
+            table_title: "🏷️ 加急电子签证 – 90天单次入境",
+            gov_fee_note: "所有价格已包含政府费用。",
             speed_th: "处理速度",
             price_th: "价格 (美元)",
             avail_th: "可用时间",
             extra_fee_note: "⚠️ 困难国籍 (+$35)：🇹🇷🇱🇰🇪🇬🇲🇺 必须乘飞机抵达。",
-            payment_note: "我们接受：💳 银行卡 (Visa/Mastercard/Apple Pay) 通过 Stripe · ₿ 加密货币 (USDT)",
+            payment_note: "我们接受：₿ USDT (TRC-20) 仅限。无信用卡，无Stripe。仅加密货币。",
             saved_title: "🛫 2026年已协助777+次旅行",
-            steps_title: "⚡ 4步轻松获得协助",
+            steps_title: "⚡ 4步轻松获取电子签证",
             step1: "1. 发送护照照片",
             step2: "2. 发送自拍照",
-            step3: "3. 使用银行卡或USDT付款",
-            step4: "4. 在Telegram收到PDF文件",
-            privacy: "🔒 所有个人数据将在交付后自动删除。",
+            step3: "3. 使用USDT付款",
+            step4: "4. 在Telegram收到PDF签证",
+            privacy: "🔒 所有个人数据将在签证交付后自动删除。",
             faq_title: "❓ 常见问题解答",
             faq: [
                 { q: "我可以在越南机场获得签证吗？", a: "不能。越南机场不签发未经预先批准的签证。您必须先获得批准的电子签证，否则航空公司不允许您登机。我们可以在30分钟内提供批准函。" },
@@ -240,40 +243,41 @@
                 { q: "电子签证的有效期是多久？", a: "越南电子签证有效期为30-90天，可单次或多次入境。我们的服务提供90天单次入境电子签证。" },
                 { q: "我需要哪些文件？", a: "您只需要：(1) 有效期至少6个月的护照，(2) 护照尺寸照片，(3) 航班信息。我们会指导您完成简单流程。" },
                 { q: "如果我的签证被拒怎么办？", a: "如果因我们的错误导致签证被拒，我们提供退款保证。我们有很高的批准率，并将尽力帮助您成功。" },
-                { q: "我需要在越南机场再次付款吗？", a: "无需额外费用。我们的价格已包含我们的服务费。一旦获得批准，只需在入境时出示即可 – 无需额外支付。" },
-                { q: "AI是如何工作的？", a: "我们的AI助手全天候即时收集数据并处理订单，即使在周末也没有人工延迟。" },
-                { q: "你们接受哪些支付方式？", a: "我们接受通过Stripe的信用卡（Visa, Mastercard, Apple Pay）以及加密货币（USDT, BTC）。选择最适合您的方式。" }
+                { q: "我需要在越南机场再次付款吗？", a: "不需要。我们的价格是全包的。您只需在入境时出示电子签证即可 – 无需额外付款。" },
+                { q: "AI是如何工作的？", a: "我们的AI机器人全天候即时收集数据并处理订单，即使在周末也没有人工延迟。" },
+                { q: "你们接受哪些支付方式？", a: "我们仅接受USDT（TRC-20）。不接受信用卡，不接受Stripe。简单且私密。" }
             ],
             support_title: "📞 支持团队",
             support_note: "如果AI无法解决，我们的真人团队随时为您服务。",
             chat_text: "在Telegram与AI对话",
-            footer: "© 2026 Click2Visa.asia – 您的可靠伙伴。<br>我们从不休息，您的旅行文件一键可得。",
-            disclaimer: "Click2Visa.asia 与越南政府或移民局无关。我们的服务费包括申请协助、文件审核和加急处理。任何政府费用由客户另行支付（如适用）。您也可以通过<a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>越南移民局官方网站</a>直接申请。",
+            footer: "© 2026 Click2Visa.asia – 您的可靠伙伴。<br>我们从不休息，您的签证一键可得。",
+            disclaimer: "Click2Visa.asia 与越南政府或移民局无关。我们的服务费包括申请协助、文件审核和加急处理。政府电子签证费用已包含在我们的价格中。您也可以通过<a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>越南移民局官方网站</a>直接申请。",
             speeds: ["30‑60分钟", "2小时", "4小时", "1天", "2天", "3天", "4–5天（标准）"],
-            avail: ["仅工作日", "仅工作日", "仅工作日", "所有日期", "仅工作日", "仅工作日", "仅工作日"],
+            avail: ["工作时间", "工作时间", "工作时间", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "周末"
         },
         pt: {
-            subhead: "Assistência de entrada com IA 24/7 · Cartão e Cripto",
+            subhead: "Visto urgente para Vietnã • Bot concierge 24/7 • apenas USDT",
             ai_title: "🤖 Agente de IA trabalha enquanto outros dormem",
-            ai_desc: "Sem esperar por horário comercial. Resposta instantânea, totalmente automático – do pagamento ao documento pronto.",
-            timer_label: "⏳ Prazo do próximo dia útil:",
+            ai_desc: "Bot totalmente automático. Envie foto do passaporte e selfie, pague com USDT – obtenha seu e-Visa em até 30 minutos.",
+            always_open_title: "🕒 Aceitação de pedidos 24/7",
+            always_open_text: "Aceitamos pedidos 24 horas por dia, 7 dias por semana. Vistos expressos (30-60min, 2h, 4h) são processados em horário comercial (seg-sex, janelas específicas). Vistos de vários dias são colocados na fila e processados no próximo dia útil. Tarifa de fim de semana/feriado está disponível para processamento urgente aos fins de semana.",
             cta_button: "⚡ Obtenha seu e-Visa agora",
-            visa_note: "✅ Suporte de 90 dias, entrada única",
-            table_title: "🏷️ Assistência urgente para documentos de viagem – 90 dias, entrada única",
-            gov_fee_note: "Todos os preços incluem nossa taxa de serviço (sem custos ocultos).",
+            visa_note: "✅ Visto eletrônico de 90 dias, entrada única",
+            table_title: "🏷️ Visto urgente – 90 dias, entrada única",
+            gov_fee_note: "Todos os preços incluem a taxa governamental.",
             speed_th: "Velocidade",
             price_th: "Preço (USD)",
             avail_th: "Disponibilidade",
             extra_fee_note: "⚠️ Nacionalidades difíceis (+$35): 🇹🇷🇱🇰🇪🇬🇲🇺 devem chegar apenas de avião.",
-            payment_note: "Aceitamos: 💳 Cartões de crédito (Visa/Mastercard/Apple Pay) via Stripe · ₿ Cripto (USDT) também disponível",
+            payment_note: "Aceitamos: ₿ USDT (TRC-20) apenas. Sem cartões, sem Stripe. Apenas criptomoedas.",
             saved_title: "🛫 777+ Viagens salvas em 2026",
-            steps_title: "⚡ Sua assistência em 4 passos simples",
+            steps_title: "⚡ Seu visto em 4 passos simples",
             step1: "1. Envie foto do passaporte",
             step2: "2. Envie sua selfie",
-            step3: "3. Pague com cartão ou USDT",
+            step3: "3. Pague com USDT",
             step4: "4. Receba o PDF no Telegram",
-            privacy: "🔒 Todos os dados pessoais são automaticamente excluídos após a entrega do documento.",
+            privacy: "🔒 Todos os dados pessoais são automaticamente excluídos após a entrega do visto.",
             faq_title: "❓ Perguntas Frequentes",
             faq: [
                 { q: "Posso obter visto no aeroporto do Vietnã?", a: "Não. O Vietnã NÃO emite vistos no aeroporto sem aprovação prévia. Você deve ter uma pré-aprovação antes de embarcar. Fornecemos essa aprovação em 30 minutos." },
@@ -281,38 +285,39 @@
                 { q: "Qual é a validade do e-Visa?", a: "O e-Visa do Vietnã é válido por 30-90 dias com opções de entrada única ou múltipla. Oferecemos visto de 90 dias, entrada única." },
                 { q: "Quais documentos preciso?", a: "Você só precisa: (1) Passaporte com validade mínima de 6 meses, (2) Foto estilo passaporte, (3) Detalhes do voo. Nós guiamos você." },
                 { q: "E se meu visto for rejeitado?", a: "Oferecemos garantia de reembolso se a rejeição for por erro nosso. Temos alta taxa de aprovação." },
-                { q: "Preciso pagar novamente no aeroporto do Vietnã?", a: "Sem taxas ocultas. Nosso preço é all‑inclusive para nosso serviço. Apresente a aprovação na imigração – sem pagamentos extras." },
-                { q: "Como funciona a IA?", a: "Nosso agente de IA coleta seus dados e processa o pedido 24/7, mesmo em fins de semana." },
-                { q: "Quais métodos de pagamento aceitam?", a: "Aceitamos cartões (Visa, Mastercard, Apple Pay) via Stripe e criptomoedas (USDT, BTC)." }
+                { q: "Preciso pagar novamente no aeroporto do Vietnã?", a: "Não. Nosso preço é all‑inclusive. Apresente o e-Visa na imigração – sem pagamentos extras." },
+                { q: "Como funciona a IA?", a: "Nosso bot de IA coleta seus dados e processa o pedido 24/7, mesmo em fins de semana." },
+                { q: "Quais métodos de pagamento aceitam?", a: "Aceitamos apenas USDT (TRC-20). Sem cartões, sem Stripe. Simples e privado." }
             ],
             support_title: "📞 Suporte",
-            support_note: "Se a IA não pôde ajudar, nossa equipe humana está aqui para você.",
+            support_note: "Se o bot não pôde ajudar, nossa equipe humana está aqui para você.",
             chat_text: "Converse com a IA no Telegram",
-            footer: "© 2026 Click2Visa.asia – seu parceiro confiável.<br>Nunca dormimos, então seus documentos de viagem estão sempre a um clique.",
-            disclaimer: "Click2Visa.asia não é afiliado ao governo vietnamita ou ao departamento de imigração. Nossa taxa de serviço cobre assistência na solicitação, verificação de documentos e processamento expresso. Quaisquer taxas governamentais são pagas pelo cliente separadamente, quando aplicável. Você também pode solicitar diretamente através do <a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>portal oficial de imigração do Vietnã</a>.",
+            footer: "© 2026 Click2Visa.asia – seu parceiro confiável.<br>Nunca dormimos, então seu visto está sempre a um clique.",
+            disclaimer: "Click2Visa.asia não é afiliado ao governo vietnamita ou ao departamento de imigração. Nossa taxa de serviço cobre assistência na solicitação, verificação de documentos e processamento expresso. A taxa governamental do e-Visa já está incluída nos nossos preços. Você também pode solicitar diretamente através do <a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>portal oficial de imigração do Vietnã</a>.",
             speeds: ["30‑60 min", "2 horas", "4 horas", "1 dia", "2 dias", "3 dias", "4–5 dias (Padrão)"],
-            avail: ["Só dias úteis", "Só dias úteis", "Só dias úteis", "Todos os dias", "Só dias úteis", "Só dias úteis", "Só dias úteis"],
+            avail: ["Horário comercial", "Horário comercial", "Horário comercial", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "fim de semana"
         },
         hi: {
-            subhead: "AI-संचालित प्रवेश सहायता 24/7 · कार्ड और क्रिप्टो",
-            ai_title: "🤖 AI एजेंट दूसरों के सोते समय काम करता है",
-            ai_desc: "कार्यालय समय की प्रतीक्षा नहीं। तुरंत जवाब, पूरी तरह से स्वचालित – भुगतान से तैयार दस्तावेज़ तक।",
-            timer_label: "⏳ अगले कार्यदिवस की समय सीमा:",
+            subhead: "तत्काल वियतनाम ई-वीज़ा • कांसीयर्ज बॉट 24/7 • केवल USDT",
+            ai_title: "🤖 AI कांसीयर्ज दूसरों के सोते समय काम करता है",
+            ai_desc: "पूरी तरह से स्वचालित बॉट। पासपोर्ट फोटो और सेल्फी भेजें, USDT से भुगतान करें – 30 मिनट में ई-वीज़ा प्राप्त करें।",
+            always_open_title: "🕒 24/7 आवेदन स्वीकार",
+            always_open_text: "हम 24/7 आवेदन स्वीकार करते हैं। एक्सप्रेस वीज़ा (30-60 मिनट, 2 घंटे, 4 घंटे) कार्यालय समय (सोम-शुक्र, विशिष्ट समय सीमा) के दौरान संसाधित किए जाते हैं। बहु-दिवसीय वीज़ा कतारबद्ध होते हैं और अगले कार्य दिवस पर संसाधित होते हैं। सप्ताहांत/अवकाश टैरिफ आपातकालीन सप्ताहांत प्रसंस्करण के लिए उपलब्ध है।",
             cta_button: "⚡ अभी ई-वीज़ा प्राप्त करें",
-            visa_note: "✅ 90-दिवसीय एकल-प्रवेश सहायता",
-            table_title: "🏷️ तत्काल यात्रा दस्तावेज़ सहायता – 90 दिन, एकल प्रवेश",
-            gov_fee_note: "सभी मूल्यों में हमारा सेवा शुल्क शामिल है (कोई छिपी हुई लागत नहीं)।",
+            visa_note: "✅ 90-दिवसीय एकल-प्रवेश ई-वीज़ा",
+            table_title: "🏷️ तत्काल ई-वीज़ा – 90 दिन, एकल प्रवेश",
+            gov_fee_note: "सभी मूल्यों में सरकारी शुल्क शामिल है।",
             speed_th: "प्रसंस्करण गति",
             price_th: "मूल्य (USD)",
             avail_th: "उपलब्धता",
             extra_fee_note: "⚠️ कठिन राष्ट्रीयताएँ (+$35): 🇹🇷🇱🇰🇪🇬🇲🇺 केवल हवाई जहाज से आना होगा।",
-            payment_note: "हम स्वीकार करते हैं: 💳 क्रेडिट कार्ड (Visa/Mastercard/Apple Pay) Stripe के माध्यम से · ₿ क्रिप्टो (USDT) भी उपलब्ध",
+            payment_note: "हम स्वीकार करते हैं: ₿ USDT (TRC-20) केवल। कोई कार्ड नहीं, कोई Stripe नहीं। केवल क्रिप्टो।",
             saved_title: "🛫 2026 में 777+ यात्राएँ बचाई गईं",
-            steps_title: "⚡ 4 सरल चरणों में आपकी सहायता",
+            steps_title: "⚡ 4 सरल चरणों में आपका वीज़ा",
             step1: "1. पासपोर्ट फोटो भेजें",
             step2: "2. अपनी सेल्फी भेजें",
-            step3: "3. कार्ड या USDT से भुगतान करें",
+            step3: "3. USDT से भुगतान करें",
             step4: "4. Telegram में PDF प्राप्त करें",
             privacy: "🔒 सभी व्यक्तिगत डेटा सफल डिलीवरी के बाद स्वचालित रूप से हटा दिया जाता है।",
             faq_title: "❓ अक्सर पूछे जाने वाले प्रश्न",
@@ -322,17 +327,17 @@
                 { q: "ई-वीज़ा कितने समय के लिए वैध होता है?", a: "वियतनाम ई-वीज़ा 30-90 दिनों के लिए वैध होता है, एकल या बहु-प्रवेश विकल्पों के साथ। हमारी सेवा 90-दिवसीय एकल-प्रवेश ई-वीज़ा प्रदान करती है।" },
                 { q: "मुझे किन दस्तावेजों की आवश्यकता है?", a: "आपको चाहिए: (1) कम से कम 6 महीने की वैधता वाला पासपोर्ट, (2) पासपोर्ट-स्टाइल फोटो, (3) आपकी उड़ान विवरण। हम आपका मार्गदर्शन करेंगे।" },
                 { q: "अगर मेरा वीज़ा अस्वीकार हो जाए तो क्या होगा?", a: "यदि हमारी त्रुटि के कारण वीज़ा अस्वीकृत होता है तो हम मनी-बैक गारंटी प्रदान करते हैं। हमारी स्वीकृति दर उच्च है।" },
-                { q: "क्या मुझे वियतनाम हवाई अड्डे पर फिर से भुगतान करना होगा?", a: "कोई छिपी हुई फीस नहीं। हमारी कीमत में हमारी सेवा शुल्क शामिल है। एक बार अनुमोदन मिलने पर, आप्रवासन पर दिखाएं – कोई अतिरिक्त भुगतान नहीं।" },
-                { q: "AI कैसे काम करता है?", a: "हमारा AI एजेंट तुरंत आपका डेटा एकत्र करता है और सप्ताहांत पर भी 24/7 ऑर्डर संसाधित करता है।" },
-                { q: "आप कौन से भुगतान विधि स्वीकार करते हैं?", a: "हम Stripe के माध्यम से क्रेडिट कार्ड (Visa, Mastercard, Apple Pay) और क्रिप्टो (USDT, BTC) स्वीकार करते हैं।" }
+                { q: "क्या मुझे वियतनाम हवाई अड्डे पर फिर से भुगतान करना होगा?", a: "नहीं। हमारी कीमत सब-समावेशी है। आप्रवासन पर ई-वीज़ा दिखाएं – कोई अतिरिक्त भुगतान नहीं।" },
+                { q: "AI कैसे काम करता है?", a: "हमारा AI बॉट तुरंत आपका डेटा एकत्र करता है और सप्ताहांत पर भी 24/7 ऑर्डर संसाधित करता है।" },
+                { q: "आप कौन से भुगतान विधि स्वीकार करते हैं?", a: "हम केवल USDT (TRC-20) स्वीकार करते हैं। कोई क्रेडिट कार्ड नहीं, कोई Stripe नहीं। सरल और निजी।" }
             ],
             support_title: "📞 सहायता",
-            support_note: "यदि AI मदद नहीं कर सका, तो हमारी मानव टीम आपके लिए यहाँ है।",
+            support_note: "यदि बॉट मदद नहीं कर सका, तो हमारी मानव टीम आपके लिए यहाँ है।",
             chat_text: "Telegram में AI से बात करें",
-            footer: "© 2026 Click2Visa.asia – आपका भरोसेमंद भागीदार。<br>हम कभी नहीं सोते, इसलिए आपके यात्रा दस्तावेज़ हमेशा एक क्लिक दूर हैं।",
-            disclaimer: "Click2Visa.asia का वियतनाम सरकार या आव्रजन विभाग से कोई संबद्धता नहीं है। हमारा सेवा शुल्क आवेदन सहायता, दस्तावेज़ समीक्षा और त्वरित प्रसंस्करण को कवर करता है। कोई भी सरकारी शुल्क ग्राहक द्वारा अलग से भुगतान किया जाता है, जहाँ लागू हो। आप सीधे <a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>आधिकारिक वियतनाम आव्रजन पोर्टल</a> के माध्यम से भी आवेदन कर सकते हैं।",
+            footer: "© 2026 Click2Visa.asia – आपका भरोसेमंद भागीदार।<br>हम कभी नहीं सोते, इसलिए आपका वीज़ा हमेशा एक क्लिक दूर है।",
+            disclaimer: "Click2Visa.asia का वियतनाम सरकार या आव्रजन विभाग से कोई संबद्धता नहीं है। हमारा सेवा शुल्क आवेदन सहायता, दस्तावेज़ समीक्षा और त्वरित प्रसंस्करण को कवर करता है। सरकारी ई-वीज़ा शुल्क पहले से ही हमारी कीमतों में शामिल है। आप सीधे <a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>आधिकारिक वियतनाम आव्रजन पोर्टल</a> के माध्यम से भी आवेदन कर सकते हैं।",
             speeds: ["30‑60 मिनट", "2 घंटे", "4 घंटे", "1 दिन", "2 दिन", "3 दिन", "4–5 दिन (मानक)"],
-            avail: ["केवल कार्यदिवस", "केवल कार्यदिवस", "केवल कार्यदिवस", "सभी दिन", "केवल कार्यदिवस", "केवल कार्यदिवस", "केवल कार्यदिवस"],
+            avail: ["कार्यालय समय", "कार्यालय समय", "कार्यालय समय", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "सप्ताहांत"
         }
     };
@@ -348,7 +353,6 @@
     ];
 
     let currentLang = 'en';
-    let timerInterval = null;
     let dateTimeInterval = null;
 
     function setHtmlLang(lang) {
@@ -395,6 +399,9 @@
             }
             let speedHtml = t.speeds[i];
             if (row.badge) speedHtml += ` <span class="urgency-badge">${row.badge}</span>`;
+            // For express tariffs (first 3 rows) we use t.avail[i] which is "Business hours" etc.
+            // For row 3 (1 day) which has weekendPrice, the avail is "24/7" except we show weekend badge separately.
+            // For rows 4-6, avail is also "24/7".
             const availHtml = t.avail[i];
             const tr = document.createElement('tr');
             tr.innerHTML = `<td>${speedHtml}</td><td>${priceHtml}</td><td>${availHtml}</td>`;
@@ -409,7 +416,8 @@
         document.getElementById('subhead').textContent = t.subhead;
         document.getElementById('aiTitle').innerHTML = t.ai_title;
         document.getElementById('aiDesc').textContent = t.ai_desc;
-        document.getElementById('timerLabel').textContent = t.timer_label;
+        document.getElementById('alwaysOpenTitle').innerHTML = t.always_open_title;
+        document.getElementById('alwaysOpenText').innerHTML = t.always_open_text;
         document.getElementById('ctaButton').textContent = t.cta_button;
         document.getElementById('visaNote').textContent = t.visa_note;
         document.getElementById('tableTitle').textContent = t.table_title;
@@ -451,69 +459,12 @@
                     currentLang = newLang;
                     localStorage.setItem('click2visa_lang', currentLang);
                     renderPage(currentLang);
-                    if (timerInterval) clearInterval(timerInterval);
                     if (dateTimeInterval) clearInterval(dateTimeInterval);
-                    updateTimer();
                     updateDateTime();
-                    timerInterval = setInterval(updateTimer, 1000);
                     dateTimeInterval = setInterval(updateDateTime, 1000);
                 }
             });
         });
-        updateTimer();
-    }
-
-    function updateTimer() {
-        const now = new Date();
-        const vnTime = new Date(now.toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"}));
-        const day = vnTime.getDay();
-        const timerEl = document.getElementById('deadlineTimer');
-        const noteEl = document.getElementById('timerNote');
-        if (!timerEl) return;
-        const t = translations[currentLang];
-        const isWeekend = (day === 0 || day === 6);
-        if (isWeekend) {
-            timerEl.textContent = t.weekend_label === 'weekend' ? 'Weekend / Holiday' : (t.weekend_label === 'выходные' ? 'Выходные / Праздник' : (t.weekend_label === '周末' ? '周末 / 节假日' : (t.weekend_label === 'fim de semana' ? 'Fim de semana / Feriado' : 'सप्ताहांत / अवकाश')));
-            timerEl.style.color = '#ff6b2b';
-            let msg = '';
-            if (currentLang === 'ru') msg = '⚡ <strong>Только 1‑дневная обработка ($249).</strong> ИИ работает 24/7.';
-            else if (currentLang === 'zh') msg = '⚡ <strong>仅提供1天加急服务（$249）。</strong> AI全天候工作。';
-            else if (currentLang === 'pt') msg = '⚡ <strong>Apenas processamento de 1 dia ($249).</strong> IA funciona 24/7.';
-            else if (currentLang === 'hi') msg = '⚡ <strong>केवल 1-दिवसीय प्रसंस्करण ($249)।</strong> AI 24/7 काम करता है।';
-            else msg = '⚡ <strong>Only 1‑day processing ($249).</strong> AI works 24/7.';
-            noteEl.innerHTML = msg;
-            return;
-        }
-        const deadline1 = new Date(vnTime);
-        deadline1.setHours(10, 0, 0, 0);
-        const deadline2 = new Date(vnTime);
-        deadline2.setHours(15, 0, 0, 0);
-        let target = deadline1;
-        if (vnTime > deadline1) target = deadline2;
-        if (vnTime > deadline2) {
-            timerEl.textContent = 'Slots closed today.';
-            let msg = '';
-            if (currentLang === 'ru') msg = 'Следующий слот завтра с 8:00 (время Вьетнама).';
-            else if (currentLang === 'zh') msg = '下一个时段为明天上午8:00（越南时间）。';
-            else if (currentLang === 'pt') msg = 'Próximo horário amanhã às 8:00 (horário do Vietnã).';
-            else if (currentLang === 'hi') msg = 'अगला स्लॉट कल सुबह 8:00 बजे (वियतनाम समय)।';
-            else msg = 'Next opening tomorrow 8:00 AM (VN time).';
-            noteEl.innerHTML = msg;
-            return;
-        }
-        const diff = target - vnTime;
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-        timerEl.textContent = `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
-        timerEl.style.color = '#ff6b2b';
-        let msg = '';
-        if (currentLang === 'ru') msg = 'Заявки, поданные до 10:00 или 15:00 (время Вьетнама), обрабатываются сегодня.';
-        else if (currentLang === 'zh') msg = '在越南时间10:00或15:00前提交的申请将在当天处理。';
-        else if (currentLang === 'pt') msg = 'Pedidos enviados antes das 10:00 ou 15:00 (horário do Vietnã) são processados hoje.';
-        else if (currentLang === 'hi') msg = 'आज सुबह 10:00 बजे या दोपहर 3:00 बजे (वियतनाम समय) से पहले जमा किए गए आवेदन आज ही संसाधित किए जाएंगे।';
-        else msg = 'All applications submitted before 10:00 AM or 3:00 PM (VN time) are processed today.';
-        noteEl.innerHTML = msg;
     }
 
     function detectLanguage() {
@@ -531,9 +482,6 @@
     currentLang = detectLanguage();
     renderPage(currentLang);
     updateDateTime();
-    if (timerInterval) clearInterval(timerInterval);
-    if (dateTimeInterval) clearInterval(dateTimeInterval);
-    timerInterval = setInterval(updateTimer, 1000);
     dateTimeInterval = setInterval(updateDateTime, 1000);
 
     const flights = [
