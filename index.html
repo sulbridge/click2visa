@@ -19,6 +19,9 @@
         .logo span { color: #ff6b2b; }
         .subhead { font-size: 1.2rem; margin-top: 10px; color: #b0c7e0; }
         .datetime-bar { text-align: center; margin-bottom: 20px; font-size: 0.85rem; color: #8ba0bc; font-family: monospace; }
+        .day-status-card { background: #12223b; border-radius: 16px; padding: 12px 20px; margin: 10px auto 20px; text-align: center; border-left: 4px solid #ff6b2b; display: inline-block; width: auto; }
+        .day-status-text { font-size: 1rem; font-weight: 500; }
+        .day-status-text span { font-weight: 700; color: #ff6b2b; }
         .highlight-box { background: #12223b; border-radius: 16px; padding: 20px; margin: 30px 0; text-align: center; }
         .info-box { background: #12223b; border-radius: 16px; padding: 20px; margin: 30px 0; text-align: center; border-left: 4px solid #ff6b2b; }
         .info-box h3 { color: #ff6b2b; margin-bottom: 10px; }
@@ -62,6 +65,11 @@
 <body>
 <div class="container">
     <div class="datetime-bar" id="datetimeBar">--:--:--</div>
+    <div style="text-align: center;">
+        <div class="day-status-card">
+            <div class="day-status-text" id="dayStatus">--</div>
+        </div>
+    </div>
 
     <div class="hero">
         <div class="logo">Click<span>2</span>Visa</div>
@@ -73,7 +81,6 @@
         <p style="margin-top:10px; color:#b0c7e0;" id="aiDesc"></p>
     </div>
 
-    <!-- Честный блок 24/7 с пояснением про рабочие часы -->
     <div class="info-box">
         <h3 id="alwaysOpenTitle">🕒 24/7 Application Acceptance</h3>
         <p id="alwaysOpenText">We accept applications 24 hours a day, 7 days a week. Express visas (30-60min, 2h, 4h) are processed during business hours (Mon-Fri, specific windows). Multi‑day visas are queued and processed on the next business day. Weekend/holiday tariff is available for urgent weekend processing.</p>
@@ -90,7 +97,7 @@
         <table id="priceTable">
             <thead id="tableHeader"></thead>
             <tbody id="tableBody"></tbody>
-        <table>
+        </table>
         <p style="text-align:center; font-size:0.9rem; margin-top:10px;" id="extraFeeNote"></p>
         <div class="payment-methods" id="paymentNote"></div>
     </div>
@@ -168,9 +175,12 @@
             footer: "© 2026 Click2Visa.asia – your reliable partner.<br>We never sleep, so your visa is always one click away.",
             disclaimer: "Click2Visa.asia is not affiliated with the Vietnamese Government or the Immigration Department. Our service fee covers application assistance, document review, and expedited processing. The government e‑Visa fee is already included in our prices. You can also apply directly via the <a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>official Vietnam Immigration portal</a>.",
             speeds: ["30‑60 min", "2 hours", "4 hours", "1 day", "2 days", "3 days", "4–5 days (Standard)"],
-            // Express tariffs (first 3) – weekdays only; multi-day (next 4) – 24/7; weekend tariff is separate (row 3 in priceRows, but we handle weekend via badge)
             avail: ["Business hours", "Business hours", "Business hours", "24/7", "24/7", "24/7", "24/7"],
-            weekend_label: "weekend"
+            weekend_label: "weekend",
+            day_holiday: "🎉 Holiday",
+            day_weekend: "😎 Weekend",
+            day_working: "💼 Working day",
+            day_today: "Today:"
         },
         ru: {
             subhead: "Срочная виза во Вьетнам • Консьерж‑бот 24/7 • только USDT",
@@ -212,7 +222,11 @@
             disclaimer: "Click2Visa.asia не связан с правительством Вьетнама или иммиграционным департаментом. Наш сервисный сбор покрывает помощь в подаче, проверку документов и ускоренную обработку. Государственный сбор за визу уже включён в наши цены. Вы также можете подать заявление напрямую через <a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>официальный портал иммиграции Вьетнама</a>.",
             speeds: ["30‑60 мин", "2 часа", "4 часа", "1 день", "2 дня", "3 дня", "4–5 дней (стандарт)"],
             avail: ["Рабочие часы", "Рабочие часы", "Рабочие часы", "24/7", "24/7", "24/7", "24/7"],
-            weekend_label: "выходные"
+            weekend_label: "выходные",
+            day_holiday: "🎉 Праздник",
+            day_weekend: "😎 Выходной",
+            day_working: "💼 Рабочий день",
+            day_today: "Сегодня:"
         },
         zh: {
             subhead: "紧急越南电子签证 • 礼宾机器人 24/7 • 仅USDT",
@@ -254,7 +268,11 @@
             disclaimer: "Click2Visa.asia 与越南政府或移民局无关。我们的服务费包括申请协助、文件审核和加急处理。政府电子签证费用已包含在我们的价格中。您也可以通过<a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>越南移民局官方网站</a>直接申请。",
             speeds: ["30‑60分钟", "2小时", "4小时", "1天", "2天", "3天", "4–5天（标准）"],
             avail: ["工作时间", "工作时间", "工作时间", "24/7", "24/7", "24/7", "24/7"],
-            weekend_label: "周末"
+            weekend_label: "周末",
+            day_holiday: "🎉 节假日",
+            day_weekend: "😎 周末",
+            day_working: "💼 工作日",
+            day_today: "今天:"
         },
         pt: {
             subhead: "Visto urgente para Vietnã • Bot concierge 24/7 • apenas USDT",
@@ -296,7 +314,11 @@
             disclaimer: "Click2Visa.asia não é afiliado ao governo vietnamita ou ao departamento de imigração. Nossa taxa de serviço cobre assistência na solicitação, verificação de documentos e processamento expresso. A taxa governamental do e-Visa já está incluída nos nossos preços. Você também pode solicitar diretamente através do <a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>portal oficial de imigração do Vietnã</a>.",
             speeds: ["30‑60 min", "2 horas", "4 horas", "1 dia", "2 dias", "3 dias", "4–5 dias (Padrão)"],
             avail: ["Horário comercial", "Horário comercial", "Horário comercial", "24/7", "24/7", "24/7", "24/7"],
-            weekend_label: "fim de semana"
+            weekend_label: "fim de semana",
+            day_holiday: "🎉 Feriado",
+            day_weekend: "😎 Fim de semana",
+            day_working: "💼 Dia útil",
+            day_today: "Hoje:"
         },
         hi: {
             subhead: "तत्काल वियतनाम ई-वीज़ा • कांसीयर्ज बॉट 24/7 • केवल USDT",
@@ -338,7 +360,57 @@
             disclaimer: "Click2Visa.asia का वियतनाम सरकार या आव्रजन विभाग से कोई संबद्धता नहीं है। हमारा सेवा शुल्क आवेदन सहायता, दस्तावेज़ समीक्षा और त्वरित प्रसंस्करण को कवर करता है। सरकारी ई-वीज़ा शुल्क पहले से ही हमारी कीमतों में शामिल है। आप सीधे <a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>आधिकारिक वियतनाम आव्रजन पोर्टल</a> के माध्यम से भी आवेदन कर सकते हैं।",
             speeds: ["30‑60 मिनट", "2 घंटे", "4 घंटे", "1 दिन", "2 दिन", "3 दिन", "4–5 दिन (मानक)"],
             avail: ["कार्यालय समय", "कार्यालय समय", "कार्यालय समय", "24/7", "24/7", "24/7", "24/7"],
-            weekend_label: "सप्ताहांत"
+            weekend_label: "सप्ताहांत",
+            day_holiday: "🎉 अवकाश",
+            day_weekend: "😎 सप्ताहांत",
+            day_working: "💼 कार्य दिवस",
+            day_today: "आज:"
+        },
+        tr: {
+            subhead: "Acil Vietnam e‑Vizesi • Konsiyerj Bot 24/7 • Sadece USDT",
+            ai_title: "🤖 Yapay Zeka Konsiyerj, diğerleri uyurken çalışır",
+            ai_desc: "Tam otomatik bot. Pasaport fotoğrafınızı ve selfie'nizi gönderin, USDT ile ödeyin – 30 dakika içinde e‑Vizenizi alın.",
+            always_open_title: "🕒 7/24 Başvuru Kabulü",
+            always_open_text: "Başvuruları 7 gün 24 saat kabul ediyoruz. Ekspres vize (30-60 dk, 2 saat, 4 saat) çalışma saatleri içinde (Pazartesi-Cuma, belirli saat aralıkları) işlenir. Çok günlü vizeler sıraya alınır ve sonraki iş gününde işlenir. Hafta sonu/tatil tarifesi acil hafta sonu işleme için mevcuttur.",
+            cta_button: "⚡ Hemen e‑Vize Al",
+            visa_note: "✅ 90 günlük tek girişli e‑Vize",
+            table_title: "🏷️ Acil e‑Vize – 90 gün, tek giriş",
+            gov_fee_note: "Tüm fiyatlara devlet ücreti dahildir.",
+            speed_th: "İşlem Süresi",
+            price_th: "Fiyat (USD)",
+            avail_th: "Uygunluk",
+            extra_fee_note: "⚠️ Zorluk çeken ülkeler (+$35): 🇹🇷🇱🇰🇪🇬🇲🇺 sadece uçakla giriş yapabilir.",
+            payment_note: "Kabul ettiğimiz ödeme: ₿ USDT (TRC-20) sadece. Kredi kartı yok, Stripe yok. Sadece kripto.",
+            saved_title: "🛫 2026'da 777+ Seyahat Kurtarıldı",
+            steps_title: "⚡ Vizeniz 4 basit adımda",
+            step1: "1. Pasaport fotoğrafını gönder",
+            step2: "2. Selfie gönder",
+            step3: "3. USDT ile öde",
+            step4: "4. Telegram'da PDF al",
+            privacy: "🔒 Tüm kişisel veriler başarılı teslimattan sonra otomatik olarak silinir.",
+            faq_title: "❓ Hızlı Cevaplar",
+            faq: [
+                { q: "Vietnam havaalanında vize alabilir miyim?", a: "Hayır. Vietnam, önceden onay alınmadan havaalanında vize VERMEZ. Havayolunuzun uçağa binmenize izin vermesi için önceden onaylanmış bir e‑Vize'ye sahip olmalısınız. Bu onay mektubunu 30 dakika kadar hızlı bir şekilde sağlıyoruz." },
+                { q: "Check-in'de takılı kaldım. Şimdi yardım edebilir misiniz?", a: "Evet! Uzmanlık alanımız tam olarak bu. Şimdi başvurun, e‑Vize'nizi 30 dakika içinde hazırlayalım. Acil yardım için sohbet veya WhatsApp üzerinden bizimle iletişime geçin." },
+                { q: "e‑Vize ne kadar süre geçerlidir?", a: "Vietnam e‑Vize'si tek veya çoklu giriş seçenekleriyle 30-90 gün geçerlidir. Hizmetimiz 90 günlük tek girişli e‑Vize sağlar." },
+                { q: "Hangi belgelere ihtiyacım var?", a: "Yalnızca şunlara ihtiyacınız var: (1) En az 6 ay geçerli pasaport, (2) Pasaport stili fotoğraf, (3) Uçuş detaylarınız. Sizi basit süreçte yönlendireceğiz." },
+                { q: "Vizem reddedilirse ne olur?", a: "Vizenin bizim hatamız nedeniyle reddedilmesi durumunda para iade garantisi sunuyoruz. Yüksek onay oranımız var ve başarı şansınızı en üst düzeye çıkarmak için sizinle çalışacağız." },
+                { q: "Vietnam havaalanında tekrar ödeme yapmam gerekir mi?", a: "Hayır. Fiyatımız her şey dahildir. e‑Vize'nizi aldıktan sonra göçmenlikte ibraz etmeniz yeterlidir – ek ödeme gerekmez." },
+                { q: "YZ nasıl çalışır?", a: "YZ botumuz, hafta sonları bile insan gecikmesi olmadan verilerinizi anında toplar ve siparişi 7/24 işler." },
+                { q: "Hangi ödeme yöntemlerini kabul ediyorsunuz?", a: "Sadece USDT (TRC-20) kabul ediyoruz. Kredi kartı yok, Stripe yok. Basit ve gizli." }
+            ],
+            support_title: "📞 Destek",
+            support_note: "Eğer bot yardım edemediyse, insan ekibimiz burada.",
+            chat_text: "Telegram'da YZ ile Sohbet Et",
+            footer: "© 2026 Click2Visa.asia – güvenilir ortağınız.<br>Asla uyumayız, vizeniz her zaman bir tık uzakta.",
+            disclaimer: "Click2Visa.asia, Vietnam Hükümeti veya Göçmenlik Dairesi ile ilişkili değildir. Hizmet ücretimiz, başvuru yardımı, belge incelemesi ve hızlı işlemi kapsar. Devlet e‑Vize ücreti fiyatlarımıza zaten dahildir. Ayrıca doğrudan <a href='https://evisa.xuatnhapcanh.gov.vn/' target='_blank'>resmi Vietnam Göçmenlik portalı</a> üzerinden de başvurabilirsiniz.",
+            speeds: ["30‑60 dk", "2 saat", "4 saat", "1 gün", "2 gün", "3 gün", "4–5 gün (Standart)"],
+            avail: ["Çalışma saatleri", "Çalışma saatleri", "Çalışma saatleri", "24/7", "24/7", "24/7", "24/7"],
+            weekend_label: "hafta sonu",
+            day_holiday: "🎉 Tatil",
+            day_weekend: "😎 Hafta sonu",
+            day_working: "💼 İş günü",
+            day_today: "Bugün:"
         }
     };
 
@@ -362,6 +434,7 @@
         else if (lang === 'zh') htmlTag.lang = 'zh';
         else if (lang === 'pt') htmlTag.lang = 'pt';
         else if (lang === 'hi') htmlTag.lang = 'hi';
+        else if (lang === 'tr') htmlTag.lang = 'tr';
         else htmlTag.lang = 'en';
     }
 
@@ -374,6 +447,7 @@
         else if (lang === 'zh') locale = 'zh-CN';
         else if (lang === 'pt') locale = 'pt-BR';
         else if (lang === 'hi') locale = 'hi-IN';
+        else if (lang === 'tr') locale = 'tr-TR';
         else locale = 'en-US';
         let formatted = vnTime.toLocaleString(locale, options);
         if (lang === 'zh') formatted = formatted.replace('上午', '早上').replace('下午', '下午');
@@ -383,6 +457,38 @@
     function updateDateTime() {
         const bar = document.getElementById('datetimeBar');
         if (bar) bar.textContent = localizeDateTime(currentLang);
+    }
+
+    function getDayStatus(vietnamDate) {
+        const dayOfWeek = vietnamDate.getDay();
+        const isWeekend = (dayOfWeek === 0 || dayOfWeek === 6);
+        const year = vietnamDate.getFullYear();
+        const month = String(vietnamDate.getMonth() + 1).padStart(2, '0');
+        const day = String(vietnamDate.getDate()).padStart(2, '0');
+        const currentDate = `${year}-${month}-${day}`;
+        const vietnamHolidays2026 = [
+            "2026-01-01", "2026-02-14", "2026-02-15", "2026-02-16", "2026-02-17", "2026-02-18",
+            "2026-02-19", "2026-02-20", "2026-02-21", "2026-02-22", "2026-04-26", "2026-04-27",
+            "2026-04-30", "2026-05-01", "2026-08-29", "2026-08-30", "2026-08-31", "2026-09-01",
+            "2026-09-02", "2026-11-24"
+        ];
+        const isHoliday = vietnamHolidays2026.includes(currentDate);
+        if (isHoliday) return 'holiday';
+        if (isWeekend) return 'weekend';
+        return 'working';
+    }
+
+    function updateDayStatus() {
+        const vnTime = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"}));
+        const status = getDayStatus(vnTime);
+        const dayStatusEl = document.getElementById('dayStatus');
+        if (!dayStatusEl) return;
+        const t = translations[currentLang];
+        let text = '';
+        if (status === 'holiday') text = t.day_holiday;
+        else if (status === 'weekend') text = t.day_weekend;
+        else text = t.day_working;
+        dayStatusEl.innerHTML = `${t.day_today} <span>${text}</span>`;
     }
 
     function buildTable(lang) {
@@ -399,9 +505,6 @@
             }
             let speedHtml = t.speeds[i];
             if (row.badge) speedHtml += ` <span class="urgency-badge">${row.badge}</span>`;
-            // For express tariffs (first 3 rows) we use t.avail[i] which is "Business hours" etc.
-            // For row 3 (1 day) which has weekendPrice, the avail is "24/7" except we show weekend badge separately.
-            // For rows 4-6, avail is also "24/7".
             const availHtml = t.avail[i];
             const tr = document.createElement('tr');
             tr.innerHTML = `<td>${speedHtml}</td><td>${priceHtml}</td><td>${availHtml}</td>`;
@@ -450,6 +553,7 @@
             <button class="lang-btn" data-lang="zh">🇨🇳 中文</button>
             <button class="lang-btn" data-lang="pt">🇧🇷 PT</button>
             <button class="lang-btn" data-lang="hi">🇮🇳 हिंदी</button>
+            <button class="lang-btn" data-lang="tr">🇹🇷 TR</button>
         `;
         document.querySelectorAll('.lang-btn').forEach(btn => {
             if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
@@ -461,10 +565,15 @@
                     renderPage(currentLang);
                     if (dateTimeInterval) clearInterval(dateTimeInterval);
                     updateDateTime();
-                    dateTimeInterval = setInterval(updateDateTime, 1000);
+                    updateDayStatus();
+                    dateTimeInterval = setInterval(() => {
+                        updateDateTime();
+                        updateDayStatus();
+                    }, 1000);
                 }
             });
         });
+        updateDayStatus();
     }
 
     function detectLanguage() {
@@ -476,13 +585,18 @@
         if (langCode === 'zh') return 'zh';
         if (langCode === 'pt') return 'pt';
         if (langCode === 'hi') return 'hi';
+        if (langCode === 'tr') return 'tr';
         return 'en';
     }
 
     currentLang = detectLanguage();
     renderPage(currentLang);
     updateDateTime();
-    dateTimeInterval = setInterval(updateDateTime, 1000);
+    updateDayStatus();
+    dateTimeInterval = setInterval(() => {
+        updateDateTime();
+        updateDayStatus();
+    }, 1000);
 
     const flights = [
          { from: "Moscow", to: "Hanoi", time: "58 min", desc: "3h before boarding", name: "Sergei", month: "Jan" },
