@@ -22,6 +22,7 @@
         .day-status-card { background: #12223b; border-radius: 16px; padding: 12px 20px; margin: 10px auto 20px; text-align: center; border-left: 4px solid #ff6b2b; display: inline-block; width: auto; }
         .day-status-text { font-size: 1rem; font-weight: 500; }
         .day-status-text span { font-weight: 700; color: #ff6b2b; }
+        .weekend-note { font-size: 0.85rem; color: #ffb085; margin-top: 6px; }
         .highlight-box { background: #12223b; border-radius: 16px; padding: 20px; margin: 30px 0; text-align: center; }
         .info-box { background: #12223b; border-radius: 16px; padding: 20px; margin: 30px 0; text-align: center; border-left: 4px solid #ff6b2b; }
         .info-box h3 { color: #ff6b2b; margin-bottom: 10px; }
@@ -63,7 +64,6 @@
         .centered-steps { text-align: center; }
         .step-item { margin: 8px 0; }
         .faq-header { text-align: center; }
-        .working-hours-badge { display: inline-block; background: #1a2a3a; border-radius: 20px; padding: 4px 12px; font-size: 0.75rem; color: #8ba0bc; margin-top: 8px; }
     </style>
 </head>
 <body>
@@ -72,7 +72,7 @@
     <div style="text-align: center;">
         <div class="day-status-card">
             <div class="day-status-text" id="dayStatus">--</div>
-            <div class="working-hours-badge" id="workingHoursBadge"></div>
+            <div class="weekend-note" id="weekendNote" style="display: none;"></div>
         </div>
     </div>
 
@@ -183,11 +183,11 @@
             speeds: ["30‑60 min", "2 hours", "4 hours", "1 day", "2 days", "3 days", "4–5 days (Standard)"],
             avail: ["Business hours", "Business hours", "Business hours", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "weekend",
-            day_holiday: "🎉 Holiday",
-            day_weekend: "😎 Weekend",
-            day_working: "💼 Working day",
+            day_holiday: "🎉 Holiday – Immigration closed.",
+            day_weekend: "😎 Weekend – Immigration closed.",
+            day_working: "💼 Working day – Immigration open 08:00–17:00.",
             day_today: "Today:",
-            working_hours: "🕘 Immigration working hours: 08:00 – 17:00 (Mon–Fri)",
+            weekend_note: "✅ Visa issued today via Weekend/holiday tariff.",
             terms: "Terms of Service",
             privacy: "Privacy Policy"
         },
@@ -232,11 +232,11 @@
             speeds: ["30‑60 мин", "2 часа", "4 часа", "1 день", "2 дня", "3 дня", "4–5 дней (стандарт)"],
             avail: ["Рабочие часы", "Рабочие часы", "Рабочие часы", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "выходные",
-            day_holiday: "🎉 Праздник",
-            day_weekend: "😎 Выходной",
-            day_working: "💼 Рабочий день",
+            day_holiday: "🎉 Праздник – иммиграция не работает.",
+            day_weekend: "😎 Выходной – иммиграция не работает.",
+            day_working: "💼 Рабочий день – иммиграция работает 08:00–17:00.",
             day_today: "Сегодня:",
-            working_hours: "🕘 Рабочие часы иммиграции: 08:00 – 17:00 (пн–пт)",
+            weekend_note: "✅ Виза выдается сегодня по тарифу «Выходные/праздники».",
             terms: "Пользовательское соглашение",
             privacy: "Политика конфиденциальности"
         },
@@ -281,11 +281,11 @@
             speeds: ["30‑60分钟", "2小时", "4小时", "1天", "2天", "3天", "4–5天（标准）"],
             avail: ["工作时间", "工作时间", "工作时间", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "周末",
-            day_holiday: "🎉 节假日",
-            day_weekend: "😎 周末",
-            day_working: "💼 工作日",
+            day_holiday: "🎉 节假日 – 移民局关闭。",
+            day_weekend: "😎 周末 – 移民局关闭。",
+            day_working: "💼 工作日 – 移民局工作时间 08:00–17:00。",
             day_today: "今天:",
-            working_hours: "🕘 移民局工作时间: 08:00 – 17:00 (周一至周五)",
+            weekend_note: "✅ 今天可通过周末/节假日套餐签发签证。",
             terms: "服务条款",
             privacy: "隐私政策"
         },
@@ -330,11 +330,11 @@
             speeds: ["30‑60 min", "2 horas", "4 horas", "1 dia", "2 dias", "3 dias", "4–5 dias (Padrão)"],
             avail: ["Horário comercial", "Horário comercial", "Horário comercial", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "fim de semana",
-            day_holiday: "🎉 Feriado",
-            day_weekend: "😎 Fim de semana",
-            day_working: "💼 Dia útil",
+            day_holiday: "🎉 Feriado – Imigração fechada.",
+            day_weekend: "😎 Fim de semana – Imigração fechada.",
+            day_working: "💼 Dia útil – Imigração aberta 08:00–17:00.",
             day_today: "Hoje:",
-            working_hours: "🕘 Horário de funcionamento da imigração: 08:00 – 17:00 (seg-sex)",
+            weekend_note: "✅ Visto emitido hoje através do tarifário fim de semana/feriado.",
             terms: "Termos de Serviço",
             privacy: "Política de Privacidade"
         },
@@ -379,11 +379,11 @@
             speeds: ["30‑60 मिनट", "2 घंटे", "4 घंटे", "1 दिन", "2 दिन", "3 दिन", "4–5 दिन (मानक)"],
             avail: ["कार्यालय समय", "कार्यालय समय", "कार्यालय समय", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "सप्ताहांत",
-            day_holiday: "🎉 अवकाश",
-            day_weekend: "😎 सप्ताहांत",
-            day_working: "💼 कार्य दिवस",
+            day_holiday: "🎉 अवकाश – आप्रवासन बंद।",
+            day_weekend: "😎 सप्ताहांत – आप्रवासन बंद।",
+            day_working: "💼 कार्य दिवस – आप्रवासन खुला 08:00–17:00।",
             day_today: "आज:",
-            working_hours: "🕘 आप्रवासन कार्यालय समय: 08:00 – 17:00 (सोम-शुक्र)",
+            weekend_note: "✅ सप्ताहांत/अवकाश टैरिफ के माध्यम से आज वीज़ा जारी किया गया।",
             terms: "सेवा की शर्तें",
             privacy: "गोपनीयता नीति"
         },
@@ -428,11 +428,11 @@
             speeds: ["30‑60 dk", "2 saat", "4 saat", "1 gün", "2 gün", "3 gün", "4–5 gün (Standart)"],
             avail: ["Çalışma saatleri", "Çalışma saatleri", "Çalışma saatleri", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "hafta sonu",
-            day_holiday: "🎉 Tatil",
-            day_weekend: "😎 Hafta sonu",
-            day_working: "💼 İş günü",
+            day_holiday: "🎉 Tatil – Göçmenlik kapalı.",
+            day_weekend: "😎 Hafta sonu – Göçmenlik kapalı.",
+            day_working: "💼 İş günü – Göçmenlik açık 08:00–17:00.",
             day_today: "Bugün:",
-            working_hours: "🕘 Göçmenlik çalışma saatleri: 08:00 – 17:00 (Pzt-Cum)",
+            weekend_note: "✅ Hafta sonu/tatil tarifesi ile bugün vize verilir.",
             terms: "Hizmet Şartları",
             privacy: "Gizlilik Politikası"
         }
@@ -506,16 +506,29 @@
         const vnTime = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"}));
         const status = getDayStatus(vnTime);
         const dayStatusEl = document.getElementById('dayStatus');
-        const workingHoursBadge = document.getElementById('workingHoursBadge');
+        const weekendNoteEl = document.getElementById('weekendNote');
         if (!dayStatusEl) return;
         const t = translations[currentLang];
         let text = '';
-        if (status === 'holiday') text = t.day_holiday;
-        else if (status === 'weekend') text = t.day_weekend;
-        else text = t.day_working;
+        let showNote = false;
+        if (status === 'holiday') {
+            text = t.day_holiday;
+            showNote = true;
+        } else if (status === 'weekend') {
+            text = t.day_weekend;
+            showNote = true;
+        } else {
+            text = t.day_working;
+            showNote = false;
+        }
         dayStatusEl.innerHTML = `${t.day_today} <span>${text}</span>`;
-        if (workingHoursBadge) {
-            workingHoursBadge.innerHTML = t.working_hours;
+        if (weekendNoteEl) {
+            if (showNote && t.weekend_note) {
+                weekendNoteEl.style.display = 'block';
+                weekendNoteEl.innerHTML = t.weekend_note;
+            } else {
+                weekendNoteEl.style.display = 'none';
+            }
         }
     }
 
