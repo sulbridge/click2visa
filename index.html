@@ -22,7 +22,7 @@
         .day-status-card { background: #12223b; border-radius: 16px; padding: 12px 20px; margin: 10px auto 20px; text-align: center; border-left: 4px solid #ff6b2b; display: inline-block; width: auto; }
         .day-status-text { font-size: 1rem; font-weight: 500; }
         .day-status-text span { font-weight: 700; color: #ff6b2b; }
-        .weekend-note { font-size: 0.85rem; color: #ffb085; margin-top: 6px; }
+        .weekend-note { font-size: 0.85rem; color: #ffb085; margin-top: 6px; line-height: 1.4; }
         .highlight-box { background: #12223b; border-radius: 16px; padding: 20px; margin: 30px 0; text-align: center; }
         .info-box { background: #12223b; border-radius: 16px; padding: 20px; margin: 30px 0; text-align: center; border-left: 4px solid #ff6b2b; }
         .info-box h3 { color: #ff6b2b; margin-bottom: 10px; }
@@ -89,6 +89,7 @@
     <div class="info-box">
         <h3 id="alwaysOpenTitle">🕒 24/7 Application Acceptance</h3>
         <p id="alwaysOpenText">We accept applications 24 hours a day, 7 days a week. Express visas (30-60min, 2h, 4h) are processed during business hours (Mon-Fri, specific windows). Multi‑day visas are queued and processed on the next business day. Weekend/holiday tariff is available for urgent weekend processing.</p>
+        <p id="weekendTariffNote" style="color: #ffb085; margin-top: 10px;"></p>
     </div>
 
     <div style="text-align: center;">
@@ -147,7 +148,8 @@
             ai_title: "🤖 AI Concierge works while others sleep",
             ai_desc: "Fully automated bot. Send passport & selfie, pay with USDT or card – get your e‑Visa in as fast as 30 minutes.",
             always_open_title: "🕒 24/7 Application Acceptance",
-            always_open_text: "We accept applications 24 hours a day, 7 days a week. Express visas (30-60min, 2h, 4h) are processed during business hours (Mon-Fri, specific windows). Multi‑day visas are queued and processed on the next business day. Weekend/holiday tariff is available for urgent weekend processing.",
+            always_open_text: "We accept applications 24 hours a day, 7 days a week. Express visas (30-60min, 2h, 4h) are processed during business hours (Mon-Fri, specific windows). Multi‑day visas are queued and processed on the next business day.",
+            weekend_tariff_note: "Weekend/holiday tariff: submit by 14:00 Vietnam time → receive your visa the same day by 16:00–17:00.",
             cta_button: "⚡ Get Your e‑Visa Now",
             visa_note: "✅ 90‑day single‑entry e‑Visa",
             table_title: "🏷️ Urgent e‑Visa – 90 days, single entry",
@@ -183,11 +185,11 @@
             speeds: ["30‑60 min", "2 hours", "4 hours", "1 day", "2 days", "3 days", "4–5 days (Standard)"],
             avail: ["Business hours", "Business hours", "Business hours", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "weekend",
-            day_holiday: "❌ Holiday – Immigration closed.",
-            day_weekend: "❌ Weekend – Immigration closed.",
-            day_working: "💼 Working day – Immigration open 08:00–17:00.",
+            day_holiday_title: "❌ Holiday – Immigration closed.",
+            day_weekend_title: "❌ Weekend – Immigration closed.",
+            day_working_title: "💼 Working day – Immigration open 08:00–17:00.",
             day_today: "Today:",
-            weekend_note: "✅ Our bot can issue a visa today via Weekend/holiday tariff.",
+            weekend_note: "✅ Weekend/holiday visa service: submit by 14:00 Vietnam time → get your visa today by 16:00–17:00.",
             terms: "Terms of Service",
             privacy: "Privacy Policy"
         },
@@ -196,7 +198,8 @@
             ai_title: "🤖 AI‑консьерж работает, пока другие спят",
             ai_desc: "Полностью автоматический бот. Отправьте фото паспорта и селфи, оплатите USDT или картой – получите электронную визу от 30 минут.",
             always_open_title: "🕒 Приём заявок 24/7",
-            always_open_text: "Принимаем заявки круглосуточно. Экспресс-визы (30-60 мин, 2 ч, 4 ч) обрабатываются в рабочие часы (пн-пт, определённые окна). Многодневные визы ставятся в очередь и обрабатываются в следующий рабочий день. Тариф «Выходные/праздники» доступен для срочного оформления в выходные.",
+            always_open_text: "Принимаем заявки круглосуточно. Экспресс-визы (30-60 мин, 2 ч, 4 ч) обрабатываются в рабочие часы (пн-пт, определённые окна). Многодневные визы ставятся в очередь и обрабатываются в следующий рабочий день.",
+            weekend_tariff_note: "Тариф «Выходные/праздники»: подайте заявку до 14:00 по времени Вьетнама → получите визу в тот же день с 16:00 до 17:00.",
             cta_button: "⚡ Получить визу сейчас",
             visa_note: "✅ 90‑дневная однократная электронная виза",
             table_title: "🏷️ Срочная виза – 90 дней, однократно",
@@ -232,11 +235,11 @@
             speeds: ["30‑60 мин", "2 часа", "4 часа", "1 день", "2 дня", "3 дня", "4–5 дней (стандарт)"],
             avail: ["Рабочие часы", "Рабочие часы", "Рабочие часы", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "выходные",
-            day_holiday: "❌ Праздник – иммиграция не работает.",
-            day_weekend: "❌ Выходной – иммиграция не работает.",
-            day_working: "💼 Рабочий день – иммиграция работает 08:00–17:00.",
+            day_holiday_title: "❌ Праздник – иммиграция не работает.",
+            day_weekend_title: "❌ Выходной – иммиграция не работает.",
+            day_working_title: "💼 Рабочий день – иммиграция работает 08:00–17:00.",
             day_today: "Сегодня:",
-            weekend_note: "✅ Наш бот может выдать визу сегодня по тарифу «Выходные/праздники».",
+            weekend_note: "✅ Услуга «Выходные/праздники»: подайте до 14:00 по Вьетнаму → получите визу сегодня с 16:00 до 17:00.",
             terms: "Пользовательское соглашение",
             privacy: "Политика конфиденциальности"
         },
@@ -245,7 +248,8 @@
             ai_title: "🤖 AI机器人全天候工作",
             ai_desc: "全自动机器人。发送护照照片和自拍，用USDT或银行卡支付 – 最快30分钟获得电子签证。",
             always_open_title: "🕒 全天候接受申请",
-            always_open_text: "我们24/7接受申请。加急签证（30-60分钟，2小时，4小时）在工作时间处理（周一至周五，特定时间段）。多天签证排队并在下一个工作日处理。周末/节假日服务可用于紧急周末处理。",
+            always_open_text: "我们24/7接受申请。加急签证（30-60分钟，2小时，4小时）在工作时间处理（周一至周五，特定时间段）。多天签证排队并在下一个工作日处理。",
+            weekend_tariff_note: "周末/节假日服务：请于越南时间14:00前提交 → 当天16:00-17:00收到签证。",
             cta_button: "⚡ 立即获取电子签证",
             visa_note: "✅ 90天单次入境电子签证",
             table_title: "🏷️ 加急电子签证 – 90天单次入境",
@@ -281,11 +285,11 @@
             speeds: ["30‑60分钟", "2小时", "4小时", "1天", "2天", "3天", "4–5天（标准）"],
             avail: ["工作时间", "工作时间", "工作时间", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "周末",
-            day_holiday: "❌ 节假日 – 移民局关闭。",
-            day_weekend: "❌ 周末 – 移民局关闭。",
-            day_working: "💼 工作日 – 移民局工作时间 08:00–17:00。",
+            day_holiday_title: "❌ 节假日 – 移民局关闭。",
+            day_weekend_title: "❌ 周末 – 移民局关闭。",
+            day_working_title: "💼 工作日 – 移民局工作时间 08:00–17:00。",
             day_today: "今天:",
-            weekend_note: "✅ 我们的机器人今天可以通过周末/节假日套餐签发签证。",
+            weekend_note: "✅ 周末/节假日签证服务：请于越南时间14:00前提交 → 当天16:00-17:00收到签证。",
             terms: "服务条款",
             privacy: "隐私政策"
         },
@@ -294,7 +298,8 @@
             ai_title: "🤖 Agente de IA trabalha enquanto outros dormem",
             ai_desc: "Bot totalmente automático. Envie foto do passaporte e selfie, pague com USDT ou cartão – obtenha seu e-Visa em até 30 minutos.",
             always_open_title: "🕒 Aceitação de pedidos 24/7",
-            always_open_text: "Aceitamos pedidos 24 horas por dia, 7 dias por semana. Vistos expressos (30-60min, 2h, 4h) são processados em horário comercial (seg-sex, janelas específicas). Vistos de vários dias são colocados na fila e processados no próximo dia útil. Tarifa de fim de semana/feriado está disponível para processamento urgente aos fins de semana.",
+            always_open_text: "Aceitamos pedidos 24 horas por dia, 7 dias por semana. Vistos expressos (30-60min, 2h, 4h) são processados em horário comercial (seg-sex, janelas específicas). Vistos de vários dias são colocados na fila e processados no próximo dia útil.",
+            weekend_tariff_note: "Tarifa de fim de semana/feriado: envie até às 14:00 (horário do Vietnã) → receba seu visto hoje entre 16:00 e 17:00.",
             cta_button: "⚡ Obtenha seu e-Visa agora",
             visa_note: "✅ Visto eletrônico de 90 dias, entrada única",
             table_title: "🏷️ Visto urgente – 90 dias, entrada única",
@@ -330,11 +335,11 @@
             speeds: ["30‑60 min", "2 horas", "4 horas", "1 dia", "2 dias", "3 dias", "4–5 dias (Padrão)"],
             avail: ["Horário comercial", "Horário comercial", "Horário comercial", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "fim de semana",
-            day_holiday: "❌ Feriado – Imigração fechada.",
-            day_weekend: "❌ Fim de semana – Imigração fechada.",
-            day_working: "💼 Dia útil – Imigração aberta 08:00–17:00.",
+            day_holiday_title: "❌ Feriado – Imigração fechada.",
+            day_weekend_title: "❌ Fim de semana – Imigração fechada.",
+            day_working_title: "💼 Dia útil – Imigração aberta 08:00–17:00.",
             day_today: "Hoje:",
-            weekend_note: "✅ Nosso bot pode emitir visto hoje através da tarifa de fim de semana/feriado.",
+            weekend_note: "✅ Serviço de visto de fim de semana/feriado: envie até 14:00 (horário do Vietnã) → receba seu visto hoje entre 16:00 e 17:00.",
             terms: "Termos de Serviço",
             privacy: "Política de Privacidade"
         },
@@ -343,7 +348,8 @@
             ai_title: "🤖 AI कांसीयर्ज दूसरों के सोते समय काम करता है",
             ai_desc: "पूरी तरह से स्वचालित बॉट। पासपोर्ट फोटो और सेल्फी भेजें, USDT या कार्ड से भुगतान करें – 30 मिनट में ई-वीज़ा प्राप्त करें।",
             always_open_title: "🕒 24/7 आवेदन स्वीकार",
-            always_open_text: "हम 24/7 आवेदन स्वीकार करते हैं। एक्सप्रेस वीज़ा (30-60 मिनट, 2 घंटे, 4 घंटे) कार्यालय समय (सोम-शुक्र, विशिष्ट समय सीमा) के दौरान संसाधित किए जाते हैं। बहु-दिवसीय वीज़ा कतारबद्ध होते हैं और अगले कार्य दिवस पर संसाधित होते हैं। सप्ताहांत/अवकाश टैरिफ आपातकालीन सप्ताहांत प्रसंस्करण के लिए उपलब्ध है।",
+            always_open_text: "हम 24/7 आवेदन स्वीकार करते हैं। एक्सप्रेस वीज़ा (30-60 मिनट, 2 घंटे, 4 घंटे) कार्यालय समय (सोम-शुक्र, विशिष्ट समय सीमा) के दौरान संसाधित किए जाते हैं। बहु-दिवसीय वीज़ा कतारबद्ध होते हैं और अगले कार्य दिवस पर संसाधित होते हैं।",
+            weekend_tariff_note: "सप्ताहांत/अवकाश टैरिफ: वियतनाम समयानुसार 14:00 बजे तक आवेदन करें → आज 16:00-17:00 बजे तक वीज़ा प्राप्त करें।",
             cta_button: "⚡ अभी ई-वीज़ा प्राप्त करें",
             visa_note: "✅ 90-दिवसीय एकल-प्रवेश ई-वीज़ा",
             table_title: "🏷️ तत्काल ई-वीज़ा – 90 दिन, एकल प्रवेश",
@@ -379,11 +385,11 @@
             speeds: ["30‑60 मिनट", "2 घंटे", "4 घंटे", "1 दिन", "2 दिन", "3 दिन", "4–5 दिन (मानक)"],
             avail: ["कार्यालय समय", "कार्यालय समय", "कार्यालय समय", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "सप्ताहांत",
-            day_holiday: "❌ अवकाश – आप्रवासन बंद।",
-            day_weekend: "❌ सप्ताहांत – आप्रवासन बंद।",
-            day_working: "💼 कार्य दिवस – आप्रवासन खुला 08:00–17:00।",
+            day_holiday_title: "❌ अवकाश – आप्रवासन बंद।",
+            day_weekend_title: "❌ सप्ताहांत – आप्रवासन बंद।",
+            day_working_title: "💼 कार्य दिवस – आप्रवासन खुला 08:00–17:00।",
             day_today: "आज:",
-            weekend_note: "✅ हमारा बॉट आज सप्ताहांत/अवकाश टैरिफ के माध्यम से वीज़ा जारी कर सकता है।",
+            weekend_note: "✅ सप्ताहांत/अवकाश वीज़ा सेवा: वियतनाम समयानुसार 14:00 बजे तक आवेदन करें → आज 16:00-17:00 बजे तक वीज़ा प्राप्त करें।",
             terms: "सेवा की शर्तें",
             privacy: "गोपनीयता नीति"
         },
@@ -392,7 +398,8 @@
             ai_title: "🤖 Yapay Zeka Konsiyerj, diğerleri uyurken çalışır",
             ai_desc: "Tam otomatik bot. Pasaport fotoğrafınızı ve selfie'nizi gönderin, USDT veya kartla ödeyin – 30 dakika içinde e‑Vizenizi alın.",
             always_open_title: "🕒 7/24 Başvuru Kabulü",
-            always_open_text: "Başvuruları 7 gün 24 saat kabul ediyoruz. Ekspres vize (30-60 dk, 2 saat, 4 saat) çalışma saatleri içinde (Pazartesi-Cuma, belirli saat aralıkları) işlenir. Çok günlü vizeler sıraya alınır ve sonraki iş gününde işlenir. Hafta sonu/tatil tarifesi acil hafta sonu işleme için mevcuttur.",
+            always_open_text: "Başvuruları 7 gün 24 saat kabul ediyoruz. Ekspres vize (30-60 dk, 2 saat, 4 saat) çalışma saatleri içinde (Pazartesi-Cuma, belirli saat aralıkları) işlenir. Çok günlü vizeler sıraya alınır ve sonraki iş gününde işlenir.",
+            weekend_tariff_note: "Hafta sonu/tatil tarifesi: Vietnam saatiyle 14:00'a kadar başvurun → vizenizi bugün 16:00-17:00 arasında alın.",
             cta_button: "⚡ Hemen e‑Vize Al",
             visa_note: "✅ 90 günlük tek girişli e‑Vize",
             table_title: "🏷️ Acil e‑Vize – 90 gün, tek giriş",
@@ -428,11 +435,11 @@
             speeds: ["30‑60 dk", "2 saat", "4 saat", "1 gün", "2 gün", "3 gün", "4–5 gün (Standart)"],
             avail: ["Çalışma saatleri", "Çalışma saatleri", "Çalışma saatleri", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "hafta sonu",
-            day_holiday: "❌ Tatil – Göçmenlik kapalı.",
-            day_weekend: "❌ Hafta sonu – Göçmenlik kapalı.",
-            day_working: "💼 İş günü – Göçmenlik açık 08:00–17:00.",
+            day_holiday_title: "❌ Tatil – Göçmenlik kapalı.",
+            day_weekend_title: "❌ Hafta sonu – Göçmenlik kapalı.",
+            day_working_title: "💼 İş günü – Göçmenlik açık 08:00–17:00.",
             day_today: "Bugün:",
-            weekend_note: "✅ Botumuz bugün hafta sonu/tatil tarifesi ile vize düzenleyebilir.",
+            weekend_note: "✅ Hafta sonu/tatil vize hizmeti: Vietnam saatiyle 14:00'a kadar başvurun → vizenizi bugün 16:00-17:00 arasında alın.",
             terms: "Hizmet Şartları",
             privacy: "Gizlilik Politikası"
         }
@@ -509,19 +516,19 @@
         const weekendNoteEl = document.getElementById('weekendNote');
         if (!dayStatusEl) return;
         const t = translations[currentLang];
-        let text = '';
+        let titleText = '';
         let showNote = false;
         if (status === 'holiday') {
-            text = t.day_holiday;
+            titleText = t.day_holiday_title;
             showNote = true;
         } else if (status === 'weekend') {
-            text = t.day_weekend;
+            titleText = t.day_weekend_title;
             showNote = true;
         } else {
-            text = t.day_working;
+            titleText = t.day_working_title;
             showNote = false;
         }
-        dayStatusEl.innerHTML = `${t.day_today} <span>${text}</span>`;
+        dayStatusEl.innerHTML = `${t.day_today} <span>${titleText}</span>`;
         if (weekendNoteEl) {
             if (showNote && t.weekend_note) {
                 weekendNoteEl.style.display = 'block';
@@ -548,7 +555,7 @@
             if (row.badge) speedHtml += ` <span class="urgency-badge">${row.badge}</span>`;
             const availHtml = t.avail[i];
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td>${speedHtml}</td><td>${priceHtml}</td><td>${availHtml}</td>`;
+            tr.innerHTML = `<td>${speedHtml}<tr><td>${priceHtml}</td><td>${availHtml}</td>`;
             tbody.appendChild(tr);
         }
     }
@@ -562,6 +569,7 @@
         document.getElementById('aiDesc').textContent = t.ai_desc;
         document.getElementById('alwaysOpenTitle').innerHTML = t.always_open_title;
         document.getElementById('alwaysOpenText').innerHTML = t.always_open_text;
+        document.getElementById('weekendTariffNote').innerHTML = t.weekend_tariff_note;
         document.getElementById('ctaButton').textContent = t.cta_button;
         document.getElementById('visaNote').textContent = t.visa_note;
         document.getElementById('tableTitle').textContent = t.table_title;
