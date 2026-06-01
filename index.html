@@ -66,6 +66,7 @@
         .faq-header { text-align: center; }
         .status-line { display: block; }
         .status-secondary { font-size: 0.85rem; opacity: 0.9; margin-top: 4px; }
+        .day-status-main { display: flex; flex-direction: column; gap: 4px; }
     </style>
 </head>
 <body>
@@ -74,7 +75,6 @@
     <div style="text-align: center;">
         <div class="day-status-card">
             <div class="day-status-text" id="dayStatus">--</div>
-            <div class="weekend-note" id="weekendNote" style="display: none;"></div>
         </div>
     </div>
 
@@ -146,6 +146,11 @@
 <script>
     const translations = {
         en: {
+            working_title: "💼 Working day",
+            working_sub: "(Immigration open 08:00–17:00)",
+            off_title: "❌ Weekend – Day off",
+            off_line2: "✅ Our bot will issue a visa via Weekend/holiday tariff.",
+            off_line3: "(submit by 14:00 → get visa by 16:00–17:00)",
             day_today: "Today:",
             subhead: "Urgent Vietnam e‑Visa Concierge Bot • 24/7 • USDT / Card",
             ai_title: "🤖 AI Concierge works while others sleep",
@@ -188,18 +193,15 @@
             speeds: ["30‑60 min", "2 hours", "4 hours", "1 day", "2 days", "3 days", "4–5 days (Standard)"],
             avail: ["Business hours", "Business hours", "Business hours", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "weekend",
-            day_holiday_title1: "❌ Immigration closed",
-            day_holiday_title2: "✅ Bot issues visa (weekend tariff)",
-            day_holiday_note: "(submit by 14:00 → visa by 16:00–17:00)",
-            day_weekend_title1: "❌ Immigration closed",
-            day_weekend_title2: "✅ Bot issues visa (weekend tariff)",
-            day_weekend_note: "(submit by 14:00 → visa by 16:00–17:00)",
-            day_working_title1: "💼 Working day",
-            day_working_title2: "(immigration open 08:00–17:00)",
             terms: "Terms of Service",
             privacy: "Privacy Policy"
         },
         ru: {
+            working_title: "💼 Рабочий день",
+            working_sub: "(офис иммиграции: 08:00–17:00)",
+            off_title: "❌ Выходной – Нерабочий день",
+            off_line2: "✅ Наш бот выдаст визу по тарифу выходного дня",
+            off_line3: "(подайте до 14:00 → получите визу в 16:00-17:00)",
             day_today: "Сегодня:",
             subhead: "Срочная виза во Вьетнам • Консьерж‑бот 24/7 • USDT / карта",
             ai_title: "🤖 AI‑консьерж работает, пока другие спят",
@@ -242,18 +244,15 @@
             speeds: ["30‑60 мин", "2 часа", "4 часа", "1 день", "2 дня", "3 дня", "4–5 дней (стандарт)"],
             avail: ["Рабочие часы", "Рабочие часы", "Рабочие часы", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "выходные",
-            day_holiday_title1: "❌ Иммиграция закрыта",
-            day_holiday_title2: "✅ Бот выдаёт визу (тариф выходного дня)",
-            day_holiday_note: "(подайте до 14:00 → виза с 16:00 до 17:00)",
-            day_weekend_title1: "❌ Иммиграция закрыта",
-            day_weekend_title2: "✅ Бот выдаёт визу (тариф выходного дня)",
-            day_weekend_note: "(подайте до 14:00 → виза с 16:00 до 17:00)",
-            day_working_title1: "💼 Рабочий день",
-            day_working_title2: "(иммиграция работает 08:00–17:00)",
             terms: "Пользовательское соглашение",
             privacy: "Политика конфиденциальности"
         },
         zh: {
+            working_title: "💼 工作日",
+            working_sub: "(办公时间 08:00–17:00)",
+            off_title: "❌ 周末 – 休息日",
+            off_line2: "✅ 我们的机器人将通过周末/节假日套餐发放签证",
+            off_line3: "(14:00前提交 → 当天16:00-17:00出签)",
             day_today: "今天:",
             subhead: "紧急越南电子签证 • 礼宾机器人 24/7 • USDT / 卡",
             ai_title: "🤖 AI机器人全天候工作",
@@ -296,18 +295,15 @@
             speeds: ["30‑60分钟", "2小时", "4小时", "1天", "2天", "3天", "4–5天（标准）"],
             avail: ["工作时间", "工作时间", "工作时间", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "周末",
-            day_holiday_title1: "❌ 移民局关闭",
-            day_holiday_title2: "✅ 机器人签发签证（周末套餐）",
-            day_holiday_note: "(14:00前提交 → 当天16:00-17:00出签)",
-            day_weekend_title1: "❌ 移民局关闭",
-            day_weekend_title2: "✅ 机器人签发签证（周末套餐）",
-            day_weekend_note: "(14:00前提交 → 当天16:00-17:00出签)",
-            day_working_title1: "💼 工作日",
-            day_working_title2: "(移民局工作时间 08:00–17:00)",
             terms: "服务条款",
             privacy: "隐私政策"
         },
         pt: {
+            working_title: "💼 Dia útil",
+            working_sub: "(horário da imigração: 08:00–17:00)",
+            off_title: "❌ Fim de semana – Dia de folga",
+            off_line2: "✅ Nosso bot emitirá visto através da tarifa de fim de semana/feriado",
+            off_line3: "(envie até 14:00 → receba o visto entre 16:00 e 17:00)",
             day_today: "Hoje:",
             subhead: "Visto urgente para Vietnã • Bot concierge 24/7 • USDT / cartão",
             ai_title: "🤖 Agente de IA trabalha enquanto outros dormem",
@@ -350,18 +346,15 @@
             speeds: ["30‑60 min", "2 horas", "4 horas", "1 dia", "2 dias", "3 dias", "4–5 dias (Padrão)"],
             avail: ["Horário comercial", "Horário comercial", "Horário comercial", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "fim de semana",
-            day_holiday_title1: "❌ Imigração fechada",
-            day_holiday_title2: "✅ Bot emite visto (tarifa de fim de semana)",
-            day_holiday_note: "(envie até 14:00 → visto entre 16:00 e 17:00)",
-            day_weekend_title1: "❌ Imigração fechada",
-            day_weekend_title2: "✅ Bot emite visto (tarifa de fim de semana)",
-            day_weekend_note: "(envie até 14:00 → visto entre 16:00 e 17:00)",
-            day_working_title1: "💼 Dia útil",
-            day_working_title2: "(imigração aberta 08:00–17:00)",
             terms: "Termos de Serviço",
             privacy: "Política de Privacidade"
         },
         hi: {
+            working_title: "💼 कार्य दिवस",
+            working_sub: "(आप्रवासन कार्यालय: 08:00–17:00)",
+            off_title: "❌ सप्ताहांत – अवकाश",
+            off_line2: "✅ हमारा बॉट सप्ताहांत/अवकाश टैरिफ के माध्यम से वीज़ा जारी करेगा",
+            off_line3: "(14:00 बजे तक आवेदन करें → 16:00-17:00 बजे के बीच वीज़ा प्राप्त करें)",
             day_today: "आज:",
             subhead: "तत्काल वियतनाम ई-वीज़ा • कांसीयर्ज बॉट 24/7 • USDT / कार्ड",
             ai_title: "🤖 AI कांसीयर्ज दूसरों के सोते समय काम करता है",
@@ -404,18 +397,15 @@
             speeds: ["30‑60 मिनट", "2 घंटे", "4 घंटे", "1 दिन", "2 दिन", "3 दिन", "4–5 दिन (मानक)"],
             avail: ["कार्यालय समय", "कार्यालय समय", "कार्यालय समय", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "सप्ताहांत",
-            day_holiday_title1: "❌ आप्रवासन बंद",
-            day_holiday_title2: "✅ बॉट वीज़ा जारी करता है (सप्ताहांत टैरिफ)",
-            day_holiday_note: "(14:00 बजे तक आवेदन करें → 16:00-17:00 बजे के बीच वीज़ा)",
-            day_weekend_title1: "❌ आप्रवासन बंद",
-            day_weekend_title2: "✅ बॉट वीज़ा जारी करता है (सप्ताहांत टैरिफ)",
-            day_weekend_note: "(14:00 बजे तक आवेदन करें → 16:00-17:00 बजे के बीच वीज़ा)",
-            day_working_title1: "💼 कार्य दिवस",
-            day_working_title2: "(आप्रवासन खुला 08:00–17:00)",
             terms: "सेवा की शर्तें",
             privacy: "गोपनीयता नीति"
         },
         tr: {
+            working_title: "💼 İş günü",
+            working_sub: "(göçmenlik ofisi: 08:00–17:00)",
+            off_title: "❌ Hafta sonu – İzin günü",
+            off_line2: "✅ Botumuz hafta sonu/tatil tarifesi ile vize düzenleyecektir",
+            off_line3: "(14:00'a kadar başvurun → vizenizi 16:00-17:00 arasında alın)",
             day_today: "Bugün:",
             subhead: "Acil Vietnam e‑Vizesi • Konsiyerj Bot 24/7 • USDT / kart",
             ai_title: "🤖 Yapay Zeka Konsiyerj, diğerleri uyurken çalışır",
@@ -458,14 +448,6 @@
             speeds: ["30‑60 dk", "2 saat", "4 saat", "1 gün", "2 gün", "3 gün", "4–5 gün (Standart)"],
             avail: ["Çalışma saatleri", "Çalışma saatleri", "Çalışma saatleri", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "hafta sonu",
-            day_holiday_title1: "❌ Göçmenlik kapalı",
-            day_holiday_title2: "✅ Bot vize düzenler (hafta sonu tarifesi)",
-            day_holiday_note: "(14:00'a kadar başvurun → vize 16:00-17:00)",
-            day_weekend_title1: "❌ Göçmenlik kapalı",
-            day_weekend_title2: "✅ Bot vize düzenler (hafta sonu tarifesi)",
-            day_weekend_note: "(14:00'a kadar başvurun → vize 16:00-17:00)",
-            day_working_title1: "💼 İş günü",
-            day_working_title2: "(göçmenlik açık 08:00–17:00)",
             terms: "Hizmet Şartları",
             privacy: "Gizlilik Politikası"
         }
@@ -539,30 +521,22 @@
         const vnTime = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Ho_Chi_Minh"}));
         const status = getDayStatus(vnTime);
         const dayStatusEl = document.getElementById('dayStatus');
-        const weekendNoteEl = document.getElementById('weekendNote');
         if (!dayStatusEl) return;
         const t = translations[currentLang];
-        let mainHtml = '';
-        let noteHtml = '';
-        if (status === 'holiday') {
-            mainHtml = `${t.day_holiday_title1}<br><span style="font-weight:normal;">${t.day_holiday_title2}</span>`;
-            noteHtml = t.day_holiday_note;
-        } else if (status === 'weekend') {
-            mainHtml = `${t.day_weekend_title1}<br><span style="font-weight:normal;">${t.day_weekend_title2}</span>`;
-            noteHtml = t.day_weekend_note;
-        } else {
-            mainHtml = `${t.day_working_title1}<br><span class="status-secondary">${t.day_working_title2}</span>`;
-            noteHtml = '';
+        let html = '';
+        if (status === 'working') {
+            html = `<div class="day-status-main">
+                        <div>${t.day_today} ${t.working_title}</div>
+                        <div class="status-secondary">${t.working_sub}</div>
+                    </div>`;
+        } else { // weekend or holiday
+            html = `<div class="day-status-main">
+                        <div>${t.day_today} ${t.off_title}</div>
+                        <div>${t.off_line2}</div>
+                        <div class="status-secondary">${t.off_line3}</div>
+                    </div>`;
         }
-        dayStatusEl.innerHTML = `<div class="status-line">${t.day_today}</div><div>${mainHtml}</div>`;
-        if (weekendNoteEl) {
-            if (noteHtml) {
-                weekendNoteEl.style.display = 'block';
-                weekendNoteEl.innerHTML = noteHtml;
-            } else {
-                weekendNoteEl.style.display = 'none';
-            }
-        }
+        dayStatusEl.innerHTML = html;
     }
 
     function buildTable(lang) {
@@ -581,7 +555,7 @@
             if (row.badge) speedHtml += ` <span class="urgency-badge">${row.badge}</span>`;
             const availHtml = t.avail[i];
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td>${speedHtml}</td><td>${priceHtml}</td><td>${availHtml}</tr>`;
+            tr.innerHTML = `<td>${speedHtml}</td><td>${priceHtml}</td><td>${availHtml}</td>`;
             tbody.appendChild(tr);
         }
     }
@@ -626,6 +600,7 @@
         const footerSwitch = document.getElementById('langSwitchFooter');
         footerSwitch.innerHTML = `
             <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+            <button class="lang-btn" data-lang="ru">🇷🇺 RU</button>
             <button class="lang-btn" data-lang="zh">🇨🇳 中文</button>
             <button class="lang-btn" data-lang="pt">🇧🇷 PT</button>
             <button class="lang-btn" data-lang="hi">🇮🇳 हिंदी</button>
@@ -676,78 +651,78 @@
 
     const flights = [
          { from: "Moscow", to: "Hanoi", time: "58 min", desc: "3h before boarding", name: "Sergei", month: "Jan" },
-                { from: "Sydney", to: "Ho Chi Minh", time: "2h", desc: "family of 4", name: "Mia", month: "Feb" },
-                { from: "London", to: "Phu Quoc", time: "1h", desc: "forgotten visa", name: "David", month: "Mar" },
-                { from: "Seoul", to: "Da Nang", time: "overnight", desc: "ready by 8am", name: "Yuna", month: "Jan" },
-                { from: "Toronto", to: "Nha Trang", time: "weekend", desc: "Monday 9am visa", name: "Raj", month: "Feb" },
-                { from: "Paris", to: "Hanoi", time: "4h", desc: "group of 6", name: "Claire", month: "Mar" },
-                { from: "New York", to: "Ho Chi Minh", time: "1 day", desc: "Sunday evening", name: "Marcus", month: "Apr" },
-                { from: "Berlin", to: "Cat Ba", time: "2 days", desc: "relaxed", name: "Tom", month: "Apr" },
-                { from: "Melbourne", to: "Danang", time: "2h", desc: "typo in passport fix", name: "Sophie", month: "Jan" },
-                { from: "Amsterdam", to: "Hanoi", time: "4h", desc: "business trip", name: "Jan", month: "Apr" },
-                { from: "Delhi", to: "Ho Chi Minh", time: "1 day", desc: "student", name: "Priya", month: "Feb" },
-                { from: "Los Angeles", to: "Da Lat", time: "2h", desc: "honeymoon", name: "Chloe & Leo", month: "May 1" },
-                { from: "Moscow", to: "Nha Trang", time: "3h", desc: "rescheduled flight", name: "Ivan", month: "Mar" },
-                { from: "Tokyo", to: "Hanoi", time: "58 min", desc: "salaryman panic", name: "Tanaka", month: "Mar" },
-                { from: "Osaka", to: "Ho Chi Minh", time: "2h", desc: "food tour", name: "Yuki", month: "Jan" },
-                { from: "Seoul", to: "Phu Quoc", time: "1h", desc: "K-pop producer", name: "Park", month: "Feb" },
-                { from: "Busan", to: "Nha Trang", time: "4h", desc: "film location", name: "Kim", month: "Apr" },
-                { from: "Beijing", to: "Da Nang", time: "2h", desc: "Lunar New Year", name: "Wang", month: "Mar" },
-                { from: "Shanghai", to: "Ho Chi Minh", time: "1 day", desc: "trade delegation", name: "Chen", month: "Feb" },
-                { from: "Guangzhou", to: "Hoi An", time: "3h", desc: "textile buyer", name: "Li", month: "Jan" },
-                { from: "Shenzhen", to: "Phu Quoc", time: "58 min", desc: "tech expo", name: "Zhang", month: "Apr" },
-                { from: "Taipei", to: "Hanoi", time: "4h", desc: "bubble tea miss", name: "Mei", month: "Mar" },
-                { from: "Hong Kong", to: "Cat Ba", time: "1h", desc: "banking tycoon", name: "William", month: "Feb" },
-                { from: "Singapore", to: "Da Lat", time: "2h", desc: "layover save", name: "Raj", month: "Jan" },
-                { from: "Kuala Lumpur", to: "Nha Trang", time: "3h", desc: "twin towers miss", name: "Ahmad", month: "Apr" },
-                { from: "Bangkok", to: "Ho Chi Minh", time: "58 min", desc: "visa run fix", name: "Somchai", month: "Mar" },
-                { from: "Chiang Mai", to: "Phu Quoc", time: "1 day", desc: "digital nomad hub", name: "Emma", month: "Feb" },
-                { from: "Jakarta", to: "Hanoi", time: "4h", desc: "ASEAN summit", name: "Budi", month: "Jan" },
-                { from: "Bali", to: "Da Nang", time: "2h", desc: "surf trip save", name: "Ketut", month: "Apr" },
-                { from: "Manila", to: "Ho Chi Minh", time: "1h", desc: "typhoon escape", name: "Maria", month: "Mar" },
-                { from: "New Delhi", to: "Phu Quoc", time: "58 min", desc: "yoga retreat", name: "Priya", month: "Feb" },
-                { from: "Mumbai", to: "Hoi An", time: "2 days", desc: "Bollywood location", name: "Amitabh", month: "Jan" },
-                { from: "Chennai", to: "Nha Trang", time: "3h", desc: "IT conference", name: "Lakshmi", month: "Apr" },
-                { from: "Dubai", to: "Hanoi", time: "2h", desc: "urgent work", name: "Omar", month: "Jan" },
-                { from: "Riyadh", to: "Da Nang", time: "58 min", desc: "family emergency", name: "Fatima", month: "Jan" },
-                { from: "Tehran", to: "Phu Quoc", time: "3h", desc: "vacation", name: "Amir", month: "Mar" },
-                { from: "Athens", to: "Ho Chi Minh", time: "2 days", desc: "history buff", name: "Eleni", month: "Feb" },
-                { from: "Istanbul", to: "Cat Ba", time: "1h", desc: "missed connection", name: "Emre", month: "Mar" },
-                { from: "Cairo", to: "Hanoi", time: "4h", desc: "first time Asia", name: "Ahmed", month: "Apr" },
-                { from: "Nairobi", to: "Ho Chi Minh", time: "1 day", desc: "safari bonus", name: "Joy", month: "Mar" },
-                { from: "Lagos", to: "Nha Trang", time: "2h", desc: "missed visa", name: "Chidi", month: "Apr" },
-                { from: "Cape Town", to: "Phu Quoc", time: "58 min", desc: "last minute trip", name: "Thabo", month: "Jan" },
-                { from: "Buenos Aires", to: "Hanoi", time: "3h", desc: "tango dancer", name: "Valentina", month: "Feb" },
-                { from: "Santiago", to: "Ho Chi Minh", time: "2 days", desc: "backpacker", name: "Pedro", month: "Feb" },
-                { from: "Rio de Janeiro", to: "Da Nang", time: "4h", desc: "carnival miss", name: "Lucas", month: "Mar" },
-                { from: "Mexico City", to: "Phu Quoc", time: "1h", desc: "business class save", name: "Alejandro", month: "Apr" },
-                { from: "Lima", to: "Hoi An", time: "2h", desc: "foodie tour", name: "Carmen", month: "Jan" },
-                { from: "Bogota", to: "Nha Trang", time: "58 min", desc: "emergency visa", name: "Carlos", month: "Mar" },
-                { from: "Madrid", to: "Hanoi", time: "2h", desc: "digital nomad", name: "Carlos", month: "Mar" },
-                { from: "Barcelona", to: "Ho Chi Minh", time: "1h", desc: "football fan", name: "Xavi", month: "Feb" },
-                { from: "Lisbon", to: "Da Lat", time: "4h", desc: "digital nomad", name: "Sofia", month: "Jan" },
-                { from: "Paris", to: "Phu Quoc", time: "58 min", desc: "missed flight", name: "Amélie", month: "Mar" },
-                { from: "Lyon", to: "Nha Trang", time: "2h", desc: "gastronomic tour", name: "Pierre", month: "Feb" },
-                { from: "Marseille", to: "Hanoi", time: "1 day", desc: "island resort", name: "Camille", month: "Jan" },
-                { from: "Frankfurt", to: "Phu Quoc", time: "1 day", desc: "island getaway", name: "Anna", month: "Mar" },
-                { from: "Munich", to: "Cat Ba", time: "2h", desc: "Oktoberfest miss", name: "Hans", month: "Jan" },
-                { from: "Zurich", to: "Nha Trang", time: "58 min", desc: "banking emergency", name: "Lukas", month: "Apr" },
-                { from: "Vienna", to: "Hoi An", time: "4h", desc: "opera tour", name: "Franz", month: "Feb" },
-                { from: "Prague", to: "Ho Chi Minh", time: "2h", desc: "cultural tour", name: "Jan", month: "Apr" },
-                { from: "Warsaw", to: "Da Nang", time: "3h", desc: "friends reunion", name: "Aga", month: "Mar" },
-                { from: "Budapest", to: "Phu Quoc", time: "58 min", desc: "thermal bath missed", name: "Zoltan", month: "Jan" },
-                { from: "Bucharest", to: "Hanoi", time: "2h", desc: "couple", name: "Andreea", month: "Jan" },
-                { from: "Sofia", to: "Nha Trang", time: "1h", desc: "budget travel", name: "Ivan", month: "Apr" },
-                { from: "Belgrade", to: "Ho Chi Minh", time: "4h", desc: "party crew", name: "Luka", month: "Feb" },
-                { from: "Zagreb", to: "Da Lat", time: "1 day", desc: "coastal escape", name: "Mia", month: "Mar" },
-                { from: "Athens", to: "Phu Quoc", time: "2h", desc: "island hopping", name: "Nikos", month: "Apr" },
-                { from: "Helsinki", to: "Hanoi", time: "3h", desc: "winter escape", name: "Aino", month: "Feb" },
-                { from: "Stockholm", to: "Cat Ba", time: "1 day", desc: "winter blues", name: "Erik", month: "Apr" },
-                { from: "Oslo", to: "Nha Trang", time: "58 min", desc: "northern lights miss", name: "Ingrid", month: "Mar" },
-                { from: "Copenhagen", to: "Da Lat", time: "2h", desc: "hygge escape", name: "Mikkel", month: "Feb" },
-                { from: "Reykjavik", to: "Hanoi", time: "2h", desc: "northern lights miss", name: "Gunnar", month: "Apr" },
-                { from: "Brussels", to: "Hoi An", time: "3h", desc: "EU official", name: "Marie", month: "Jan" },
-                { from: "Amsterdam", to: "Phu Quoc", time: "2h", desc: "backpacker fix", name: "Lars", month: "Mar" }
+         { from: "Sydney", to: "Ho Chi Minh", time: "2h", desc: "family of 4", name: "Mia", month: "Feb" },
+         { from: "London", to: "Phu Quoc", time: "1h", desc: "forgotten visa", name: "David", month: "Mar" },
+         { from: "Seoul", to: "Da Nang", time: "overnight", desc: "ready by 8am", name: "Yuna", month: "Jan" },
+         { from: "Toronto", to: "Nha Trang", time: "weekend", desc: "Monday 9am visa", name: "Raj", month: "Feb" },
+         { from: "Paris", to: "Hanoi", time: "4h", desc: "group of 6", name: "Claire", month: "Mar" },
+         { from: "New York", to: "Ho Chi Minh", time: "1 day", desc: "Sunday evening", name: "Marcus", month: "Apr" },
+         { from: "Berlin", to: "Cat Ba", time: "2 days", desc: "relaxed", name: "Tom", month: "Apr" },
+         { from: "Melbourne", to: "Danang", time: "2h", desc: "typo in passport fix", name: "Sophie", month: "Jan" },
+         { from: "Amsterdam", to: "Hanoi", time: "4h", desc: "business trip", name: "Jan", month: "Apr" },
+         { from: "Delhi", to: "Ho Chi Minh", time: "1 day", desc: "student", name: "Priya", month: "Feb" },
+         { from: "Los Angeles", to: "Da Lat", time: "2h", desc: "honeymoon", name: "Chloe & Leo", month: "May 1" },
+         { from: "Moscow", to: "Nha Trang", time: "3h", desc: "rescheduled flight", name: "Ivan", month: "Mar" },
+         { from: "Tokyo", to: "Hanoi", time: "58 min", desc: "salaryman panic", name: "Tanaka", month: "Mar" },
+         { from: "Osaka", to: "Ho Chi Minh", time: "2h", desc: "food tour", name: "Yuki", month: "Jan" },
+         { from: "Seoul", to: "Phu Quoc", time: "1h", desc: "K-pop producer", name: "Park", month: "Feb" },
+         { from: "Busan", to: "Nha Trang", time: "4h", desc: "film location", name: "Kim", month: "Apr" },
+         { from: "Beijing", to: "Da Nang", time: "2h", desc: "Lunar New Year", name: "Wang", month: "Mar" },
+         { from: "Shanghai", to: "Ho Chi Minh", time: "1 day", desc: "trade delegation", name: "Chen", month: "Feb" },
+         { from: "Guangzhou", to: "Hoi An", time: "3h", desc: "textile buyer", name: "Li", month: "Jan" },
+         { from: "Shenzhen", to: "Phu Quoc", time: "58 min", desc: "tech expo", name: "Zhang", month: "Apr" },
+         { from: "Taipei", to: "Hanoi", time: "4h", desc: "bubble tea miss", name: "Mei", month: "Mar" },
+         { from: "Hong Kong", to: "Cat Ba", time: "1h", desc: "banking tycoon", name: "William", month: "Feb" },
+         { from: "Singapore", to: "Da Lat", time: "2h", desc: "layover save", name: "Raj", month: "Jan" },
+         { from: "Kuala Lumpur", to: "Nha Trang", time: "3h", desc: "twin towers miss", name: "Ahmad", month: "Apr" },
+         { from: "Bangkok", to: "Ho Chi Minh", time: "58 min", desc: "visa run fix", name: "Somchai", month: "Mar" },
+         { from: "Chiang Mai", to: "Phu Quoc", time: "1 day", desc: "digital nomad hub", name: "Emma", month: "Feb" },
+         { from: "Jakarta", to: "Hanoi", time: "4h", desc: "ASEAN summit", name: "Budi", month: "Jan" },
+         { from: "Bali", to: "Da Nang", time: "2h", desc: "surf trip save", name: "Ketut", month: "Apr" },
+         { from: "Manila", to: "Ho Chi Minh", time: "1h", desc: "typhoon escape", name: "Maria", month: "Mar" },
+         { from: "New Delhi", to: "Phu Quoc", time: "58 min", desc: "yoga retreat", name: "Priya", month: "Feb" },
+         { from: "Mumbai", to: "Hoi An", time: "2 days", desc: "Bollywood location", name: "Amitabh", month: "Jan" },
+         { from: "Chennai", to: "Nha Trang", time: "3h", desc: "IT conference", name: "Lakshmi", month: "Apr" },
+         { from: "Dubai", to: "Hanoi", time: "2h", desc: "urgent work", name: "Omar", month: "Jan" },
+         { from: "Riyadh", to: "Da Nang", time: "58 min", desc: "family emergency", name: "Fatima", month: "Jan" },
+         { from: "Tehran", to: "Phu Quoc", time: "3h", desc: "vacation", name: "Amir", month: "Mar" },
+         { from: "Athens", to: "Ho Chi Minh", time: "2 days", desc: "history buff", name: "Eleni", month: "Feb" },
+         { from: "Istanbul", to: "Cat Ba", time: "1h", desc: "missed connection", name: "Emre", month: "Mar" },
+         { from: "Cairo", to: "Hanoi", time: "4h", desc: "first time Asia", name: "Ahmed", month: "Apr" },
+         { from: "Nairobi", to: "Ho Chi Minh", time: "1 day", desc: "safari bonus", name: "Joy", month: "Mar" },
+         { from: "Lagos", to: "Nha Trang", time: "2h", desc: "missed visa", name: "Chidi", month: "Apr" },
+         { from: "Cape Town", to: "Phu Quoc", time: "58 min", desc: "last minute trip", name: "Thabo", month: "Jan" },
+         { from: "Buenos Aires", to: "Hanoi", time: "3h", desc: "tango dancer", name: "Valentina", month: "Feb" },
+         { from: "Santiago", to: "Ho Chi Minh", time: "2 days", desc: "backpacker", name: "Pedro", month: "Feb" },
+         { from: "Rio de Janeiro", to: "Da Nang", time: "4h", desc: "carnival miss", name: "Lucas", month: "Mar" },
+         { from: "Mexico City", to: "Phu Quoc", time: "1h", desc: "business class save", name: "Alejandro", month: "Apr" },
+         { from: "Lima", to: "Hoi An", time: "2h", desc: "foodie tour", name: "Carmen", month: "Jan" },
+         { from: "Bogota", to: "Nha Trang", time: "58 min", desc: "emergency visa", name: "Carlos", month: "Mar" },
+         { from: "Madrid", to: "Hanoi", time: "2h", desc: "digital nomad", name: "Carlos", month: "Mar" },
+         { from: "Barcelona", to: "Ho Chi Minh", time: "1h", desc: "football fan", name: "Xavi", month: "Feb" },
+         { from: "Lisbon", to: "Da Lat", time: "4h", desc: "digital nomad", name: "Sofia", month: "Jan" },
+         { from: "Paris", to: "Phu Quoc", time: "58 min", desc: "missed flight", name: "Amélie", month: "Mar" },
+         { from: "Lyon", to: "Nha Trang", time: "2h", desc: "gastronomic tour", name: "Pierre", month: "Feb" },
+         { from: "Marseille", to: "Hanoi", time: "1 day", desc: "island resort", name: "Camille", month: "Jan" },
+         { from: "Frankfurt", to: "Phu Quoc", time: "1 day", desc: "island getaway", name: "Anna", month: "Mar" },
+         { from: "Munich", to: "Cat Ba", time: "2h", desc: "Oktoberfest miss", name: "Hans", month: "Jan" },
+         { from: "Zurich", to: "Nha Trang", time: "58 min", desc: "banking emergency", name: "Lukas", month: "Apr" },
+         { from: "Vienna", to: "Hoi An", time: "4h", desc: "opera tour", name: "Franz", month: "Feb" },
+         { from: "Prague", to: "Ho Chi Minh", time: "2h", desc: "cultural tour", name: "Jan", month: "Apr" },
+         { from: "Warsaw", to: "Da Nang", time: "3h", desc: "friends reunion", name: "Aga", month: "Mar" },
+         { from: "Budapest", to: "Phu Quoc", time: "58 min", desc: "thermal bath missed", name: "Zoltan", month: "Jan" },
+         { from: "Bucharest", to: "Hanoi", time: "2h", desc: "couple", name: "Andreea", month: "Jan" },
+         { from: "Sofia", to: "Nha Trang", time: "1h", desc: "budget travel", name: "Ivan", month: "Apr" },
+         { from: "Belgrade", to: "Ho Chi Minh", time: "4h", desc: "party crew", name: "Luka", month: "Feb" },
+         { from: "Zagreb", to: "Da Lat", time: "1 day", desc: "coastal escape", name: "Mia", month: "Mar" },
+         { from: "Athens", to: "Phu Quoc", time: "2h", desc: "island hopping", name: "Nikos", month: "Apr" },
+         { from: "Helsinki", to: "Hanoi", time: "3h", desc: "winter escape", name: "Aino", month: "Feb" },
+         { from: "Stockholm", to: "Cat Ba", time: "1 day", desc: "winter blues", name: "Erik", month: "Apr" },
+         { from: "Oslo", to: "Nha Trang", time: "58 min", desc: "northern lights miss", name: "Ingrid", month: "Mar" },
+         { from: "Copenhagen", to: "Da Lat", time: "2h", desc: "hygge escape", name: "Mikkel", month: "Feb" },
+         { from: "Reykjavik", to: "Hanoi", time: "2h", desc: "northern lights miss", name: "Gunnar", month: "Apr" },
+         { from: "Brussels", to: "Hoi An", time: "3h", desc: "EU official", name: "Marie", month: "Jan" },
+         { from: "Amsterdam", to: "Phu Quoc", time: "2h", desc: "backpacker fix", name: "Lars", month: "Mar" }
     ];
     const trackDiv = document.getElementById('flightsTrack');
     function createCard(t) {
