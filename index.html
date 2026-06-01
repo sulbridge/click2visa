@@ -64,6 +64,8 @@
         .centered-steps { text-align: center; }
         .step-item { margin: 8px 0; }
         .faq-header { text-align: center; }
+        .status-line { display: block; }
+        .status-secondary { font-size: 0.85rem; opacity: 0.9; margin-top: 4px; }
     </style>
 </head>
 <body>
@@ -185,11 +187,14 @@
             speeds: ["30‑60 min", "2 hours", "4 hours", "1 day", "2 days", "3 days", "4–5 days (Standard)"],
             avail: ["Business hours", "Business hours", "Business hours", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "weekend",
-            day_holiday_title: "❌ Holiday – Immigration closed.",
-            day_weekend_title: "❌ Weekend – Immigration closed.",
-            day_working_title: "💼 Working day – Immigration open 08:00–17:00.",
-            day_today: "Today:",
-            weekend_note: "✅ Our bot will issue a visa via Weekend/holiday tariff.<br>(submit by 14:00 and get your visa today by 16:00–17:00)",
+            day_holiday_title1: "❌ Immigration closed",
+            day_holiday_title2: "✅ Bot issues visa (weekend tariff)",
+            day_holiday_note: "(submit by 14:00 → visa by 16:00–17:00)",
+            day_weekend_title1: "❌ Immigration closed",
+            day_weekend_title2: "✅ Bot issues visa (weekend tariff)",
+            day_weekend_note: "(submit by 14:00 → visa by 16:00–17:00)",
+            day_working_title1: "💼 Working day",
+            day_working_title2: "(immigration open 08:00–17:00)",
             terms: "Terms of Service",
             privacy: "Privacy Policy"
         },
@@ -235,11 +240,14 @@
             speeds: ["30‑60 мин", "2 часа", "4 часа", "1 день", "2 дня", "3 дня", "4–5 дней (стандарт)"],
             avail: ["Рабочие часы", "Рабочие часы", "Рабочие часы", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "выходные",
-            day_holiday_title: "❌ Праздник – иммиграция не работает.",
-            day_weekend_title: "❌ Выходной – иммиграция не работает.",
-            day_working_title: "💼 Рабочий день – иммиграция работает 08:00–17:00.",
-            day_today: "Сегодня:",
-            weekend_note: "✅ Наш бот выдаст визу по тарифу «Выходные/праздники».<br>(подайте до 14:00 и получите визу сегодня с 16:00 до 17:00)",
+            day_holiday_title1: "❌ Иммиграция закрыта",
+            day_holiday_title2: "✅ Бот выдаёт визу (тариф выходного дня)",
+            day_holiday_note: "(подайте до 14:00 → виза с 16:00 до 17:00)",
+            day_weekend_title1: "❌ Иммиграция закрыта",
+            day_weekend_title2: "✅ Бот выдаёт визу (тариф выходного дня)",
+            day_weekend_note: "(подайте до 14:00 → виза с 16:00 до 17:00)",
+            day_working_title1: "💼 Рабочий день",
+            day_working_title2: "(иммиграция работает 08:00–17:00)",
             terms: "Пользовательское соглашение",
             privacy: "Политика конфиденциальности"
         },
@@ -285,11 +293,14 @@
             speeds: ["30‑60分钟", "2小时", "4小时", "1天", "2天", "3天", "4–5天（标准）"],
             avail: ["工作时间", "工作时间", "工作时间", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "周末",
-            day_holiday_title: "❌ 节假日 – 移民局关闭。",
-            day_weekend_title: "❌ 周末 – 移民局关闭。",
-            day_working_title: "💼 工作日 – 移民局工作时间 08:00–17:00。",
-            day_today: "今天:",
-            weekend_note: "✅ 我们的机器人将通过周末/节假日套餐签发签证。<br>(14:00前提交，当天16:00-17:00收到签证)",
+            day_holiday_title1: "❌ 移民局关闭",
+            day_holiday_title2: "✅ 机器人签发签证（周末套餐）",
+            day_holiday_note: "(14:00前提交 → 当天16:00-17:00出签)",
+            day_weekend_title1: "❌ 移民局关闭",
+            day_weekend_title2: "✅ 机器人签发签证（周末套餐）",
+            day_weekend_note: "(14:00前提交 → 当天16:00-17:00出签)",
+            day_working_title1: "💼 工作日",
+            day_working_title2: "(移民局工作时间 08:00–17:00)",
             terms: "服务条款",
             privacy: "隐私政策"
         },
@@ -335,11 +346,14 @@
             speeds: ["30‑60 min", "2 horas", "4 horas", "1 dia", "2 dias", "3 dias", "4–5 dias (Padrão)"],
             avail: ["Horário comercial", "Horário comercial", "Horário comercial", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "fim de semana",
-            day_holiday_title: "❌ Feriado – Imigração fechada.",
-            day_weekend_title: "❌ Fim de semana – Imigração fechada.",
-            day_working_title: "💼 Dia útil – Imigração aberta 08:00–17:00.",
-            day_today: "Hoje:",
-            weekend_note: "✅ Nosso bot emitirá um visto através da tarifa de fim de semana/feriado.<br>(envie até 14:00 e receba seu visto hoje entre 16:00 e 17:00)",
+            day_holiday_title1: "❌ Imigração fechada",
+            day_holiday_title2: "✅ Bot emite visto (tarifa de fim de semana)",
+            day_holiday_note: "(envie até 14:00 → visto entre 16:00 e 17:00)",
+            day_weekend_title1: "❌ Imigração fechada",
+            day_weekend_title2: "✅ Bot emite visto (tarifa de fim de semana)",
+            day_weekend_note: "(envie até 14:00 → visto entre 16:00 e 17:00)",
+            day_working_title1: "💼 Dia útil",
+            day_working_title2: "(imigração aberta 08:00–17:00)",
             terms: "Termos de Serviço",
             privacy: "Política de Privacidade"
         },
@@ -385,11 +399,14 @@
             speeds: ["30‑60 मिनट", "2 घंटे", "4 घंटे", "1 दिन", "2 दिन", "3 दिन", "4–5 दिन (मानक)"],
             avail: ["कार्यालय समय", "कार्यालय समय", "कार्यालय समय", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "सप्ताहांत",
-            day_holiday_title: "❌ अवकाश – आप्रवासन बंद।",
-            day_weekend_title: "❌ सप्ताहांत – आप्रवासन बंद।",
-            day_working_title: "💼 कार्य दिवस – आप्रवासन खुला 08:00–17:00।",
-            day_today: "आज:",
-            weekend_note: "✅ हमारा बॉट सप्ताहांत/अवकाश टैरिफ के माध्यम से वीज़ा जारी करेगा।<br>(14:00 बजे तक आवेदन करें और आज 16:00-17:00 बजे तक वीज़ा प्राप्त करें)",
+            day_holiday_title1: "❌ आप्रवासन बंद",
+            day_holiday_title2: "✅ बॉट वीज़ा जारी करता है (सप्ताहांत टैरिफ)",
+            day_holiday_note: "(14:00 बजे तक आवेदन करें → आज 16:00-17:00 बजे तक वीज़ा)",
+            day_weekend_title1: "❌ आप्रवासन बंद",
+            day_weekend_title2: "✅ बॉट वीज़ा जारी करता है (सप्ताहांत टैरिफ)",
+            day_weekend_note: "(14:00 बजे तक आवेदन करें → आज 16:00-17:00 बजे तक वीज़ा)",
+            day_working_title1: "💼 कार्य दिवस",
+            day_working_title2: "(आप्रवासन खुला 08:00–17:00)",
             terms: "सेवा की शर्तें",
             privacy: "गोपनीयता नीति"
         },
@@ -435,11 +452,14 @@
             speeds: ["30‑60 dk", "2 saat", "4 saat", "1 gün", "2 gün", "3 gün", "4–5 gün (Standart)"],
             avail: ["Çalışma saatleri", "Çalışma saatleri", "Çalışma saatleri", "24/7", "24/7", "24/7", "24/7"],
             weekend_label: "hafta sonu",
-            day_holiday_title: "❌ Tatil – Göçmenlik kapalı.",
-            day_weekend_title: "❌ Hafta sonu – Göçmenlik kapalı.",
-            day_working_title: "💼 İş günü – Göçmenlik açık 08:00–17:00.",
-            day_today: "Bugün:",
-            weekend_note: "✅ Botumuz hafta sonu/tatil tarifesi ile vize düzenleyecektir.<br>(14:00'a kadar başvurun ve vizenizi bugün 16:00-17:00 arasında alın)",
+            day_holiday_title1: "❌ Göçmenlik kapalı",
+            day_holiday_title2: "✅ Bot vize düzenler (hafta sonu tarifesi)",
+            day_holiday_note: "(14:00'a kadar başvurun → vize bugün 16:00-17:00)",
+            day_weekend_title1: "❌ Göçmenlik kapalı",
+            day_weekend_title2: "✅ Bot vize düzenler (hafta sonu tarifesi)",
+            day_weekend_note: "(14:00'a kadar başvurun → vize bugün 16:00-17:00)",
+            day_working_title1: "💼 İş günü",
+            day_working_title2: "(göçmenlik açık 08:00–17:00)",
             terms: "Hizmet Şartları",
             privacy: "Gizlilik Politikası"
         }
@@ -516,23 +536,23 @@
         const weekendNoteEl = document.getElementById('weekendNote');
         if (!dayStatusEl) return;
         const t = translations[currentLang];
-        let titleText = '';
-        let showNote = false;
+        let mainHtml = '';
+        let noteHtml = '';
         if (status === 'holiday') {
-            titleText = t.day_holiday_title;
-            showNote = true;
+            mainHtml = `${t.day_holiday_title1}<br><span style="font-weight:normal;">${t.day_holiday_title2}</span>`;
+            noteHtml = t.day_holiday_note;
         } else if (status === 'weekend') {
-            titleText = t.day_weekend_title;
-            showNote = true;
+            mainHtml = `${t.day_weekend_title1}<br><span style="font-weight:normal;">${t.day_weekend_title2}</span>`;
+            noteHtml = t.day_weekend_note;
         } else {
-            titleText = t.day_working_title;
-            showNote = false;
+            mainHtml = `${t.day_working_title1}<br><span class="status-secondary">${t.day_working_title2}</span>`;
+            noteHtml = '';
         }
-        dayStatusEl.innerHTML = `${t.day_today} <span>${titleText}</span>`;
+        dayStatusEl.innerHTML = `<div class="status-line">${t.day_today}</div><div>${mainHtml}</div>`;
         if (weekendNoteEl) {
-            if (showNote && t.weekend_note) {
+            if (noteHtml) {
                 weekendNoteEl.style.display = 'block';
-                weekendNoteEl.innerHTML = t.weekend_note;
+                weekendNoteEl.innerHTML = noteHtml;
             } else {
                 weekendNoteEl.style.display = 'none';
             }
@@ -555,7 +575,7 @@
             if (row.badge) speedHtml += ` <span class="urgency-badge">${row.badge}</span>`;
             const availHtml = t.avail[i];
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td>${speedHtml}</td><td>${priceHtml}</td><td>${availHtml}</td>`;
+            tr.innerHTML = `<td>${speedHtml}</td><td>${priceHtml}</td><td>${availHtml}</tr>`;
             tbody.appendChild(tr);
         }
     }
